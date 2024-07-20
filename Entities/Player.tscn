@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://1wgfw2uv0c65"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_6ell8"]
+[ext_resource type="Script" path="res://Scripts/States/StateManager.cs" id="3_5833u"]
+[ext_resource type="Script" path="res://Scripts/States/Idle.cs" id="4_h0rqe"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/InputManager.cs" id="4_ssfm2"]
+[ext_resource type="Script" path="res://Scripts/States/Running.cs" id="5_6muda"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerRotationManager.cs" id="5_527ph"]
+[ext_resource type="Script" path="res://Scripts/States/Sprinting.cs" id="6_8swsa"]
+[ext_resource type="Script" path="res://Scripts/States/Dead.cs" id="8_lvf28"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_6ell8")
+
+[node name="State Manager" type="Node" parent="."]
+script = ExtResource("3_5833u")
+
+[node name="Idle" type="Node" parent="State Manager"]
+script = ExtResource("4_h0rqe")
+
+[node name="Running" type="Node" parent="State Manager"]
+script = ExtResource("5_6muda")
+
+[node name="Sprinting" type="Node" parent="State Manager"]
+script = ExtResource("6_8swsa")
+
+[node name="Dead" type="Node" parent="State Manager"]
+script = ExtResource("8_lvf28")
+
+[node name="Script Helpers" type="Node" parent="."]
+
+[node name="Input Manager" type="Node" parent="Script Helpers"]
+script = ExtResource("4_ssfm2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_utod5")
+
+[node name="Rotational Helper" type="Node3D" parent="."]
+script = ExtResource("5_527ph")
+
+[node name="Camera" type="Camera3D" parent="Rotational Helper"]
+
+[node name="Raycast" type="RayCast3D" parent="Rotational Helper"]
+target_position = Vector3(0, 0, -300)
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Positional Sound Effects" type="Node3D" parent="."]

@@ -5,7 +5,6 @@ namespace ZoomToHome {
         // SIGNALS
         [Signal] public delegate void MoveEventHandler();
         [Signal] public delegate void JumpEventHandler();
-        [Signal] public delegate void SprintEventHandler();
         [Signal] public delegate void CrouchEventHandler();
         [Signal] public delegate void SwingEventHandler();
         [Signal] public delegate void ZipEventHandler();
@@ -38,12 +37,6 @@ namespace ZoomToHome {
             if (Input.IsActionJustPressed("jump") && player.IsOnFloor()) {
                 EmitSignal(SignalName.Jump);
             }
-            // TODO: FIX THIS SPRINT THING BEING INCONSISTENT AS HELL
-            if (Input.IsActionPressed("sprint") && player.IsOnFloor()) {
-                EmitSignal(SignalName.Sprint);
-            } 
-            if (Input.IsActionJustReleased("sprint")) EmitSignal(SignalName.Sprint);
-
             if (Input.IsActionPressed("crouch")) {
                 EmitSignal(SignalName.Crouch);
             }

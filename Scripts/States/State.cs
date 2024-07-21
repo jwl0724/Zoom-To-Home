@@ -2,12 +2,11 @@ using Godot;
 
 namespace ZoomToHome {
     public abstract partial class State : Node {
-        protected Entity parentBody;
-        protected StateManager manager;
+        [Export] protected PhysicsBody3D parentBody;
+        [Export] protected StateManager manager;
         [Signal] public delegate void UpdateStateEventHandler();
-        public override void _Ready() {
-            manager = GetParent() as StateManager;
-            parentBody = Owner as Entity;
-        }
+        public abstract void EnterState();
+        public abstract void ExitState();
+        protected abstract void ProcessAction();
     }
 }

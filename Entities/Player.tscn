@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_6ell8"]
 [ext_resource type="Script" path="res://Scripts/States/StateManager.cs" id="3_5833u"]
-[ext_resource type="Script" path="res://Scripts/States/Idle.cs" id="4_h0rqe"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Idle.cs" id="4_h0rqe"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/InputManager.cs" id="4_ssfm2"]
-[ext_resource type="Script" path="res://Scripts/States/Running.cs" id="5_6muda"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Running.cs" id="5_6muda"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerRotationManager.cs" id="5_527ph"]
-[ext_resource type="Script" path="res://Scripts/States/Sprinting.cs" id="6_8swsa"]
-[ext_resource type="Script" path="res://Scripts/States/Dead.cs" id="8_lvf28"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Sprinting.cs" id="6_8swsa"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Dead.cs" id="8_lvf28"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
 
@@ -17,17 +17,27 @@ script = ExtResource("1_6ell8")
 [node name="State Manager" type="Node" parent="."]
 script = ExtResource("3_5833u")
 
-[node name="Idle" type="Node" parent="State Manager"]
+[node name="Idle" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
 script = ExtResource("4_h0rqe")
+parentBody = NodePath("../..")
+manager = NodePath("..")
 
-[node name="Running" type="Node" parent="State Manager"]
+[node name="Running" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
 script = ExtResource("5_6muda")
+parentBody = NodePath("../..")
+manager = NodePath("..")
 
-[node name="Sprinting" type="Node" parent="State Manager"]
+[node name="Sprinting" type="Node" parent="State Manager" node_paths=PackedStringArray("idleState", "runningState", "parentBody", "manager")]
 script = ExtResource("6_8swsa")
+idleState = NodePath("../Idle")
+runningState = NodePath("../Running")
+parentBody = NodePath("../..")
+manager = NodePath("..")
 
-[node name="Dead" type="Node" parent="State Manager"]
+[node name="Dead" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
 script = ExtResource("8_lvf28")
+parentBody = NodePath("../..")
+manager = NodePath("..")
 
 [node name="Script Helpers" type="Node" parent="."]
 

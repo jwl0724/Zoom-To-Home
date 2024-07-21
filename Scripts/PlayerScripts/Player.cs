@@ -20,7 +20,6 @@ namespace ZoomToHome {
                 Callable.From(() => ApplyForce(Vector3.Up * JumpSpeed, isOneShot: true))
             );
             manager.Connect(InputManager.SignalName.Move, Callable.From((Vector2 inputVector) => OnMove(inputVector)));
-            manager.Connect(InputManager.SignalName.Sprint, Callable.From(() => OnSprint()));
             manager.Connect(InputManager.SignalName.Swing, Callable.From(() => OnSwing()));
             manager.Connect(InputManager.SignalName.Zip, Callable.From(() => OnZip()));
             manager.Connect(InputManager.SignalName.Crouch, Callable.From(() => OnCrouch()));
@@ -35,11 +34,6 @@ namespace ZoomToHome {
             MoveAndSlide();
         }
 
-        private void OnSprint() {
-            if (SprintMultiplier == 1.5f) SprintMultiplier = 1;
-            else SprintMultiplier = 1.5f;
-        }
-        
         private void OnSwing() {
 
         }

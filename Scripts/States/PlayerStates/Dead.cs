@@ -6,7 +6,7 @@ namespace ZoomToHome {
 
         public override void _Ready() {
             player = parentBody as Player;
-            player.Connect(Entity.SignalName.Damaged, Callable.From(() => ProcessAction()));
+            player.Connect(Entity.SignalName.Damaged, Callable.From(() => OnDamage()));
         }
 
         public override void EnterState() {
@@ -17,8 +17,22 @@ namespace ZoomToHome {
             // ADD STUFF WHEN VISUALS ARE IMPLEMENTED
         }
 
-        protected override void ProcessAction() {
-            EmitSignal(SignalName.UpdateState, this);
+        public override void ProcessInput(InputEvent inputEvent) {
+
+        }
+
+        public override void ProcessFrame(double delta) {
+
+        }
+
+        public override void ProcessPhysics(double delta) {
+            player.ApplyForce(Vector3.Down * player.Gravity, isOneShot: false);
+            player.SumForces();
+            player.MoveAndSlide();
+        }
+
+        private void OnDamage() {
+            manager.ChangeState(this);
         }
     }
 }

@@ -6,8 +6,8 @@ namespace ZoomToHome {
         // STAT VARIABLES
 
         // PHYSICS VARIABLES
-        public float JumpSpeed { get; set; } = 13f;
-        public float ZipRetractSpeed { get; set; } = 1000f;
+        public float JumpSpeed { get; set; } = 18f;
+        public float ZipRetractSpeed { get; set; } = 800f;
         public float SwingRetractSpeed { get; set; } = 200f; 
 
         // MOUSE VARIABLES
@@ -22,8 +22,8 @@ namespace ZoomToHome {
         // HELPER METHODS RELATED TO ATTRIBUTES
         private void OverrideParentVariables() {
             MoveSpeed = 25f;
-            Gravity = 15f;
-            SprintMultiplier = 1f;
+            Gravity = 20f;
+            SprintMultiplier = 2f;
             SFXVolumeMultiplier = 1f;
         }
     }

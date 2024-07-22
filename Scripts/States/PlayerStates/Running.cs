@@ -15,14 +15,33 @@ namespace ZoomToHome {
             // TODO IMPLEMENT STUFF LATER WHEN VISUALS ARE ADDED
         }
 
-        protected override void ProcessAction() {
-            if (!player.Velocity.IsZeroApprox() && manager.CurrentState is not Sprinting && manager.CurrentState is not Running) {
-                EmitSignal(SignalName.UpdateState, this);
-            }
+        public override void ProcessInput(InputEvent inputEvent) {
+            if (Input.IsActionJustPressed("sprint")) manager.ChangeState(manager.AllStates["Sprinting"]);
+            if (Input.IsActionJustPressed("jump")) manager.ChangeState(manager.AllStates["Jumping"]);
         }
 
-        public override void _PhysicsProcess(double delta) {
-            ProcessAction();
+        public override void ProcessFrame(double delta) {
+            if (!player.IsOnFloor()) {
+                if (player.Velocity.Y > 0) manager.ChangeState(manager.AllStates["Falling"]);
+                else  manager.ChangeState(manager.AllStates["Jumping"]);
+            }
+            Vector2 inputVector = Input.GetVector("left", "right", "forward", "backward");
+            if (inputVector.IsZeroApprox()) manager.ChangeState(manager.AllStates["Idle"]);
+            else if (Input.IsActionPressed("sprint")) manager.ChangeState(manager.AllStates["Sprinting"]);
+        }
+
+        public override void ProcessPhysics(double delta) {
+            Vector2 inputVector = Input.GetVector("left", "right", "forward", "backward");
+            Vector3 forwardVector = player.RotationHelper.Transform.Basis * new Vector3(inputVector.X, 0, inputVector.Y);
+            Vector3 movementDirection = forwardVector * player.MoveSpeed;
+            player.Velocity = new (movementDirection.X, player.Velocity.Y, movementDirection.Z);
+
+            player.ApplyForce(Vector3.Down * player.Gravity, isOneShot: false);
+            player.SumForces();
+            player.MoveAndSlide();
+
+            if (inputVector.IsZeroApprox() && player.IsOnFloor()) manager.ChangeState(manager.AllStates["Idle"]);
+            if (!player.IsOnFloor()) manager.ChangeState(manager.AllStates["Falling"]);
         }
     }
 }

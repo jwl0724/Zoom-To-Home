@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1wgfw2uv0c65"]
+[gd_scene load_steps=13 format=3 uid="uid://1wgfw2uv0c65"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_6ell8"]
 [ext_resource type="Script" path="res://Scripts/States/StateManager.cs" id="3_5833u"]
@@ -7,12 +7,18 @@
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Running.cs" id="5_6muda"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerRotationManager.cs" id="5_527ph"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Sprinting.cs" id="6_8swsa"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Falling.cs" id="7_cpe72"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Jumping.cs" id="8_8uk01"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Dead.cs" id="8_lvf28"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/CameraEffects.cs" id="11_erckf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_6ell8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_utod5")
 
 [node name="State Manager" type="Node" parent="."]
 script = ExtResource("3_5833u")
@@ -27,10 +33,8 @@ script = ExtResource("5_6muda")
 parentBody = NodePath("../..")
 manager = NodePath("..")
 
-[node name="Sprinting" type="Node" parent="State Manager" node_paths=PackedStringArray("idleState", "runningState", "parentBody", "manager")]
+[node name="Sprinting" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
 script = ExtResource("6_8swsa")
-idleState = NodePath("../Idle")
-runningState = NodePath("../Running")
 parentBody = NodePath("../..")
 manager = NodePath("..")
 
@@ -39,18 +43,27 @@ script = ExtResource("8_lvf28")
 parentBody = NodePath("../..")
 manager = NodePath("..")
 
+[node name="Falling" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
+script = ExtResource("7_cpe72")
+parentBody = NodePath("../..")
+manager = NodePath("..")
+
+[node name="Jumping" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
+script = ExtResource("8_8uk01")
+parentBody = NodePath("../..")
+manager = NodePath("..")
+
 [node name="Script Helpers" type="Node" parent="."]
 
 [node name="Input Manager" type="Node" parent="Script Helpers"]
+process_mode = 3
 script = ExtResource("4_ssfm2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_utod5")
 
 [node name="Rotational Helper" type="Node3D" parent="."]
 script = ExtResource("5_527ph")
 
 [node name="Camera" type="Camera3D" parent="Rotational Helper"]
+script = ExtResource("11_erckf")
 
 [node name="Raycast" type="RayCast3D" parent="Rotational Helper"]
 target_position = Vector3(0, 0, -300)

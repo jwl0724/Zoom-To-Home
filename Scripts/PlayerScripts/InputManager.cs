@@ -16,17 +16,13 @@ namespace ZoomToHome {
             Input.MouseMode = Input.MouseModeEnum.Captured;
         }
 
-        public override void _PhysicsProcess(double delta) {
-            ProcessMovement();
-        }
-
         public override void _Input(InputEvent inputEvent) {
             if (inputEvent is InputEventMouseButton) ProcessMouseButtons();
             if (inputEvent is InputEventKey) ProcessKeys();
         }
 
         private void ProcessMouseButtons() {
-            // TODO: IMPLEMENT LATER
+            // TODO: FIGURE OUT WHAT THIS IS GONNA DO
         }
 
         private void ProcessKeys() {
@@ -34,20 +30,8 @@ namespace ZoomToHome {
                 PauseGame();
                 return;
             }
-            if (Input.IsActionJustPressed("jump") && player.IsOnFloor()) {
-                EmitSignal(SignalName.Jump);
-            }
-            if (Input.IsActionPressed("crouch")) {
-                EmitSignal(SignalName.Crouch);
-            }
         }
 
-        private void ProcessMovement() {
-            Vector2 inputVector = Input.GetVector("left", "right", "forward", "backward");
-            EmitSignal(SignalName.Move, inputVector); // DROP THIS IF THERES PERFORMANCE DROP
-        }
-
-        // MOVE THIS TO SOMEWHERE ELSE LATER SO YOU CAN ACTUALLY UNPAUSE    
         private void PauseGame() {
             SceneTree tree = GetTree();
             tree.Paused = !tree.Paused;

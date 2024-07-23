@@ -5,18 +5,21 @@ namespace ZoomToHome {
     public partial class StateManager : Node {
         [Signal] public delegate void StateChangeEventHandler();
         public State CurrentState { get; private set; }
+        public State PreviousState { get; private set; }
         public Dictionary<string, State> AllStates = new();
         
         public override void _Ready() {
             foreach(Node child in GetChildren()) {
                 AllStates.Add(child.GetType().Name, child as State);
             }
+            PreviousState = AllStates["Idle"];
             ChangeState(AllStates["Idle"]);
         }
 
         public void ChangeState(State state) {
             if (CurrentState?.GetType() == state.GetType()) return;
             CurrentState?.ExitState();
+            PreviousState = CurrentState;
             CurrentState = state;
             state.EnterState();
             EmitSignal(SignalName.StateChange, state);

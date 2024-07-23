@@ -8,7 +8,8 @@ namespace ZoomToHome {
         // PHYSICS VARIABLES
         public float JumpSpeed { get; set; } = 18f;
         public float ZipRetractSpeed { get; set; } = 800f;
-        public float SwingRetractSpeed { get; set; } = 200f; 
+        public float SwingRetractSpeed { get; set; } = 200f;
+        public float FrictionCoefficient { get; set; } = 0.9f;
 
         // MOUSE VARIABLES
         public float MouseSensitivity { get; set; } = 0.1f;

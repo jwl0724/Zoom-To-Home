@@ -22,6 +22,10 @@ namespace ZoomToHome {
             forceList.Clear();
         }
 
+        public Vector3 GetRaycastImpactPoint() {
+            return RotationHelper.GetRaycastImpactPoint();
+        }
+
         public void ApplyForce(Vector3 force, bool isOneShot) {
             if (isOneShot) forceList.AddFirst(force);
             else forceList.AddFirst(force * (float) GetProcessDeltaTime());

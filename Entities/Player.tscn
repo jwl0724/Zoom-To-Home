@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/CameraEffects.cs" id="11_erckf"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Recovering.cs" id="11_icph3"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Crouch.cs" id="12_agd00"]
-[ext_resource type="Texture2D" uid="uid://2yil3f8mlkjk" path="res://Assets/Images/UI/Reticle1.png" id="16_5h5j8"]
+[ext_resource type="Texture2D" uid="uid://2yil3f8mlkjk" path="res://Assets/Images/UI/Reticle.png" id="16_5h5j8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
 

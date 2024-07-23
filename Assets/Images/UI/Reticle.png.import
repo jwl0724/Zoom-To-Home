@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2yil3f8mlkjk"
-path="res://.godot/imported/Reticle1.png-4100e089dd9be13aa65c875a4900b9dc.ctex"
+path="res://.godot/imported/Reticle.png-6215358d1e8ccd5520aedcac72e9fe03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/Reticle1.png"
-dest_files=["res://.godot/imported/Reticle1.png-4100e089dd9be13aa65c875a4900b9dc.ctex"]
+source_file="res://Assets/Images/UI/Reticle.png"
+dest_files=["res://.godot/imported/Reticle.png-6215358d1e8ccd5520aedcac72e9fe03.ctex"]
 
 [params]
 

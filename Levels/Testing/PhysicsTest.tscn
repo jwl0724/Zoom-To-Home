@@ -133,6 +133,7 @@ transform = Transform3D(-0.00125663, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.0012
 shape = SubResource("BoxShape3D_7b22i")
 
 [node name="Mesh" type="MeshInstance3D" parent="Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80052, 0)
 mesh = SubResource("BoxMesh_0x27y")
 
 [node name="Platform6" type="StaticBody3D" parent="."]

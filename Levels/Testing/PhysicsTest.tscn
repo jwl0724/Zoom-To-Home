@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://1wgfw2uv0c65" path="res://Entities/Player.tscn" id="1_nluu3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ee3iu"]
-size = Vector3(200, 0.1, 200)
+size = Vector3(1000, 1, 1000)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vem30"]
-size = Vector2(200, 200)
+size = Vector2(1000, 1000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uo5ox"]
 size = Vector3(20, 1, 20)
@@ -125,3 +125,30 @@ mesh = SubResource("BoxMesh_n4tli")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 90, 0)
+
+[node name="Wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.00125663, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00125663, -13.6512, 10.814, 38.8547)
+
+[node name="Collision" type="CollisionShape3D" parent="Wall3"]
+shape = SubResource("BoxShape3D_7b22i")
+
+[node name="Mesh" type="MeshInstance3D" parent="Wall3"]
+mesh = SubResource("BoxMesh_0x27y")
+
+[node name="Platform6" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 173.431, 69.7481, -44.9676)
+
+[node name="Collision" type="CollisionShape3D" parent="Platform6"]
+shape = SubResource("BoxShape3D_uo5ox")
+
+[node name="Mesh" type="MeshInstance3D" parent="Platform6"]
+mesh = SubResource("BoxMesh_n4tli")
+
+[node name="Platform7" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.628, 47.4665, 87.2742)
+
+[node name="Collision" type="CollisionShape3D" parent="Platform7"]
+shape = SubResource("BoxShape3D_uo5ox")
+
+[node name="Mesh" type="MeshInstance3D" parent="Platform7"]
+mesh = SubResource("BoxMesh_n4tli")

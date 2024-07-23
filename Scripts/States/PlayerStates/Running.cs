@@ -19,6 +19,8 @@ namespace ZoomToHome {
             if (Input.IsActionJustPressed("sprint")) manager.ChangeState(manager.AllStates["Sprinting"]);
             if (Input.IsActionJustPressed("jump")) manager.ChangeState(manager.AllStates["Jumping"]);
             if (Input.IsActionJustPressed("zip")) manager.ChangeState(manager.AllStates["Zipping"]);
+            if (Input.IsActionJustPressed("swing")) manager.ChangeState(manager.AllStates["Swinging"]);
+            if (Input.IsActionJustPressed("crouch")) manager.ChangeState(manager.AllStates["Crouch"]);
         }
 
         public override void ProcessFrame(double delta) {

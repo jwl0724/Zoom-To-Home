@@ -17,7 +17,6 @@ namespace ZoomToHome { // MARKED FOR DELETION MAYBE, NEED TO SEE LATER
         }
 
         public override void ProcessInput(InputEvent inputEvent) {
-
         }
 
         public override void ProcessFrame(double delta) {
@@ -25,6 +24,7 @@ namespace ZoomToHome { // MARKED FOR DELETION MAYBE, NEED TO SEE LATER
         }
 
         public override void ProcessPhysics(double delta) {
+            player.ApplyMidAirInputs(player.MoveSpeed * 1.5f);
             player.ApplyForce(Vector3.Down * player.Gravity, isOneShot: false);
             player.SumForces();
             player.MoveAndSlide();

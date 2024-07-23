@@ -22,6 +22,7 @@ namespace ZoomToHome {
                 else manager.ChangeState(manager.AllStates["Running"]); 
             }
             if (Input.IsActionJustPressed("jump")) manager.ChangeState(manager.AllStates["Jumping"]);
+            if (Input.IsActionJustPressed("zip")) manager.ChangeState(manager.AllStates["Zipping"]);
         }
 
         public override void ProcessFrame(double delta) {

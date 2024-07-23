@@ -17,6 +17,7 @@ namespace ZoomToHome { // MARKED FOR DELETION MAYBE, NEED TO SEE LATER
         }
 
         public override void ProcessInput(InputEvent inputEvent) {
+            if (Input.IsActionJustPressed("zip")) manager.ChangeState(manager.AllStates["Zipping"]);
         }
 
         public override void ProcessFrame(double delta) {

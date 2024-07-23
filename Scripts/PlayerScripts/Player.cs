@@ -4,15 +4,17 @@ using Godot;
 namespace ZoomToHome {
     public partial class Player : Entity {
         public StateManager StateManager;
-        private PlayerRotationManager RotationHelper;
+        private PlayerRotationManager rotationHelper;
+        private CapsuleShape3D collisionBox;
         private readonly LinkedList<Vector3> forceList = new();
 
         public override void _Ready() {
             OverrideParentVariables();
 
             // connect essential nodes
-            RotationHelper = GetNode<PlayerRotationManager>("Rotational Helper");
+            rotationHelper = GetNode<PlayerRotationManager>("Rotational Helper");
             StateManager = GetNode<StateManager>("State Manager");
+            collisionBox = GetNode<CollisionShape3D>("Collision Box").Shape as CapsuleShape3D;
         }
 
         public void SumForces() {
@@ -23,7 +25,7 @@ namespace ZoomToHome {
         }
 
         public Vector3 GetRaycastImpactPoint() {
-            return RotationHelper.GetRaycastImpactPoint();
+            return rotationHelper.GetRaycastImpactPoint();
         }
 
         public void ApplyForce(Vector3 force, bool isOneShot) {
@@ -50,9 +52,24 @@ namespace ZoomToHome {
         }
 
         public Vector3 GetForwardVectorOnHorizontalPlane(Vector3 vector, float moveSpeed) {
-            Vector3 forwardVector = RotationHelper.Transform.Basis * new Vector3(vector.X, 0, vector.Z);
+            Vector3 forwardVector = rotationHelper.Transform.Basis * new Vector3(vector.X, 0, vector.Z);
             Vector3 normalizedVector = new(forwardVector.X, 0, forwardVector.Z);
             return normalizedVector.Normalized() * moveSpeed;
+        }
+
+        public void ToggleCrouch(bool crouch) {
+            if (crouch) {
+                collisionBox.Height = CrouchHeight;
+                GetNode<CollisionShape3D>("Collision Box").Position = Vector3.Down;
+                Tween crouchTween = CreateTween();
+                crouchTween.TweenProperty(rotationHelper, "position", Vector3.Down * (1 - CrouchHeight), 0.1f);
+
+            } else {
+                collisionBox.Height = Height;
+                GetNode<CollisionShape3D>("Collision Box").Position = Vector3.Zero;
+                Tween standTween = CreateTween();
+                standTween.TweenProperty(rotationHelper, "position", Vector3.Zero, 0.1f);
+            }
         }
     }
 }

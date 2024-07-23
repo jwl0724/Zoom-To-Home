@@ -25,15 +25,18 @@ namespace ZoomToHome {
         }
 
         public override void ProcessInput(InputEvent inputEvent) {
-            if (!Input.IsActionJustReleased("zip")) return;
+            if (!Input.IsActionJustReleased("zip")) return;            
             if (player.IsOnFloor()) manager.ChangeState(manager.AllStates["Recovering"]);
+            else if (player.IsOnCeiling()) manager.ChangeState(manager.AllStates["Falling"]);
             else if (player.Velocity.Y > 0) manager.ChangeState(manager.AllStates["Jumping"]);
             else if (player.Velocity.Y < 0) manager.ChangeState(manager.AllStates["Falling"]);
         }
 
         public override void ProcessPhysics(double delta) {
-            player.Velocity = player.Position.DirectionTo(grapplePoint) * player.ZipRetractSpeed;
+            player.Velocity = player.Position.DirectionTo(grapplePoint) *
+                Mathf.Max(player.Velocity.Length(), player.ZipRetractSpeed);
             player.MoveAndSlide();
+
         }
     }
 }

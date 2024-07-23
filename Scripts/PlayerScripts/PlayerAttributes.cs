@@ -4,12 +4,14 @@ using Godot;
 namespace ZoomToHome {
     public partial class Player : Entity {
         // STAT VARIABLES
+        public float Height { get; set; } = 2f;
+        public float CrouchHeight { get; set; } = 0.25f;
 
         // PHYSICS VARIABLES
         public float JumpSpeed { get; set; } = 18f;
         public float ZipRetractSpeed { get; set; } = 100f;
-        public float SwingRetractSpeed { get; set; } = 200f;
-        public float FrictionCoefficient { get; set; } = 0.75f;
+        public float SwingRetractSpeed { get; set; } = 20f;
+        public float SlideFrictionCoefficient { get; set; } = 0.98f;
 
         // MOUSE VARIABLES
         public float MouseSensitivity { get; set; } = 0.1f;

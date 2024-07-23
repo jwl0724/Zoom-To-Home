@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://1wgfw2uv0c65"]
+[gd_scene load_steps=18 format=3 uid="uid://1wgfw2uv0c65"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_6ell8"]
 [ext_resource type="Script" path="res://Scripts/States/StateManager.cs" id="3_5833u"]
@@ -10,7 +10,12 @@
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Falling.cs" id="7_cpe72"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Jumping.cs" id="8_8uk01"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Dead.cs" id="8_lvf28"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Swinging.cs" id="9_i52oi"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Zipping.cs" id="10_8p5n7"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/CameraEffects.cs" id="11_erckf"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Recovering.cs" id="11_icph3"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Crouch.cs" id="12_agd00"]
+[ext_resource type="Texture2D" uid="uid://2yil3f8mlkjk" path="res://Assets/Images/UI/Reticle1.png" id="16_5h5j8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
 
@@ -53,6 +58,26 @@ script = ExtResource("8_8uk01")
 parentBody = NodePath("../..")
 manager = NodePath("..")
 
+[node name="Swinging" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
+script = ExtResource("9_i52oi")
+parentBody = NodePath("../..")
+manager = NodePath("..")
+
+[node name="Zipping" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
+script = ExtResource("10_8p5n7")
+parentBody = NodePath("../..")
+manager = NodePath("..")
+
+[node name="Recovering" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
+script = ExtResource("11_icph3")
+parentBody = NodePath("../..")
+manager = NodePath("..")
+
+[node name="Crouch" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
+script = ExtResource("12_agd00")
+parentBody = NodePath("../..")
+manager = NodePath("..")
+
 [node name="Script Helpers" type="Node" parent="."]
 
 [node name="Input Manager" type="Node" parent="Script Helpers"]
@@ -70,8 +95,26 @@ target_position = Vector3(0, 0, -300)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Reticle" type="TextureRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_5h5j8")
+expand_mode = 2
 
 [node name="Positional Sound Effects" type="Node3D" parent="."]

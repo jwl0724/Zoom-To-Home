@@ -1,6 +1,6 @@
 using Godot;
 
-namespace ZoomToHome { // MARKED FOR DELETION MAYBE, NEED TO SEE LATER
+namespace ZoomToHome {
     public partial class Jumping : State {
         private Player player;
 
@@ -9,7 +9,10 @@ namespace ZoomToHome { // MARKED FOR DELETION MAYBE, NEED TO SEE LATER
         }
 
         public override void EnterState() {
-            player.ApplyForce(Vector3.Up * player.JumpSpeed, isOneShot: true);
+            if (manager.PreviousState is Zipping || manager.PreviousState is Swinging) return;
+            if (manager.PreviousState is Crouch)
+                player.ApplyForce(Vector3.Up * player.JumpSpeed * player.Velocity.Length() / 4, isOneShot: true);
+            else player.ApplyForce(Vector3.Up * player.JumpSpeed, isOneShot: true);
         }
 
         public override void ExitState() {
@@ -18,6 +21,7 @@ namespace ZoomToHome { // MARKED FOR DELETION MAYBE, NEED TO SEE LATER
 
         public override void ProcessInput(InputEvent inputEvent) {
             if (Input.IsActionJustPressed("zip")) manager.ChangeState(manager.AllStates["Zipping"]);
+            if (Input.IsActionJustPressed("swing")) manager.ChangeState(manager.AllStates["Swinging"]);
         }
 
         public override void ProcessFrame(double delta) {
@@ -31,6 +35,8 @@ namespace ZoomToHome { // MARKED FOR DELETION MAYBE, NEED TO SEE LATER
             player.MoveAndSlide();
 
             if (player.Velocity.Y < 0) manager.ChangeState(manager.AllStates["Falling"]);
+            if (player.IsOnFloor() && Input.IsActionPressed("crouch")) manager.ChangeState(manager.AllStates["Crouch"]);
+            else if (player.IsOnFloor()) manager.ChangeState(manager.AllStates["Recovering"]);
         }
     }
 }

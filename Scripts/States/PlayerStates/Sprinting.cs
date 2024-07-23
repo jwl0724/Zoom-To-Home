@@ -29,16 +29,13 @@ namespace ZoomToHome {
         }
 
         public override void ProcessPhysics(double delta) {
-            Vector2 inputVector = Input.GetVector("left", "right", "forward", "backward");
-            Vector3 forwardVector = player.RotationHelper.Transform.Basis * new Vector3(inputVector.X, 0, inputVector.Y);
-            Vector3 movementDirection = forwardVector * player.MoveSpeed * player.SprintMultiplier;
-            player.Velocity = new (movementDirection.X, player.Velocity.Y, movementDirection.Z);
-
+            player.SetVelocityToInputVector(player.MoveSpeed * player.SprintMultiplier);
             player.ApplyForce(Vector3.Down * player.Gravity, isOneShot: false);
             player.SumForces();
             player.MoveAndSlide();
 
-            if (inputVector.IsZeroApprox() && player.IsOnFloor()) manager.ChangeState(manager.AllStates["Idle"]);
+            if (Input.GetVector("left", "right", "forward", "backward").IsZeroApprox() && player.IsOnFloor()) 
+                manager.ChangeState(manager.AllStates["Idle"]);
             if (!player.IsOnFloor()) manager.ChangeState(manager.AllStates["Falling"]);
         }
     }

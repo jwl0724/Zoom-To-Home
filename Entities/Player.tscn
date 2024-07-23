@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://1wgfw2uv0c65"]
+[gd_scene load_steps=24 format=3 uid="uid://1wgfw2uv0c65"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_6ell8"]
 [ext_resource type="Script" path="res://Scripts/States/StateManager.cs" id="3_5833u"]
@@ -16,8 +16,27 @@
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Recovering.cs" id="11_icph3"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Crouch.cs" id="12_agd00"]
 [ext_resource type="Texture2D" uid="uid://2yil3f8mlkjk" path="res://Assets/Images/UI/Reticle.png" id="16_5h5j8"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/Reticle.cs" id="17_a3ros"]
+[ext_resource type="Shader" path="res://Assets/Shaders/SpeedLines.gdshader" id="18_0ecnq"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/SpeedLines.cs" id="19_u5p30"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rloev"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pe7w6"]
+noise = SubResource("FastNoiseLite_rloev")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6u0c8"]
+shader = ExtResource("18_0ecnq")
+shader_parameter/line_color = Color(1, 1, 1, 0.584314)
+shader_parameter/line_count = 1.5
+shader_parameter/line_density = 0.252
+shader_parameter/line_faloff = 0.183
+shader_parameter/mask_size = 0.1
+shader_parameter/mask_edge = 0.5
+shader_parameter/animation_speed = 13.0
+shader_parameter/noise = SubResource("NoiseTexture2D_pe7w6")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_6ell8")
@@ -116,5 +135,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("16_5h5j8")
 expand_mode = 2
+script = ExtResource("17_a3ros")
+
+[node name="SpeedLines" type="ColorRect" parent="HUD"]
+material = SubResource("ShaderMaterial_6u0c8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_u5p30")
 
 [node name="Positional Sound Effects" type="Node3D" parent="."]

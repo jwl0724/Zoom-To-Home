@@ -18,6 +18,7 @@ namespace ZoomToHome { // MARKED FOR DELETION MAYBE, NEED TO SEE LATER
 
         public override void ProcessInput(InputEvent inputEvent) {
             if (Input.IsActionJustPressed("zip")) manager.ChangeState(manager.AllStates["Zipping"]);
+            if (Input.IsActionJustPressed("swing")) manager.ChangeState(manager.AllStates["Swinging"]);
         }
 
         public override void ProcessFrame(double delta) {
@@ -31,11 +32,8 @@ namespace ZoomToHome { // MARKED FOR DELETION MAYBE, NEED TO SEE LATER
             player.MoveAndSlide();
 
             if (player.IsOnFloor()) {
-                if (Input.GetVector("left", "right", "forward", "backward").IsZeroApprox())
-                    manager.ChangeState(manager.AllStates["Idle"]);
-                else if (Input.IsActionPressed("sprint"))
-                    manager.ChangeState(manager.AllStates["Sprinting"]);
-                else manager.ChangeState(manager.AllStates["Running"]);
+                if (Input.IsActionPressed("crouch")) manager.ChangeState(manager.AllStates["Crouch"]);
+                else manager.ChangeState(manager.AllStates["Recovering"]);
             }
         }
     }

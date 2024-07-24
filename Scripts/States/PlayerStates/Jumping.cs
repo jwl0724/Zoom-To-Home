@@ -34,9 +34,17 @@ namespace ZoomToHome {
             player.SumForces();
             player.MoveAndSlide();
 
-            if (player.Velocity.Y < 0) manager.ChangeState(manager.AllStates["Falling"]);
-            if (player.IsOnFloor() && Input.IsActionPressed("crouch")) manager.ChangeState(manager.AllStates["Crouch"]);
-            else if (player.IsOnFloor()) manager.ChangeState(manager.AllStates["Recovering"]);
+            if (player.Velocity.Y < 0) {
+                manager.ChangeState(manager.AllStates["Falling"]);
+                return;
+            }
+            if (player.IsOnFloor()) {
+                if (Input.IsActionPressed("crouch")) manager.ChangeState(manager.AllStates["Crouch"]);
+                else manager.ChangeState(manager.AllStates["Recovering"]);
+                return;
+            }
+            if (player.IsOnWallOnly() && player.GetForwardVectorOnHorizontalPlane(player.Velocity, player.Velocity.Length()).Length() > player.MoveSpeed)
+                manager.ChangeState(manager.AllStates["WallRunning"]);
         }
     }
 }

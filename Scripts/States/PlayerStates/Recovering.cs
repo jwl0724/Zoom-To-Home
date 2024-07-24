@@ -2,9 +2,6 @@ using Godot;
 using System;
 
 namespace ZoomToHome {
-    // TODO: CONNECT FALLING AND JUMPING STATES TO RECOVERY
-    // TODO: IMPLEMENT CROUCH (FOR SLIDING MECHS)
-    // TODO: IMPLEMENT SWINGING
     public partial class Recovering : State {
         private Player player;
 

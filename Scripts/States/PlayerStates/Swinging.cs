@@ -36,7 +36,7 @@ namespace ZoomToHome {
                 (player.Velocity.Length() + player.SwingRetractSpeed);
             
             player.ApplyForce(swingForce, isOneShot: false);
-            player.ApplyForce(Vector3.Down * player.Gravity, isOneShot: false);
+            player.ApplyForce(Vector3.Down * player.Gravity / 2, isOneShot: false);
             player.SumForces();
             player.MoveAndSlide();
 

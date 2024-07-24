@@ -11,7 +11,7 @@ namespace ZoomToHome {
         public float JumpSpeed { get; set; } = 18f;
         public float ZipRetractSpeed { get; set; } = 100f;
         public float SwingRetractSpeed { get; set; } = 20f;
-        public float SlideFrictionCoefficient { get; set; } = 0.98f;
+        public float SlideFrictionCoefficient { get; set; } = 0.995f;
 
         // MOUSE VARIABLES
         public float MouseSensitivity { get; set; } = 0.1f;
@@ -25,7 +25,7 @@ namespace ZoomToHome {
         // HELPER METHODS RELATED TO ATTRIBUTES
         private void OverrideParentVariables() {
             MoveSpeed = 25f;
-            Gravity = 20f;
+            Gravity = 40f;
             SprintMultiplier = 2f;
             SFXVolumeMultiplier = 1f;
         }

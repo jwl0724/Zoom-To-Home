@@ -59,7 +59,8 @@ shape = SubResource("BoxShape3D_uo5ox")
 mesh = SubResource("BoxMesh_n4tli")
 
 [node name="Wall" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.00125663, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00125663, -43.6395, 10, 38.8547)
+transform = Transform3D(-0.00628314, 0, -5, 0, 5, 0, 5, 0, -0.00628314, -115.766, 10, 38.8547)
+metadata/_edit_group_ = true
 
 [node name="Collision" type="CollisionShape3D" parent="Wall"]
 shape = SubResource("BoxShape3D_7b22i")
@@ -68,13 +69,24 @@ shape = SubResource("BoxShape3D_7b22i")
 mesh = SubResource("BoxMesh_0x27y")
 
 [node name="Wall2" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.00125663, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00125663, -63.8217, 10, 38.8293)
+transform = Transform3D(-0.00628314, 0, -5, 0, 5, 0, 5, 0, -0.00628314, -218.118, 10, 38.8293)
+metadata/_edit_group_ = true
 
 [node name="Collision" type="CollisionShape3D" parent="Wall2"]
 shape = SubResource("BoxShape3D_7b22i")
 
 [node name="Mesh" type="MeshInstance3D" parent="Wall2"]
 mesh = SubResource("BoxMesh_0x27y")
+
+[node name="Lava" type="StaticBody3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -166.272, -0.304947, 38.9341)
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="Lava"]
+shape = SubResource("BoxShape3D_b7cl8")
+
+[node name="Mesh" type="MeshInstance3D" parent="Lava"]
+mesh = SubResource("BoxMesh_jgbtk")
 
 [node name="Moving Platform" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.0589, -5.64655)
@@ -84,15 +96,6 @@ shape = SubResource("BoxShape3D_uo5ox")
 
 [node name="Mesh" type="MeshInstance3D" parent="Moving Platform"]
 mesh = SubResource("BoxMesh_n4tli")
-
-[node name="Lava" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.0266, -0.304947, 38.9341)
-
-[node name="Collision" type="CollisionShape3D" parent="Lava"]
-shape = SubResource("BoxShape3D_b7cl8")
-
-[node name="Mesh" type="MeshInstance3D" parent="Lava"]
-mesh = SubResource("BoxMesh_jgbtk")
 
 [node name="Platform3" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1204, 59.197, -44.9676)
@@ -153,3 +156,63 @@ shape = SubResource("BoxShape3D_uo5ox")
 
 [node name="Mesh" type="MeshInstance3D" parent="Platform7"]
 mesh = SubResource("BoxMesh_n4tli")
+
+[node name="Wall4" type="StaticBody3D" parent="."]
+transform = Transform3D(-2.58588, 0, -4.2794, 0, 5, 0, 4.2794, 0, -2.58588, 326.808, 10, -302.666)
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="Wall4"]
+shape = SubResource("BoxShape3D_7b22i")
+
+[node name="Mesh" type="MeshInstance3D" parent="Wall4"]
+mesh = SubResource("BoxMesh_0x27y")
+
+[node name="Wall5" type="StaticBody3D" parent="."]
+transform = Transform3D(-2.58588, 0, -4.2794, 0, 5, 0, 4.2794, 0, -2.58588, 239.153, 10, -355.512)
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="Wall5"]
+shape = SubResource("BoxShape3D_7b22i")
+
+[node name="Mesh" type="MeshInstance3D" parent="Wall5"]
+mesh = SubResource("BoxMesh_0x27y")
+
+[node name="Lava2" type="StaticBody3D" parent="."]
+transform = Transform3D(4.28264, 0, -2.5805, 0, 5, 0, 2.5805, 0, 4.28264, 283.506, -0.304947, -328.665)
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="Lava2"]
+shape = SubResource("BoxShape3D_b7cl8")
+
+[node name="Mesh" type="MeshInstance3D" parent="Lava2"]
+mesh = SubResource("BoxMesh_jgbtk")
+
+[node name="Wall6" type="StaticBody3D" parent="."]
+transform = Transform3D(4.99978, 0, 0.0465995, 0, 5, 0, -0.0465995, 0, 4.99978, -167.276, 10, -404.821)
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="Wall6"]
+shape = SubResource("BoxShape3D_7b22i")
+
+[node name="Mesh" type="MeshInstance3D" parent="Wall6"]
+mesh = SubResource("BoxMesh_0x27y")
+
+[node name="Wall7" type="StaticBody3D" parent="."]
+transform = Transform3D(4.99978, 0, 0.0465995, 0, 5, 0, -0.0465995, 0, 4.99978, -166.219, 10, -302.474)
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="Wall7"]
+shape = SubResource("BoxShape3D_7b22i")
+
+[node name="Mesh" type="MeshInstance3D" parent="Wall7"]
+mesh = SubResource("BoxMesh_0x27y")
+
+[node name="Lava3" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.0528824, 0, 4.99972, 0, 5, 0, -4.99972, 0, -0.0528824, -166.662, -0.304947, -354.318)
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="Lava3"]
+shape = SubResource("BoxShape3D_b7cl8")
+
+[node name="Mesh" type="MeshInstance3D" parent="Lava3"]
+mesh = SubResource("BoxMesh_jgbtk")

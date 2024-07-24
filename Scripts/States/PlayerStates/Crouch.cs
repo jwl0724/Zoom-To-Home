@@ -22,12 +22,12 @@ namespace ZoomToHome {
         }
 
         public override void ProcessInput(InputEvent inputEvent) {
-            if (!Input.IsActionJustReleased("crouch")) return;
-            else if (Input.IsActionJustPressed("jump")) manager.ChangeState(manager.AllStates["Jumping"]);
+            if (Input.IsActionJustPressed("jump")) manager.ChangeState(manager.AllStates["Jumping"]);
             else if (Input.IsActionJustPressed("zip")) manager.ChangeState(manager.AllStates["Zipping"]);
             else if (Input.IsActionJustPressed("swing")) manager.ChangeState(manager.AllStates["Swinging"]);
             else if (Input.IsActionPressed("sprint")) manager.ChangeState(manager.AllStates["Sprinting"]);
 
+            if (!Input.IsActionJustReleased("crouch")) return;
             if (player.Velocity.IsZeroApprox()) manager.ChangeState(manager.AllStates["Idle"]);
             else if (Input.GetVector("left", "right", "forward", "backward").IsZeroApprox())
                 manager.ChangeState(manager.AllStates["Recovering"]);

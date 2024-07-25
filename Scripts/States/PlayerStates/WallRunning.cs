@@ -4,7 +4,7 @@ using System;
 namespace ZoomToHome {
     public partial class WallRunning : State {
         [Export] private CameraEffects camera;
-        private static readonly float tiltAngle = 0.2f;
+        private static readonly float tiltAngle = 0.4f;
         private Player player;
 
         public override void _Ready() {
@@ -12,7 +12,7 @@ namespace ZoomToHome {
         }
 
         public override void EnterState() {
-            player.Velocity += Vector3.Up * player.JumpSpeed / 2;
+            player.Velocity += Vector3.Up * player.JumpSpeed;
             Vector3 wallNormal = player.GetWallNormal();
             Vector3 perpindicular = wallNormal * player.Velocity.Dot(wallNormal);
             Vector3 parallel = player.Velocity - perpindicular;

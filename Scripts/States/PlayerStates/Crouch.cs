@@ -22,21 +22,26 @@ namespace ZoomToHome {
         }
 
         public override void ProcessInput(InputEvent inputEvent) {
+            // check if standing causes clipping into roof
+            if (player.ClipsIntoCeilingOnStand()) return;
+            
             if (Input.IsActionJustPressed("jump")) manager.ChangeState(manager.AllStates["Jumping"]);
             else if (Input.IsActionJustPressed("zip")) manager.ChangeState(manager.AllStates["Zipping"]);
             else if (Input.IsActionJustPressed("swing")) manager.ChangeState(manager.AllStates["Swinging"]);
-            else if (Input.IsActionPressed("sprint")) manager.ChangeState(manager.AllStates["Sprinting"]);
 
-            if (!Input.IsActionJustReleased("crouch")) return;
-            if (player.Velocity.IsZeroApprox()) manager.ChangeState(manager.AllStates["Idle"]);
-            else if (Input.GetVector("left", "right", "forward", "backward").IsZeroApprox())
+            // handle releasing crouch
+            if (Input.IsActionPressed("crouch")) return;
+
+            if (player.Velocity.Length() > player.MoveSpeed * player.SprintMultiplier ||
+                Input.GetVector("left", "right", "forward", "backward").IsZeroApprox())
                 manager.ChangeState(manager.AllStates["Recovering"]);
+            if (player.Velocity.IsZeroApprox()) manager.ChangeState(manager.AllStates["Idle"]);
             else manager.ChangeState(manager.AllStates["Running"]);
         }
 
         public override void ProcessPhysics(double delta) {
             player.ApplyForce(Vector3.Down * player.Gravity, isOneShot: false);
-            if (player.Velocity.Length() > player.MoveSpeed / 2) {
+            if (player.Velocity.Length() > player.MoveSpeed) {
                 player.Velocity *= player.SlideFrictionCoefficient;
                 if (Input.IsActionPressed("left")) player.Velocity += Vector3.Left * player.MoveSpeed * (float) delta;
                 else if (Input.IsActionPressed("right")) player.Velocity += Vector3.Right * player.MoveSpeed * (float) delta;

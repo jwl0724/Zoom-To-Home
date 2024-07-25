@@ -11,7 +11,7 @@ namespace ZoomToHome {
         public override void EnterState() {
             if (manager.PreviousState is Zipping || manager.PreviousState is Swinging) return;
             if (manager.PreviousState is Crouch)
-                player.ApplyForce(Vector3.Up * player.JumpSpeed * player.Velocity.Length() / 4, isOneShot: true);
+                player.ApplyForce(Vector3.Up * (player.JumpSpeed + player.Velocity.Length() / 4), isOneShot: true);
             else player.ApplyForce(Vector3.Up * player.JumpSpeed, isOneShot: true);
         }
 

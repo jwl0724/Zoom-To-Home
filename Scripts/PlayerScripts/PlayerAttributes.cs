@@ -6,6 +6,7 @@ namespace ZoomToHome {
         // STAT VARIABLES
         public float Height { get; set; } = 2f;
         public float CrouchHeight { get; set; } = 0.25f;
+        public float DefaultCapsuleRadius { get; set; } = 0.5f;
 
         // PHYSICS VARIABLES
         public float JumpSpeed { get; set; } = 18f;

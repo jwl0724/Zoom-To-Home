@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cscgk2u6f32sf"]
+[gd_scene load_steps=13 format=3 uid="uid://cscgk2u6f32sf"]
 
 [ext_resource type="PackedScene" uid="uid://1wgfw2uv0c65" path="res://Entities/Player.tscn" id="1_nluu3"]
 
@@ -29,6 +29,12 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_jgbtk"]
 material = SubResource("StandardMaterial3D_4gpw6")
 size = Vector3(20, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f8ee8"]
+size = Vector3(50, 20, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c2yl3"]
+size = Vector3(50, 20, 40)
 
 [node name="Physics Test Level" type="Node3D"]
 
@@ -130,13 +136,13 @@ mesh = SubResource("BoxMesh_n4tli")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 90, 0)
 
 [node name="Wall3" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.00125663, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00125663, -13.6512, 10.814, 38.8547)
+transform = Transform3D(-0.00125663, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00125663, -13.6512, 11.0371, 38.8547)
+metadata/_edit_group_ = true
 
 [node name="Collision" type="CollisionShape3D" parent="Wall3"]
 shape = SubResource("BoxShape3D_7b22i")
 
 [node name="Mesh" type="MeshInstance3D" parent="Wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80052, 0)
 mesh = SubResource("BoxMesh_0x27y")
 
 [node name="Platform6" type="StaticBody3D" parent="."]
@@ -216,3 +222,13 @@ shape = SubResource("BoxShape3D_b7cl8")
 
 [node name="Mesh" type="MeshInstance3D" parent="Lava3"]
 mesh = SubResource("BoxMesh_jgbtk")
+
+[node name="Wall9" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.00125663, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00125663, 93.7051, 12.0145, 38.8547)
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="Wall9"]
+shape = SubResource("BoxShape3D_f8ee8")
+
+[node name="Mesh" type="MeshInstance3D" parent="Wall9"]
+mesh = SubResource("BoxMesh_c2yl3")

@@ -4,8 +4,9 @@ using Godot;
 namespace ZoomToHome {
     public partial class Player : Entity {
         public StateManager StateManager;
+        private RayCast3D standChecker;
         private PlayerRotationManager rotationHelper;
-        private CapsuleShape3D collisionBox;
+        private CapsuleShape3D capsuleShape;
         private readonly LinkedList<Vector3> forceList = new();
 
         public override void _Ready() {
@@ -14,7 +15,8 @@ namespace ZoomToHome {
             // connect essential nodes
             rotationHelper = GetNode<PlayerRotationManager>("Rotational Helper");
             StateManager = GetNode<StateManager>("State Manager");
-            collisionBox = GetNode<CollisionShape3D>("Collision Box").Shape as CapsuleShape3D;
+            capsuleShape = GetNode<CollisionShape3D>("Collision Box").Shape as CapsuleShape3D;
+            standChecker = GetNode<RayCast3D>("Helper Objects/Stand Check");
         }
 
         public void SumForces() {
@@ -57,18 +59,24 @@ namespace ZoomToHome {
             return normalizedVector.Normalized() * moveSpeed;
         }
 
+        public bool ClipsIntoCeilingOnStand() {
+            if (standChecker.GetCollider() == null) return false;
+            else return true;
+        }
+
         public void ToggleCrouch(bool crouch) {
             if (crouch) {
-                collisionBox.Height = CrouchHeight;
-                GetNode<CollisionShape3D>("Collision Box").Position = Vector3.Down;
+                capsuleShape.Height = CrouchHeight;
+                GetNode<CollisionShape3D>("Collision Box").Position = Vector3.Down * (Height / 2 - CrouchHeight / 2);
                 Tween crouchTween = CreateTween();
-                crouchTween.TweenProperty(rotationHelper, "position", Vector3.Down * (1 - CrouchHeight), 0.1f);
+                crouchTween.TweenProperty(rotationHelper, "position", Vector3.Down * 0.875f, 0.1f);
 
             } else {
-                collisionBox.Height = Height;
+                capsuleShape.Height = Height;
+                capsuleShape.Radius = DefaultCapsuleRadius;
                 GetNode<CollisionShape3D>("Collision Box").Position = Vector3.Zero;
                 Tween standTween = CreateTween();
-                standTween.TweenProperty(rotationHelper, "position", Vector3.Zero, 0.1f);
+                standTween.TweenProperty(rotationHelper, "position", Vector3.Up * 0.75f, 0.1f);
             }
         }
     }

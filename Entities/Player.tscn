@@ -40,7 +40,14 @@ shader_parameter/animation_speed = 13.0
 shader_parameter/noise = SubResource("NoiseTexture2D_pe7w6")
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_6ell8")
+
+[node name="Helper Objects" type="Node3D" parent="."]
+
+[node name="Stand Check" type="RayCast3D" parent="Helper Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.875, 0)
+target_position = Vector3(0, 1.875, 0)
 
 [node name="Collision Box" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_utod5")
@@ -111,14 +118,14 @@ process_mode = 3
 script = ExtResource("4_ssfm2")
 
 [node name="Rotational Helper" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 script = ExtResource("5_527ph")
 
 [node name="Camera" type="Camera3D" parent="Rotational Helper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+transform = Transform3D(0.999963, 0.00859772, 0, -0.00859772, 0.999963, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("11_erckf")
 
 [node name="Raycast" type="RayCast3D" parent="Rotational Helper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 target_position = Vector3(0, 0, -1000)
 
 [node name="HUD" type="Control" parent="."]

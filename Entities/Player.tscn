@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://1wgfw2uv0c65"]
+[gd_scene load_steps=27 format=3 uid="uid://1wgfw2uv0c65"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_6ell8"]
 [ext_resource type="Script" path="res://Scripts/States/StateManager.cs" id="3_5833u"]
@@ -16,12 +16,22 @@
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Recovering.cs" id="11_icph3"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Crouch.cs" id="12_agd00"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/WallRunning.cs" id="13_prnnn"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/LineRenderer.cs" id="15_fmltg"]
 [ext_resource type="Texture2D" uid="uid://2yil3f8mlkjk" path="res://Assets/Images/UI/Reticle.png" id="16_5h5j8"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/Reticle.cs" id="17_a3ros"]
 [ext_resource type="Shader" path="res://Assets/Shaders/SpeedLines.gdshader" id="18_0ecnq"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/SpeedLines.cs" id="19_u5p30"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfov4"]
+metallic = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 7.5
+ao_enabled = true
+refraction_enabled = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rloev"]
 
@@ -85,13 +95,15 @@ script = ExtResource("8_8uk01")
 parentBody = NodePath("../..")
 manager = NodePath("..")
 
-[node name="Swinging" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
+[node name="Swinging" type="Node" parent="State Manager" node_paths=PackedStringArray("renderer", "parentBody", "manager")]
 script = ExtResource("9_i52oi")
+renderer = NodePath("../../Script Helpers/Line Renderer")
 parentBody = NodePath("../..")
 manager = NodePath("..")
 
-[node name="Zipping" type="Node" parent="State Manager" node_paths=PackedStringArray("parentBody", "manager")]
+[node name="Zipping" type="Node" parent="State Manager" node_paths=PackedStringArray("renderer", "parentBody", "manager")]
 script = ExtResource("10_8p5n7")
+renderer = NodePath("../../Script Helpers/Line Renderer")
 parentBody = NodePath("../..")
 manager = NodePath("..")
 
@@ -116,6 +128,10 @@ manager = NodePath("..")
 [node name="Input Manager" type="Node" parent="Script Helpers"]
 process_mode = 3
 script = ExtResource("4_ssfm2")
+
+[node name="Line Renderer" type="Node" parent="Script Helpers"]
+script = ExtResource("15_fmltg")
+lineMaterial = SubResource("StandardMaterial3D_yfov4")
 
 [node name="Rotational Helper" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

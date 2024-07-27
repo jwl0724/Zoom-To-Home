@@ -4,6 +4,7 @@ using System;
 // TODO: DRAW THE STRING FROM A NODE POINT (4 POINTED)
 namespace ZoomToHome {
     public partial class Zipping : State {
+        [Export] private Node3D linePoint;
         [Export] private LineRenderer renderer;
         private Vector3 grapplePoint;
         private Player player;
@@ -19,12 +20,13 @@ namespace ZoomToHome {
         }
 
         public override void ExitState() {
+            renderer.ClearLine();
             grapplePoint = Vector3.Inf; // set point to something invalid
         }
 
         public override void ProcessFrame(double delta) {
             if (grapplePoint.IsFinite())
-                renderer.RenderLine(player.GlobalPosition, grapplePoint, 4, 4);
+                renderer.RenderLine(linePoint.GlobalPosition, grapplePoint, 0.03f, 4);
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

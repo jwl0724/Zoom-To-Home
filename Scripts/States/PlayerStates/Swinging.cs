@@ -4,6 +4,7 @@ using System;
 // TODO: DRAW THE STRING FROM A NODE POINT (CIRCLE)
 namespace ZoomToHome {
     public partial class Swinging : State {
+        [Export] private Node3D linePoint;
         [Export] private LineRenderer renderer;
         private Vector3 grapplePoint;
         private Player player;
@@ -18,12 +19,13 @@ namespace ZoomToHome {
         }
 
         public override void ExitState() {
+            renderer.ClearLine();
             grapplePoint = Vector3.Inf;
         }
 
         public override void ProcessFrame(double delta) {
             if (grapplePoint.IsFinite())
-                renderer.RenderLine(player.GlobalPosition, grapplePoint, 4, 16);
+                renderer.RenderLine(linePoint.GlobalPosition, grapplePoint, 0.05f, 20);
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

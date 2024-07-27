@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+// TODO: DRAW THE STRING FROM A NODE POINT (4 POINTED)
 namespace ZoomToHome {
     public partial class Zipping : State {
         private Vector3 grapplePoint;

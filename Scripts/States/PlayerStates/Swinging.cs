@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+// TODO: DRAW THE STRING FROM A NODE POINT (CIRCLE)
 namespace ZoomToHome {
     public partial class Swinging : State {
         private Vector3 grapplePoint;

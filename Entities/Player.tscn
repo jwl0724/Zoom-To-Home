@@ -25,13 +25,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfov4"]
-metallic = 1.0
-roughness = 0.0
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 7.5
-ao_enabled = true
-refraction_enabled = true
+shading_mode = 0
+albedo_color = Color(0.833689, 0.876281, 0.910222, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rloev"]
 
@@ -95,14 +90,16 @@ script = ExtResource("8_8uk01")
 parentBody = NodePath("../..")
 manager = NodePath("..")
 
-[node name="Swinging" type="Node" parent="State Manager" node_paths=PackedStringArray("renderer", "parentBody", "manager")]
+[node name="Swinging" type="Node" parent="State Manager" node_paths=PackedStringArray("linePoint", "renderer", "parentBody", "manager")]
 script = ExtResource("9_i52oi")
+linePoint = NodePath("../../Rotational Helper/Line Point")
 renderer = NodePath("../../Script Helpers/Line Renderer")
 parentBody = NodePath("../..")
 manager = NodePath("..")
 
-[node name="Zipping" type="Node" parent="State Manager" node_paths=PackedStringArray("renderer", "parentBody", "manager")]
+[node name="Zipping" type="Node" parent="State Manager" node_paths=PackedStringArray("linePoint", "renderer", "parentBody", "manager")]
 script = ExtResource("10_8p5n7")
+linePoint = NodePath("../../Rotational Helper/Line Point")
 renderer = NodePath("../../Script Helpers/Line Renderer")
 parentBody = NodePath("../..")
 manager = NodePath("..")
@@ -136,6 +133,9 @@ lineMaterial = SubResource("StandardMaterial3D_yfov4")
 [node name="Rotational Helper" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 script = ExtResource("5_527ph")
+
+[node name="Line Point" type="Node3D" parent="Rotational Helper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.315018, -0.108616, -0.614437)
 
 [node name="Camera" type="Camera3D" parent="Rotational Helper"]
 transform = Transform3D(0.999963, 0.00859772, 0, -0.00859772, 0.999963, 0, 0, 0, 1, 0, 0, 0)

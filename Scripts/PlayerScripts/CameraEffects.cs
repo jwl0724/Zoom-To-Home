@@ -17,9 +17,9 @@ namespace ZoomToHome {
             HandleCameraFOV((float) delta);
         }
 
-        public void TiltCamera(float angle) {
+        public void TiltCamera(float angle, float time) {
             Tween cameraTween = CreateTween();
-            cameraTween.TweenProperty(this, "rotation", Vector3.Back * angle, 0.15f);
+            cameraTween.TweenProperty(this, "rotation", Vector3.Back * angle, time);
         }
 
         private void HandleCameraFOV(float delta) {

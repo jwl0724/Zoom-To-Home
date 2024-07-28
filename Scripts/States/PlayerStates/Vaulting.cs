@@ -27,7 +27,7 @@ namespace ZoomToHome {
         }
 
         public override void ProcessInput(InputEvent inputEvent) {
-            
+            if (Input.IsActionJustPressed("jump")) manager.ChangeState(manager.AllStates["Jumping"]);
         }
 
         public override void ProcessPhysics(double delta) {
@@ -36,11 +36,11 @@ namespace ZoomToHome {
                 return;
             }
             float velocityHorizontal = player.GetForwardVectorOnHorizontalPlane(player.Velocity, player.Velocity.Length()).Length();
-            player.Position = player.Position.Lerp(vaultDestination, velocityHorizontal * 0.1f);
+            float lerpWeight = Mathf.Min(velocityHorizontal * 0.08f, 1);
+            player.Position = player.Position.Lerp(vaultDestination, lerpWeight);
             
             if (!player.Position.IsEqualApprox(vaultDestination)) return;
-            if (manager.PreviousState is Zipping) manager.ChangeState(manager.AllStates["Jumping"]);
-            else manager.ChangeState(manager.AllStates["Recovering"]);
+            manager.ChangeState(manager.AllStates["Recovering"]);
         }
     }
 }

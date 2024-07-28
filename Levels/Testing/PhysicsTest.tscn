@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cscgk2u6f32sf"]
+[gd_scene load_steps=15 format=3 uid="uid://cscgk2u6f32sf"]
 
 [ext_resource type="PackedScene" uid="uid://1wgfw2uv0c65" path="res://Entities/Player.tscn" id="1_nluu3"]
 
@@ -35,6 +35,12 @@ size = Vector3(50, 20, 40)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c2yl3"]
 size = Vector3(50, 20, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6kssl"]
+size = Vector3(30, 5, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w0x3n"]
+size = Vector3(30, 5, 10)
 
 [node name="Physics Test Level" type="Node3D"]
 
@@ -232,3 +238,13 @@ shape = SubResource("BoxShape3D_f8ee8")
 
 [node name="Mesh" type="MeshInstance3D" parent="Wall9"]
 mesh = SubResource("BoxMesh_c2yl3")
+
+[node name="Platform8" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19116, -75.5055)
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="Platform8"]
+shape = SubResource("BoxShape3D_6kssl")
+
+[node name="Mesh" type="MeshInstance3D" parent="Platform8"]
+mesh = SubResource("BoxMesh_w0x3n")

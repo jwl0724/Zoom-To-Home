@@ -43,6 +43,11 @@ namespace ZoomToHome {
                 else manager.ChangeState(manager.AllStates["Recovering"]);
                 return;
             }
+
+            if (Input.IsActionPressed("jump") && player.CanVault()) {
+                manager.ChangeState(manager.AllStates["Vaulting"]);
+                return;
+            }
             
             float velocityMagnitude = player.GetForwardVectorOnHorizontalPlane(player.Velocity, player.Velocity.Length()).Length();
             if (player.IsOnWallOnly() && velocityMagnitude > player.MoveSpeed * 1.3f)

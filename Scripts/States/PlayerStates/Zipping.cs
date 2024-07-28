@@ -42,6 +42,10 @@ namespace ZoomToHome {
                 Mathf.Max(player.Velocity.Length(), player.ZipRetractSpeed);
             player.MoveAndSlide();
 
+            if (Input.IsActionPressed("jump") && player.CanVault()) {
+                manager.ChangeState(manager.AllStates["Vaulting"]);
+                return;
+            }
         }
     }
 }

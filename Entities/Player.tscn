@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://1wgfw2uv0c65"]
+[gd_scene load_steps=29 format=3 uid="uid://1wgfw2uv0c65"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_6ell8"]
 [ext_resource type="Script" path="res://Scripts/States/StateManager.cs" id="3_5833u"]
@@ -16,10 +16,12 @@
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Recovering.cs" id="11_icph3"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Crouch.cs" id="12_agd00"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/WallRunning.cs" id="13_prnnn"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Vaulting.cs" id="14_04u4l"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/LineRenderer.cs" id="15_fmltg"]
 [ext_resource type="Texture2D" uid="uid://2yil3f8mlkjk" path="res://Assets/Images/UI/Reticle.png" id="16_5h5j8"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/Reticle.cs" id="17_a3ros"]
 [ext_resource type="Shader" path="res://Assets/Shaders/SpeedLines.gdshader" id="18_0ecnq"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/VaultHelper.cs" id="19_g7jg4"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/SpeedLines.cs" id="19_u5p30"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
@@ -53,6 +55,15 @@ script = ExtResource("1_6ell8")
 [node name="Stand Check" type="RayCast3D" parent="Helper Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.875, 0)
 target_position = Vector3(0, 1.875, 0)
+
+[node name="Vault Helper" type="Node3D" parent="Helper Objects" node_paths=PackedStringArray("rotationalHelper")]
+top_level = true
+script = ExtResource("19_g7jg4")
+rotationalHelper = NodePath("../../Rotational Helper")
+
+[node name="Vault Raycast" type="RayCast3D" parent="Helper Objects/Vault Helper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.65)
+target_position = Vector3(0, -1.25, 0)
 
 [node name="Collision Box" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_utod5")
@@ -120,6 +131,12 @@ camera = NodePath("../../Rotational Helper/Camera")
 parentBody = NodePath("../..")
 manager = NodePath("..")
 
+[node name="Vaulting" type="Node" parent="State Manager" node_paths=PackedStringArray("cameraEffects", "parentBody", "manager")]
+script = ExtResource("14_04u4l")
+cameraEffects = NodePath("../../Rotational Helper/Camera")
+parentBody = NodePath("../..")
+manager = NodePath("..")
+
 [node name="Script Helpers" type="Node" parent="."]
 
 [node name="Input Manager" type="Node" parent="Script Helpers"]
@@ -138,7 +155,7 @@ script = ExtResource("5_527ph")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.315018, -0.108616, -0.614437)
 
 [node name="Camera" type="Camera3D" parent="Rotational Helper"]
-transform = Transform3D(0.999963, 0.00859772, 0, -0.00859772, 0.999963, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("11_erckf")
 
 [node name="Raycast" type="RayCast3D" parent="Rotational Helper"]

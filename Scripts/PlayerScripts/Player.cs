@@ -7,6 +7,7 @@ namespace ZoomToHome {
         private RayCast3D standChecker;
         private PlayerRotationManager rotationHelper;
         private CapsuleShape3D capsuleShape;
+        private VaultHelper vaultHelper;
         private readonly LinkedList<Vector3> forceList = new();
 
         public override void _Ready() {
@@ -17,6 +18,7 @@ namespace ZoomToHome {
             StateManager = GetNode<StateManager>("State Manager");
             capsuleShape = GetNode<CollisionShape3D>("Collision Box").Shape as CapsuleShape3D;
             standChecker = GetNode<RayCast3D>("Helper Objects/Stand Check");
+            vaultHelper = GetNode<VaultHelper>("Helper Objects/Vault Helper");
         }
 
         public void SumForces() {
@@ -78,6 +80,14 @@ namespace ZoomToHome {
                 Tween standTween = CreateTween();
                 standTween.TweenProperty(rotationHelper, "position", Vector3.Up * 0.75f, 0.1f);
             }
+        }
+
+        public bool CanVault() {
+            return vaultHelper.CanVault();
+        }
+
+        public Vector3 GetVaultDestination() {
+            return vaultHelper.CalculateVaultLocation();
         }
     }
 }

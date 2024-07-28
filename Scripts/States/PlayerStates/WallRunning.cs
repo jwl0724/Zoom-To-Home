@@ -5,6 +5,7 @@ namespace ZoomToHome {
     public partial class WallRunning : State {
         [Export] private CameraEffects camera;
         private static readonly float tiltAngle = 0.4f;
+        private static readonly float tiltSpeed = 0.15f; // in seconds
         private Player player;
 
         public override void _Ready() {
@@ -19,8 +20,8 @@ namespace ZoomToHome {
             player.Velocity = parallel;
 
             Vector3 rightVector = player.GetForwardVectorOnHorizontalPlane(Vector3.Right, 1);
-            if (rightVector.Dot(wallNormal) < 0) camera.TiltCamera(tiltAngle);
-            else camera.TiltCamera(-tiltAngle);
+            if (rightVector.Dot(wallNormal) < 0) camera.TiltCamera(tiltAngle, tiltSpeed);
+            else camera.TiltCamera(-tiltAngle, tiltSpeed);
         }
 
         public override void ExitState() {
@@ -28,7 +29,7 @@ namespace ZoomToHome {
                 player.ApplyForce(Vector3.Up * player.JumpSpeed, isOneShot: true);
                 player.ApplyForce(player.GetWallNormal() * player.Velocity.Length(), isOneShot: true);
             }
-            camera.TiltCamera(0);
+            camera.TiltCamera(0, tiltSpeed);
         }
 
         public override void ProcessFrame(double delta) {

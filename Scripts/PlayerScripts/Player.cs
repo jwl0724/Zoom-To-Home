@@ -61,6 +61,12 @@ namespace ZoomToHome {
             return normalizedVector.Normalized() * moveSpeed;
         }
 
+        public float GetForwardVelocityHorizontalMagnitude() {
+            Vector3 forwardVector = rotationHelper.Transform.Basis * new Vector3(Velocity.X, 0, Velocity.Z);
+            Vector3 normalizedVector = new(forwardVector.X, 0, forwardVector.Z);
+            return (normalizedVector.Normalized() * Velocity.Length()).Length();
+        }
+
         public bool ClipsIntoCeilingOnStand() {
             if (standChecker.GetCollider() == null) return false;
             else return true;

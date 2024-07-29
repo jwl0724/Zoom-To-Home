@@ -9,14 +9,30 @@ namespace ZoomToHome {
         private Vector3 grapplePoint;
         private Player player;
 
+        // ZIP COOLDOWN TIMER
+        private readonly float zipCooldown = 1f; // in seconds
+        private float zipTimer = 0f;
+        private bool onCooldown = false;
+
         public override void _Ready() {
             player = parentBody as Player;
         }
 
+        public override void _Process(double delta) {
+            if (!onCooldown) return;
+
+            if (zipTimer >= zipCooldown) {
+                zipTimer = 0;
+                onCooldown = false;
+
+            } else zipTimer += (float) delta;
+        }
+
         public override void EnterState() {
             grapplePoint = player.GetRaycastImpactPoint();
-            if (!grapplePoint.IsFinite()) 
+            if (!grapplePoint.IsFinite() || onCooldown) 
                 manager.ChangeState(manager.PreviousState);
+            else onCooldown = true;
         }
 
         public override void ExitState() {

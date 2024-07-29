@@ -39,7 +39,7 @@ namespace ZoomToHome {
             
             player.Position = player.Position.Lerp(vaultDestination, 0.9f);
             if (!player.Position.IsEqualApprox(vaultDestination)) return;
-            manager.ChangeState(manager.AllStates["Recovering"]);
+            manager.ChangeState(manager.AllStates["Idle"]);
         }
     }
 }

@@ -49,7 +49,7 @@ namespace ZoomToHome {
                 return;
             }
             
-            float velocityMagnitude = player.GetForwardVectorOnHorizontalPlane(player.Velocity, player.Velocity.Length()).Length();
+            float velocityMagnitude = player.GetForwardVelocityHorizontalMagnitude();
             if (player.IsOnWallOnly() && velocityMagnitude > player.MoveSpeed * 1.3f)
                 manager.ChangeState(manager.AllStates["WallRunning"]);
         }

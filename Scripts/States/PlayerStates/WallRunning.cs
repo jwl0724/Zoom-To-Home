@@ -26,9 +26,10 @@ namespace ZoomToHome {
 
         public override void ExitState() {
             if (player.IsOnWallOnly()) {
-                player.ApplyForce(Vector3.Up * player.JumpSpeed, isOneShot: true);
-                player.ApplyForce(player.GetWallNormal() * player.Velocity.Length(), isOneShot: true);
-            }
+                float launchMagnitude = Mathf.Max(player.GetForwardVelocityHorizontalMagnitude(), player.JumpSpeed);
+                player.ApplyForce(player.GetWallNormal() * launchMagnitude, isOneShot: true);
+             
+            } else player.Velocity = new Vector3(player.Velocity.X, 0, player.Velocity.Z);
             camera.TiltCamera(0, tiltSpeed);
         }
 
@@ -38,8 +39,8 @@ namespace ZoomToHome {
 
         public override void ProcessInput(InputEvent inputEvent) {
             if (Input.IsActionJustPressed("jump")) manager.ChangeState(manager.AllStates["Jumping"]);
-            if (Input.IsActionJustPressed("zip")) manager.ChangeState(manager.AllStates["Zipping"]);
-            if (Input.IsActionJustPressed("swing")) manager.ChangeState(manager.AllStates["Swinging"]);
+            else if (Input.IsActionJustPressed("zip")) manager.ChangeState(manager.AllStates["Zipping"]);
+            else if (Input.IsActionJustPressed("swing")) manager.ChangeState(manager.AllStates["Swinging"]);
         }
 
         public override void ProcessPhysics(double delta) {
@@ -48,11 +49,7 @@ namespace ZoomToHome {
             player.SumForces();
             player.MoveAndSlide();
 
-            if (player.IsOnFloor()) { 
-                manager.ChangeState(manager.AllStates["Recovering"]);
-                return;
-            }
-            if (!player.IsOnWall()) manager.ChangeState(manager.AllStates["Jumping"]);
+            if (player.IsOnFloor()) manager.ChangeState(manager.AllStates["Recovering"]);
             else if (!player.IsOnWall()) manager.ChangeState(manager.AllStates["Falling"]);
         }
     }

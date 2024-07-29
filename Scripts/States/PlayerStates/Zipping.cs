@@ -19,7 +19,7 @@ namespace ZoomToHome {
         }
 
         public override void _Process(double delta) {
-            if (!onCooldown) return;
+            if (!onCooldown || manager.CurrentState is Zipping) return;
 
             if (zipTimer >= zipCooldown) {
                 zipTimer = 0;

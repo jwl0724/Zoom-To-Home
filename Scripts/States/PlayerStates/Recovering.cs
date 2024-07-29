@@ -14,7 +14,7 @@ namespace ZoomToHome {
         }
 
         public override void ExitState() {
-            
+            player.FloorSnapLength = 0.1f;
         }
 
         public override void ProcessFrame(double delta) {
@@ -37,6 +37,8 @@ namespace ZoomToHome {
             player.Velocity = player.Velocity.Lerp(Vector3.Zero, 0.025f);
             player.ApplyForce(movementDirection, isOneShot: false);
             player.SumForces();
+            player.FloorSnapLength = player.GetForwardVelocityHorizontalMagnitude() * 
+                Mathf.Tan(player.FloorMaxAngle) * (float) delta * 2;
             player.MoveAndSlide();
                       
             if (!player.IsOnFloor()) {
@@ -48,7 +50,7 @@ namespace ZoomToHome {
                 if (Input.IsActionPressed("sprint")) manager.ChangeState(manager.AllStates["Sprinting"]);
                 else if (player.Velocity.Length() < player.MoveSpeed) manager.ChangeState(manager.AllStates["Running"]);
             }
-            if (player.Velocity.IsZeroApprox()) manager.ChangeState(manager.AllStates["Idle"]);
+            if (player.Velocity.Length() < player.MoveSpeed) manager.ChangeState(manager.AllStates["Idle"]);
         }
     }
 }

@@ -8,11 +8,11 @@ namespace ZoomToHome {
             player = parentBody as Player;
         }
         public override void EnterState() {
-            
+            player.FloorSnapLength = 2;
         }
 
         public override void ExitState() {
-            
+            player.FloorSnapLength = 0.1f;
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

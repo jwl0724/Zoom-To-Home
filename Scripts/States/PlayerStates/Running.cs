@@ -8,11 +8,11 @@ namespace ZoomToHome {
         }
         
         public override void EnterState() {
-            // TODO IMPLEMENT STUFF LATER WHEN VISUALS ARE ADDED
+            player.FloorSnapLength = 1;
         }
 
         public override void ExitState() {
-            // TODO IMPLEMENT STUFF LATER WHEN VISUALS ARE ADDED
+            player.FloorSnapLength = 0.1f;
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

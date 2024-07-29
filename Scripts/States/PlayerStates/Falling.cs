@@ -42,9 +42,15 @@ namespace ZoomToHome {
                 return;
             }
 
-            float velocityMagnitude = player.GetForwardVelocityHorizontalMagnitude();
-            if (player.IsOnWallOnly() && velocityMagnitude > player.MoveSpeed * 1.3f)
-                manager.ChangeState(manager.AllStates["WallRunning"]);
+            // check if wall running criteria is met
+            if (!player.IsOnWallOnly()) return;
+
+            Vector3 wallNormal = player.GetWallNormal();
+            Vector3 horizontalVelocity = new Vector3(player.Velocity.X, 0, player.Velocity.Z);
+            horizontalVelocity = horizontalVelocity.Normalized() * horizontalVelocity.Length();
+            Vector3 parallelVelocity = horizontalVelocity - horizontalVelocity.Dot(wallNormal) * wallNormal;
+            
+            if (parallelVelocity.Length() > player.MoveSpeed * 1.2f) manager.ChangeState(manager.AllStates["WallRunning"]);
         }
     }
 }

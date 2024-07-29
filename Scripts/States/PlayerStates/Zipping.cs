@@ -48,9 +48,7 @@ namespace ZoomToHome {
         public override void ProcessInput(InputEvent inputEvent) {
             if (!Input.IsActionJustReleased("zip")) return;            
             if (player.IsOnFloor()) manager.ChangeState(manager.AllStates["Recovering"]);
-            else if (player.IsOnCeiling()) manager.ChangeState(manager.AllStates["Falling"]);
-            else if (player.Velocity.Y > 0) manager.ChangeState(manager.AllStates["Jumping"]);
-            else if (player.Velocity.Y < 0) manager.ChangeState(manager.AllStates["Falling"]);
+            else manager.ChangeState(manager.AllStates["Falling"]);
         }
 
         public override void ProcessPhysics(double delta) {
@@ -61,6 +59,11 @@ namespace ZoomToHome {
             if (Input.IsActionPressed("jump") && player.CanVault()) {
                 manager.ChangeState(manager.AllStates["Vaulting"]);
                 return;
+            }
+            if (player.IsOnWall() && player.IsOnFloor()) manager.ChangeState(manager.AllStates["Idle"]);
+            else if (player.IsOnWall()) {
+                manager.ChangeState(manager.AllStates["Falling"]);
+                player.Velocity = new Vector3(player.Velocity.X, 0, player.Velocity.Z);
             }
         }
     }

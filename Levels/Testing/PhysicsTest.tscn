@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cscgk2u6f32sf"]
+[gd_scene load_steps=19 format=3 uid="uid://cscgk2u6f32sf"]
 
 [ext_resource type="PackedScene" uid="uid://1wgfw2uv0c65" path="res://Entities/Player.tscn" id="1_nluu3"]
 
@@ -41,6 +41,18 @@ size = Vector3(30, 5, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_w0x3n"]
 size = Vector3(30, 5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cy2al"]
+size = Vector3(40, 80, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pp8t5"]
+size = Vector3(40, 80, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rhe84"]
+size = Vector3(40, 20, 80)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tw77s"]
+size = Vector3(40, 20, 80)
 
 [node name="Physics Test Level" type="Node3D"]
 
@@ -248,3 +260,23 @@ shape = SubResource("BoxShape3D_6kssl")
 
 [node name="Mesh" type="MeshInstance3D" parent="Platform8"]
 mesh = SubResource("BoxMesh_w0x3n")
+
+[node name="Hill Top" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.9564, 1.04053, -256.649)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hill Top"]
+shape = SubResource("BoxShape3D_cy2al")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hill Top"]
+mesh = SubResource("BoxMesh_pp8t5")
+
+[node name="Hill" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.776871, -0.629659, 0, 0.629659, 0.776871, 61.1258, 8.11417, -211.62)
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="Hill"]
+shape = SubResource("BoxShape3D_rhe84")
+
+[node name="Mesh" type="MeshInstance3D" parent="Hill"]
+mesh = SubResource("BoxMesh_tw77s")

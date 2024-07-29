@@ -36,10 +36,8 @@ namespace ZoomToHome {
                 GD.PushError("Vaulting Destination is Infinite");
                 return;
             }
-            float velocityHorizontal = player.GetForwardVectorOnHorizontalPlane(player.Velocity, player.Velocity.Length()).Length();
-            float lerpWeight = Mathf.Min(velocityHorizontal * 0.08f, 1);
-            player.Position = player.Position.Lerp(vaultDestination, lerpWeight);
             
+            player.Position = player.Position.Lerp(vaultDestination, 0.9f);
             if (!player.Position.IsEqualApprox(vaultDestination)) return;
             manager.ChangeState(manager.AllStates["Recovering"]);
         }

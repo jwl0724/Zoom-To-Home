@@ -112,15 +112,6 @@ shape = SubResource("BoxShape3D_b7cl8")
 [node name="Mesh" type="MeshInstance3D" parent="Lava"]
 mesh = SubResource("BoxMesh_jgbtk")
 
-[node name="Moving Platform" type="AnimatableBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.0589, -5.64655)
-
-[node name="Collision" type="CollisionShape3D" parent="Moving Platform"]
-shape = SubResource("BoxShape3D_uo5ox")
-
-[node name="Mesh" type="MeshInstance3D" parent="Moving Platform"]
-mesh = SubResource("BoxMesh_n4tli")
-
 [node name="Platform3" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1204, 59.197, -44.9676)
 

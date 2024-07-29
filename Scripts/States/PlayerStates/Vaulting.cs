@@ -20,6 +20,7 @@ namespace ZoomToHome {
         public override void ExitState() {
             vaultDestination = Vector3.Inf;
             cameraEffects.TiltCamera(0, 0.1f);
+            player.Velocity = new Vector3(player.Velocity.X, 0, player.Velocity.Z);
         }
 
         public override void ProcessFrame(double delta) {

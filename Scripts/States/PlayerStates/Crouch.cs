@@ -30,10 +30,15 @@ namespace ZoomToHome {
                 boostDisabled = true;
             }
             player.ToggleCrouch(true);
+            player.FloorStopOnSlope = false;
+            player.FloorSnapLength = player.GetForwardVelocityHorizontalMagnitude() *
+                Mathf.Tan(player.FloorMaxAngle) * (float) GetPhysicsProcessDeltaTime() * 2;
         }
 
         public override void ExitState() {
+            player.FloorSnapLength = 0.1f;
             player.ToggleCrouch(false);
+            player.FloorStopOnSlope = true;
         }
 
         public override void ProcessFrame(double delta) {
@@ -65,7 +70,9 @@ namespace ZoomToHome {
                 else if (Input.IsActionPressed("right")) player.Velocity += Vector3.Right * player.MoveSpeed * (float) delta;
 
             } else player.SetVelocityToInputVector(player.MoveSpeed / 2);
+            if (player.GetFloorAngle() != 0) player.ApplyForce(Vector3.Down * player.Gravity, isOneShot: true);
             player.SumForces();
+
             player.MoveAndSlide();
             if (!player.IsOnFloor()) manager.ChangeState(manager.AllStates["Falling"]);
         }

@@ -7,6 +7,7 @@ namespace ZoomToHome {
         private static readonly float tiltAngle = 0.4f;
         private static readonly float tiltSpeed = 0.15f; // in seconds
         private Player player;
+        private float wallDot;
 
         public override void _Ready() {
             player = parentBody as Player;
@@ -20,8 +21,20 @@ namespace ZoomToHome {
             player.Velocity = parallel;
 
             Vector3 rightVector = player.GetForwardVectorOnHorizontalPlane(Vector3.Right, 1);
-            if (rightVector.Dot(wallNormal) < 0) camera.TiltCamera(tiltAngle, tiltSpeed);
-            else camera.TiltCamera(-tiltAngle, tiltSpeed);
+            wallDot = rightVector.Dot(wallNormal);
+
+            if (wallDot < 0) {
+                // wall to the right
+                camera.TiltCamera(tiltAngle, tiltSpeed);
+                if (manager.PreviousState is Jumping) player.PlayAnimation("JumpToWallRunRight");
+                else player.PlayAnimation("FallToWallRunRight");
+                
+            } else {
+                // wall to the left
+                camera.TiltCamera(-tiltAngle, tiltSpeed);
+                if (manager.PreviousState is Jumping) player.PlayAnimation("JumpToWallRunLeft");
+                else player.PlayAnimation("FallToWallRunLeft");
+            }
         }
 
         public override void ExitState() {
@@ -34,7 +47,8 @@ namespace ZoomToHome {
         }
 
         public override void ProcessFrame(double delta) {
-            
+            if (wallDot < 0) player.PlayAnimation("WallRunRight", playOver: false);
+            else player.PlayAnimation("WallRunLeft", playOver: false);
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

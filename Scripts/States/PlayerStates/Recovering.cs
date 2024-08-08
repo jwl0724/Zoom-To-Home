@@ -10,7 +10,7 @@ namespace ZoomToHome {
         }
 
         public override void EnterState() {
-            
+            player.PlayAnimation("Land");
         }
 
         public override void ExitState() {
@@ -18,7 +18,7 @@ namespace ZoomToHome {
         }
 
         public override void ProcessFrame(double delta) {
-            
+            player.PlayAnimation("Stand", playOver: false);
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

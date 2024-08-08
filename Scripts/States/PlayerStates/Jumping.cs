@@ -13,6 +13,8 @@ namespace ZoomToHome {
             if (manager.PreviousState is Crouch)
                 player.ApplyForce(Vector3.Up * (player.JumpSpeed + player.Velocity.Length() / 4), isOneShot: true);
             else player.ApplyForce(Vector3.Up * player.JumpSpeed, isOneShot: true);
+
+            player.PlayAnimation("Jump");
         }
 
         public override void ExitState() {

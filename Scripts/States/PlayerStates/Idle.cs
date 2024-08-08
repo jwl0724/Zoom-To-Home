@@ -9,10 +9,11 @@ namespace ZoomToHome {
 
         public override void EnterState() {
             player.Velocity = new Vector3(0, player.Velocity.Y, 0);
+            player.PlayAnimation("Idle");
         }
 
         public override void ExitState() {
-            // TO BE IMPLEMENTED WHEN VISUALS ARE ADDED
+            
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

@@ -9,7 +9,7 @@ namespace ZoomToHome {
         }
         
         public override void EnterState() {
-            
+            player.PlayAnimation("Fall");
         }
 
         public override void ExitState() {

@@ -16,6 +16,7 @@ namespace ZoomToHome {
             grapplePoint = player.GetRaycastImpactPoint();
             if (!grapplePoint.IsFinite())
                 manager.ChangeState(manager.PreviousState);
+            player.PlayAnimation("Swing");
         }
 
         public override void ExitState() {

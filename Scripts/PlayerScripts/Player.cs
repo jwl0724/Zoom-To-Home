@@ -3,9 +3,10 @@ using Godot;
 
 namespace ZoomToHome {
     public partial class Player : Entity {
+        [Export] private PlayerAnimator playerAnimator;
         public StateManager StateManager;
+        public PlayerRotationManager RotationHelper;
         private RayCast3D standChecker;
-        private PlayerRotationManager rotationHelper;
         private CapsuleShape3D capsuleShape;
         private VaultHelper vaultHelper;
         private readonly LinkedList<Vector3> forceList = new();
@@ -14,11 +15,15 @@ namespace ZoomToHome {
             OverrideParentVariables();
 
             // connect essential nodes
-            rotationHelper = GetNode<PlayerRotationManager>("Rotational Helper");
+            RotationHelper = GetNode<PlayerRotationManager>("Rotational Helper");
             StateManager = GetNode<StateManager>("State Manager");
             capsuleShape = GetNode<CollisionShape3D>("Collision Box").Shape as CapsuleShape3D;
             standChecker = GetNode<RayCast3D>("Helper Objects/Stand Check");
             vaultHelper = GetNode<VaultHelper>("Helper Objects/Vault Helper");
+        }
+
+        public void PlayAnimation(string animationName, bool playOver = true) {
+            playerAnimator.Play(animationName, playOver);
         }
 
         public void SumForces() {
@@ -29,7 +34,7 @@ namespace ZoomToHome {
         }
 
         public Vector3 GetRaycastImpactPoint() {
-            return rotationHelper.GetRaycastImpactPoint();
+            return RotationHelper.GetRaycastImpactPoint();
         }
 
         public void ApplyForce(Vector3 force, bool isOneShot) {
@@ -56,13 +61,13 @@ namespace ZoomToHome {
         }
 
         public Vector3 GetForwardVectorOnHorizontalPlane(Vector3 vector, float moveSpeed) {
-            Vector3 forwardVector = rotationHelper.Transform.Basis * new Vector3(vector.X, 0, vector.Z);
+            Vector3 forwardVector = RotationHelper.Transform.Basis * new Vector3(vector.X, 0, vector.Z);
             Vector3 normalizedVector = new(forwardVector.X, 0, forwardVector.Z);
             return normalizedVector.Normalized() * moveSpeed;
         }
 
         public float GetForwardVelocityHorizontalMagnitude() {
-            Vector3 forwardVector = rotationHelper.Transform.Basis * new Vector3(Velocity.X, 0, Velocity.Z);
+            Vector3 forwardVector = RotationHelper.Transform.Basis * new Vector3(Velocity.X, 0, Velocity.Z);
             Vector3 normalizedVector = new(forwardVector.X, 0, forwardVector.Z);
             return (normalizedVector.Normalized() * Velocity.Length()).Length();
         }
@@ -77,14 +82,14 @@ namespace ZoomToHome {
                 capsuleShape.Height = CrouchHeight;
                 GetNode<CollisionShape3D>("Collision Box").Position = Vector3.Down * (Height / 2 - CrouchHeight / 2);
                 Tween crouchTween = CreateTween();
-                crouchTween.TweenProperty(rotationHelper, "position", Vector3.Down * 0.875f, 0.1f);
+                crouchTween.TweenProperty(RotationHelper, "position", Vector3.Down * 0.875f, 0.1f);
 
             } else {
                 capsuleShape.Height = Height;
                 capsuleShape.Radius = DefaultCapsuleRadius;
                 GetNode<CollisionShape3D>("Collision Box").Position = Vector3.Zero;
                 Tween standTween = CreateTween();
-                standTween.TweenProperty(rotationHelper, "position", Vector3.Up * 0.75f, 0.1f);
+                standTween.TweenProperty(RotationHelper, "position", Vector3.Up * 0.75f, 0.1f);
             }
         }
 

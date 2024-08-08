@@ -81,6 +81,7 @@ namespace ZoomToHome {
             if (!player.IsOnFloor()) manager.ChangeState(manager.AllStates["Falling"]);
 
             if (player.Velocity.Length() < player.MoveSpeed && player.Velocity.Length() > 0) player.PlayAnimation("CrouchMove");
+            else player.PlayAnimation("CrouchIdle");
         }
     }
 }

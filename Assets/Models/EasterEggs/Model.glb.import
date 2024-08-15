@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://2k5l58th403n"
-path="res://.godot/imported/Model.glb-67569020674be5ed1c810eb82a196493.scn"
+path="res://.godot/imported/Model.glb-1124d5328f744563fa8aeedf03212e76.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Player/Model.glb"
-dest_files=["res://.godot/imported/Model.glb-67569020674be5ed1c810eb82a196493.scn"]
+source_file="res://Assets/Models/EasterEggs/Model.glb"
+dest_files=["res://.godot/imported/Model.glb-1124d5328f744563fa8aeedf03212e76.scn"]
 
 [params]
 

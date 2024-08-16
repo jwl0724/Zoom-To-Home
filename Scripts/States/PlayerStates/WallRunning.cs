@@ -22,19 +22,21 @@ namespace ZoomToHome {
 
             Vector3 rightVector = player.GetForwardVectorOnHorizontalPlane(Vector3.Right, 1);
             wallDot = rightVector.Dot(wallNormal);
-
+            // CHANGE LATER, SEE IF I WANT TO ADD IT LATER
             if (wallDot < 0) {
                 // wall to the right
                 camera.TiltCamera(tiltAngle, tiltSpeed);
-                if (manager.PreviousState is Jumping) player.PlayAnimation("JumpToWallRunRight");
-                else player.PlayAnimation("FallToWallRunRight");
+                // if (manager.PreviousState is Jumping) player.PlayAnimation("JumpToWallRunRight");
+                // else player.PlayAnimation("FallToWallRunRight");
                 
             } else {
                 // wall to the left
                 camera.TiltCamera(-tiltAngle, tiltSpeed);
-                if (manager.PreviousState is Jumping) player.PlayAnimation("JumpToWallRunLeft");
-                else player.PlayAnimation("FallToWallRunLeft");
+                // if (manager.PreviousState is Jumping) player.PlayAnimation("JumpToWallRunLeft");
+                // else player.PlayAnimation("FallToWallRunLeft");
             }
+
+            player.ToggleCrouch(true, 1.3f);
         }
 
         public override void ExitState() {
@@ -44,11 +46,13 @@ namespace ZoomToHome {
              
             } else player.Velocity = new Vector3(player.Velocity.X, 0, player.Velocity.Z);
             camera.TiltCamera(0, tiltSpeed);
+
+            player.ToggleCrouch(false, 1.3f);
         }
 
         public override void ProcessFrame(double delta) {
-            if (wallDot < 0) player.PlayAnimation("WallRunRight", playOver: false);
-            else player.PlayAnimation("WallRunLeft", playOver: false);
+            // if (wallDot < 0) player.PlayAnimation("WallRunRight", playOver: false);
+            // else player.PlayAnimation("WallRunLeft", playOver: false);
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

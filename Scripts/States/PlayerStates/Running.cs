@@ -9,7 +9,7 @@ namespace ZoomToHome {
         
         public override void EnterState() {
             player.FloorSnapLength = 1;
-            player.PlayAnimation("Run");
+            player.PlayAnimation("Reset");
         }
 
         public override void ExitState() {

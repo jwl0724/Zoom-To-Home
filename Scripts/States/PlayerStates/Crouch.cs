@@ -24,15 +24,14 @@ namespace ZoomToHome {
         }
 
         public override void EnterState() {
+            player.PlayAnimation("Reset");
             float velocityMagnitude = player.Velocity.Length();
             if (velocityMagnitude > player.MoveSpeed && !boostDisabled) {
                 player.Velocity *= 1.3f;
                 boostDisabled = true;
-                player.PlayAnimation("Slide");
+            }
 
-            } else player.PlayAnimation("Crouch");
-
-            player.ToggleCrouch(true);
+            player.ToggleCrouch(true, player.CrouchHeight);
             player.FloorStopOnSlope = false;
             player.FloorSnapLength = player.GetForwardVelocityHorizontalMagnitude() *
                 Mathf.Tan(player.FloorMaxAngle) * (float) GetPhysicsProcessDeltaTime() * 2;
@@ -40,9 +39,8 @@ namespace ZoomToHome {
 
         public override void ExitState() {
             player.FloorSnapLength = 0.1f;
-            player.ToggleCrouch(false);
+            player.ToggleCrouch(false, player.CrouchHeight);
             player.FloorStopOnSlope = true;
-            player.PlayAnimation("Stand");
         }
 
         public override void ProcessFrame(double delta) {
@@ -79,9 +77,6 @@ namespace ZoomToHome {
 
             player.MoveAndSlide();
             if (!player.IsOnFloor()) manager.ChangeState(manager.AllStates["Falling"]);
-
-            if (player.Velocity.Length() < player.MoveSpeed && player.Velocity.Length() > 0) player.PlayAnimation("CrouchMove");
-            else player.PlayAnimation("CrouchIdle");
         }
     }
 }

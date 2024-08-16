@@ -15,6 +15,7 @@ namespace ZoomToHome {
         public override void EnterState() {
             vaultDestination = player.GetVaultDestination();
             cameraEffects.TiltCamera(0.1f, 0.1f);
+            player.PlayAnimation("Vault");
         }
 
         public override void ExitState() {

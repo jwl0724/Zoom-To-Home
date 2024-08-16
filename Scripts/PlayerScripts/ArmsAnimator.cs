@@ -80,6 +80,8 @@ namespace ZoomToHome {
             ResetOrientation();
             leftHand.Rotation = leftHandSprintRotation;
             rightHand.Rotation = rightHandSprintRotation;
+            leftHand.Play("Sprint", 2);
+            rightHand.Play("Sprint", -2);
         }
 
         private void PlayWallRun() {

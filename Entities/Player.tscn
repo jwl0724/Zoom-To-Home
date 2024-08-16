@@ -1,9 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://1wgfw2uv0c65"]
+[gd_scene load_steps=37 format=3 uid="uid://1wgfw2uv0c65"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_6ell8"]
-[ext_resource type="PackedScene" uid="uid://bkig77lj6a03l" path="res://Assets/Models/Player/Model.glb" id="2_x0nh4"]
 [ext_resource type="Script" path="res://Scripts/States/StateManager.cs" id="3_5833u"]
-[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerAnimator.cs" id="3_pk5j4"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Idle.cs" id="4_h0rqe"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/InputManager.cs" id="4_ssfm2"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Running.cs" id="5_6muda"]
@@ -25,6 +23,10 @@
 [ext_resource type="Shader" path="res://Assets/Shaders/SpeedLines.gdshader" id="18_0ecnq"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/VaultHelper.cs" id="19_g7jg4"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/SpeedLines.cs" id="19_u5p30"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/ArmsAnimator.cs" id="20_knopo"]
+[ext_resource type="PackedScene" uid="uid://581ep40ot73s" path="res://Assets/Models/Player/LeftHand.glb" id="21_trpxa"]
+[ext_resource type="PackedScene" uid="uid://0468hagaphpi" path="res://Assets/Models/Player/RightHand.glb" id="22_csom0"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/HandAnimator.cs" id="22_r8ji2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
 radius = 0.35
@@ -35,6 +37,58 @@ alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
 shading_mode = 0
 albedo_color = Color(0.833689, 0.876281, 0.910222, 1)
+
+[sub_resource type="Animation" id="Animation_3wdp6"]
+resource_name = "Zip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.677525, -1.15542, 0.23031), Vector3(-0.677525, -0.935867, -0.323721), Vector3(-0.677525, -0.196082, -0.707656), Vector3(-0.677525, -0.258824, -0.707657), Vector3(-0.677525, -1.15542, 0.23031)]
+}
+
+[sub_resource type="Animation" id="Animation_i5kvd"]
+resource_name = "Swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.678, -1.155, 0.23), Vector3(0.678, -0.936, -0.324), Vector3(0.678, -0.196, -0.708), Vector3(0.678, -0.259, -0.708), Vector3(0.678, -1.155, 0.23)]
+}
+
+[sub_resource type="Animation" id="Animation_7ewf4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.677525, -1.15542, 0.23031)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_085vu"]
+_data = {
+"RESET": SubResource("Animation_7ewf4"),
+"Swing": SubResource("Animation_i5kvd"),
+"Zip": SubResource("Animation_3wdp6")
+}
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rloev"]
 
@@ -52,78 +106,10 @@ shader_parameter/mask_edge = 0.5
 shader_parameter/animation_speed = 13.0
 shader_parameter/noise = SubResource("NoiseTexture2D_pe7w6")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("playerAnimator")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("armsAnimator")]
 collision_layer = 2
 script = ExtResource("1_6ell8")
-playerAnimator = NodePath("Model")
-
-[node name="Model" parent="." node_paths=PackedStringArray("player", "animation") instance=ExtResource("2_x0nh4")]
-transform = Transform3D(-0.18, 0, -1.57361e-08, 0, 0.18, 0, 1.57361e-08, 0, -0.18, 0, -1, 0)
-script = ExtResource("3_pk5j4")
-player = NodePath("..")
-animation = NodePath("AnimationPlayer")
-
-[node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/1/position = Vector3(0.0436735, 5.09866, -0.00486591)
-bones/1/rotation = Quaternion(-0.0915317, -0.0103876, 0.0809356, 0.992453)
-bones/2/rotation = Quaternion(0.183621, -0.0199575, -0.0853745, 0.979079)
-bones/3/rotation = Quaternion(0.259934, 0.0323199, -0.00595022, 0.965067)
-bones/4/rotation = Quaternion(0.00582015, -0.00683548, 0.0711161, 0.997428)
-bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-0.22311, -0.011467, -0.0339315, 0.974135)
-bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(-0.129938, -0.00349134, -0.563287, 0.815973)
-bones/7/rotation = Quaternion(-0.109014, -0.74878, -0.624869, 0.192311)
-bones/8/rotation = Quaternion(0.00192132, -0.00524442, -0.670585, 0.741811)
-bones/8/scale = Vector3(1, 1, 1)
-bones/9/position = Vector3(1.25758, 2.02051, 1.81376)
-bones/9/rotation = Quaternion(-0.453759, -0.478073, -0.514272, 0.548702)
-bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.402169, -0.25583, -0.729696, 0.490259)
-bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(0.1916, -0.0117063, -0.029531, 0.980959)
-bones/12/rotation = Quaternion(-0.0550676, 0.00310581, 0.00394717, 0.99847)
-bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.125672, 0.000548351, 0.619451, 0.774911)
-bones/14/rotation = Quaternion(-0.653347, 0.236789, 0.0548523, 0.71698)
-bones/15/rotation = Quaternion(0.00196715, 0.00514006, 0.686567, 0.727046)
-bones/15/scale = Vector3(1, 1, 1)
-bones/16/position = Vector3(-1.91392, -1.29036, -0.58613)
-bones/16/rotation = Quaternion(-0.515346, 0.55604, 0.500319, 0.418234)
-bones/16/scale = Vector3(1, 1, 1)
-bones/17/rotation = Quaternion(-0.354866, -0.451316, 0.313126, 0.756529)
-bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(0.1916, 0.0117063, 0.029531, 0.980959)
-bones/19/rotation = Quaternion(-0.0550676, -0.00310582, -0.00394716, 0.99847)
-bones/20/position = Vector3(0.432998, 0.110413, 0.0155599)
-bones/20/rotation = Quaternion(0.940408, -0.0494084, -0.01628, -0.336044)
-bones/21/rotation = Quaternion(0.00307518, -0.702316, -0.00149695, 0.711857)
-bones/21/scale = Vector3(1, 1, 1)
-bones/22/position = Vector3(-0.460593, 0.254182, 0.0476513)
-bones/22/rotation = Quaternion(0.916082, -0.248735, -0.187603, 0.25245)
-bones/22/scale = Vector3(1, 1, 1)
-bones/23/rotation = Quaternion(0.656877, 0.479572, 0.319757, 0.486086)
-bones/23/scale = Vector3(1, 1, 1)
-bones/24/position = Vector3(0.679239, 0.399527, -2.69566)
-bones/24/rotation = Quaternion(-0.498682, -0.50123, 0.493378, 0.506618)
-bones/24/scale = Vector3(1, 1, 1)
-bones/25/rotation = Quaternion(-0.0104424, -6.58923e-09, 0.97653, 0.215126)
-bones/25/scale = Vector3(0.999998, 1, 1)
-bones/26/position = Vector3(-1.21987, 1.98902, -0.241871)
-bones/26/rotation = Quaternion(-0.498682, 0.50123, -0.493378, 0.506618)
-bones/26/scale = Vector3(1, 1, 1)
-bones/27/rotation = Quaternion(0.0240468, -0.0586195, 0.802864, -0.592785)
-bones/27/scale = Vector3(0.999998, 1, 1)
-bones/28/position = Vector3(0.679239, 2.83164, 1.48246)
-bones/28/scale = Vector3(1, 1, 1)
-bones/29/position = Vector3(1.86426, 6.51238, -2.91113)
-bones/29/rotation = Quaternion(0.200012, -0.678229, 0.67823, -0.200012)
-bones/29/scale = Vector3(1, 1, 1)
-bones/30/position = Vector3(-0.679239, 2.83164, 1.48246)
-bones/30/scale = Vector3(1, 1, 1)
-bones/31/position = Vector3(-1.82613, 7.42451, -2.17654)
-bones/31/rotation = Quaternion(-0.200012, -0.678229, 0.67823, 0.200012)
-bones/31/scale = Vector3(1, 1, 1)
+armsAnimator = NodePath("Rotational Helper/Arms")
 
 [node name="Helper Objects" type="Node3D" parent="."]
 
@@ -223,18 +209,122 @@ script = ExtResource("15_fmltg")
 lineMaterial = SubResource("StandardMaterial3D_yfov4")
 
 [node name="Rotational Helper" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.704, 0)
 script = ExtResource("5_527ph")
 
 [node name="Line Point" type="Node3D" parent="Rotational Helper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.315018, -0.108616, -0.614437)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.677525, -1.15542, 0.23031)
+
+[node name="Line Point Animation" type="AnimationPlayer" parent="Rotational Helper/Line Point"]
+libraries = {
+"": SubResource("AnimationLibrary_085vu")
+}
 
 [node name="Camera" type="Camera3D" parent="Rotational Helper"]
 cull_mask = 1048573
+v_offset = 0.2
 script = ExtResource("11_erckf")
 
 [node name="Raycast" type="RayCast3D" parent="Rotational Helper"]
 target_position = Vector3(0, 0, -1000)
+
+[node name="Arms" type="Node3D" parent="Rotational Helper"]
+script = ExtResource("20_knopo")
+
+[node name="Left Hand" parent="Rotational Helper/Arms" node_paths=PackedStringArray("animation") instance=ExtResource("21_trpxa")]
+transform = Transform3D(-0.1, 0, 8.74228e-09, 0, 0.1, 5.58794e-09, -8.74228e-09, 5.58794e-09, -0.1, -0.65, -0.2, -0.399999)
+script = ExtResource("22_r8ji2")
+animation = NodePath("AnimationPlayer")
+
+[node name="Skeleton3D" parent="Rotational Helper/Arms/Left Hand/Armature" index="0"]
+bones/0/rotation = Quaternion(0.283125, 0.26195, -0.257239, 0.886031)
+bones/1/rotation = Quaternion(0.702374, 0.0041016, -0.00408283, 0.711785)
+bones/2/position = Vector3(-1.6254, 7.13631, 0.28012)
+bones/2/rotation = Quaternion(-0.433036, -0.23931, 0.27638, 0.823908)
+bones/3/rotation = Quaternion(0.694962, 0.213962, -0.197451, 0.657466)
+bones/4/position = Vector3(-1.02485, 9.08274, -0.0915251)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.709261, -0.00494049, 0.00510421, 0.70491)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(-0.400896, 9.23546, -0.13868)
+bones/6/rotation = Quaternion(-0.702332, -0.00876804, 0.00868759, 0.711743)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.70679, -0.000319236, -0.016441, 0.707232)
+bones/8/position = Vector3(0.310599, 9.07086, -0.101917)
+bones/8/rotation = Quaternion(-0.702127, -0.0192804, 0.0190609, 0.711536)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(0.706291, 0.0138359, -0.0312053, 0.707098)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(0.990452, 8.75156, -0.0846564)
+bones/10/rotation = Quaternion(-0.690693, -0.0265516, -0.0521354, 0.720778)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(0.704098, 0.00709975, -0.0635275, 0.70722)
+bones/12/rotation = Quaternion(-0.0959653, 0.00464208, 0.0538152, 0.993918)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(0.123746, -0.0402919, -0.147371, 0.980482)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(-0.0183548, 0.00422267, 0.00999901, 0.999773)
+bones/15/rotation = Quaternion(0.0126521, -1.49314e-05, -0.00671974, 0.999897)
+bones/16/rotation = Quaternion(0.222648, -0.0225499, -0.102254, 0.969259)
+bones/17/rotation = Quaternion(-0.15129, 0.0015223, 0.0263711, 0.988136)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(-0.0152072, -0.000239335, 0.0172667, 0.999735)
+bones/19/rotation = Quaternion(0.225353, -0.0175438, -0.0617259, 0.972162)
+bones/20/rotation = Quaternion(-0.117241, 0.00215902, 0.0693956, 0.990674)
+bones/21/rotation = Quaternion(-0.0923994, 0.00205018, -0.06017, 0.9939)
+bones/22/rotation = Quaternion(0.193871, -0.0165525, 0.0602541, 0.979035)
+bones/23/rotation = Quaternion(-0.119556, -0.00203386, -0.0981361, 0.987963)
+bones/23/scale = Vector3(1, 1, 1)
+bones/24/rotation = Quaternion(-0.0438429, -7.87738e-05, -0.030649, 0.998568)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(0.28792, 0.0412464, 0.279591, 0.915003)
+
+[node name="Right Hand" parent="Rotational Helper/Arms" node_paths=PackedStringArray("animation") instance=ExtResource("22_csom0")]
+transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0.65, -0.2, -0.4)
+script = ExtResource("22_r8ji2")
+animation = NodePath("AnimationPlayer")
+
+[node name="Skeleton3D" parent="Rotational Helper/Arms/Right Hand/Armature" index="0"]
+bones/0/rotation = Quaternion(0.52372, 0.484552, -0.475837, 0.514301)
+bones/1/rotation = Quaternion(0.702374, 0.0041016, -0.00408283, 0.711785)
+bones/2/position = Vector3(-1.61545, 7.189, 0.0248271)
+bones/3/rotation = Quaternion(0.694962, 0.213962, -0.197451, 0.657466)
+bones/4/position = Vector3(-0.980067, 9.11665, -0.00595419)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.709261, -0.00494049, 0.00510421, 0.70491)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(-0.389043, 9.26514, -0.0240333)
+bones/6/rotation = Quaternion(-0.702332, -0.00876804, 0.00868759, 0.711743)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.70679, -0.000319236, -0.016441, 0.707232)
+bones/8/position = Vector3(0.211393, 9.07908, -0.00910293)
+bones/8/rotation = Quaternion(-0.702127, -0.0192804, 0.0190609, 0.711536)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(0.706291, 0.0138359, -0.0312053, 0.707098)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(0.777055, 8.75934, 0.000897881)
+bones/10/rotation = Quaternion(-0.701566, -0.0343374, 0.0339188, 0.710968)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(0.704098, 0.00709975, -0.0635275, 0.70722)
+bones/12/rotation = Quaternion(-0.0959653, 0.00464208, 0.0538152, 0.993918)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(0.182, -0.0482951, -0.130552, 0.973396)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(-0.0805867, 0.00656473, 0.071536, 0.994156)
+bones/15/rotation = Quaternion(0.00107924, 6.55136e-07, 0.0133363, 0.99991)
+bones/16/rotation = Quaternion(0.220759, -0.0238883, -0.0830169, 0.971495)
+bones/17/rotation = Quaternion(-0.120391, 0.00315304, 0.0288684, 0.992302)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(0.000379557, -8.22739e-07, 0.0163102, 0.999867)
+bones/19/rotation = Quaternion(0.183328, -0.0174064, -0.0544946, 0.981386)
+bones/20/rotation = Quaternion(-0.0430978, -0.000555806, 0.0421404, 0.998182)
+bones/21/rotation = Quaternion(-0.024913, -0.000286585, -0.0405154, 0.998868)
+bones/22/rotation = Quaternion(0.165148, -0.0123603, 0.0189956, 0.986008)
+bones/23/rotation = Quaternion(-0.0583179, -0.00267712, -0.0573459, 0.996646)
+bones/23/scale = Vector3(1, 1, 1)
+bones/24/rotation = Quaternion(-0.00438406, -2.23536e-05, -0.00452329, 0.99998)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(0.181158, 0.0158414, 0.261375, 0.947953)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -273,4 +363,5 @@ script = ExtResource("19_u5p30")
 
 [node name="Positional Sound Effects" type="Node3D" parent="."]
 
-[editable path="Model"]
+[editable path="Rotational Helper/Arms/Left Hand"]
+[editable path="Rotational Helper/Arms/Right Hand"]

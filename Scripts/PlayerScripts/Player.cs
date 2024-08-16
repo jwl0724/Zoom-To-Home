@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Godot;
-
+// FIX BUG WHERE PLAYER DOESNT MOVE FORWARD AFTER NON-SPRINT JUMP AND LAND EVEN THO KEY IS PRESSED
 namespace ZoomToHome {
     public partial class Player : Entity {
-        [Export] private PlayerAnimator playerAnimator;
+        [Export] private ArmsAnimator armsAnimator;
         public StateManager StateManager;
         public PlayerRotationManager RotationHelper;
         private RayCast3D standChecker;
@@ -22,8 +22,8 @@ namespace ZoomToHome {
             vaultHelper = GetNode<VaultHelper>("Helper Objects/Vault Helper");
         }
 
-        public void PlayAnimation(string animationName, bool playOver = true) {
-            playerAnimator.Play(animationName, playOver);
+        public void PlayAnimation(string animationName) {
+            armsAnimator.Play(animationName);
         }
 
         public void SumForces() {
@@ -77,13 +77,12 @@ namespace ZoomToHome {
             else return true;
         }
 
-        public void ToggleCrouch(bool crouch) {
+        public void ToggleCrouch(bool crouch, float crouchHeight) {
             if (crouch) {
-                capsuleShape.Height = CrouchHeight;
+                capsuleShape.Height = crouchHeight;
                 GetNode<CollisionShape3D>("Collision Box").Position = Vector3.Down * (Height / 2 - CrouchHeight / 2);
                 Tween crouchTween = CreateTween();
                 crouchTween.TweenProperty(RotationHelper, "position", Vector3.Down * 0.875f, 0.1f);
-
             } else {
                 capsuleShape.Height = Height;
                 capsuleShape.Radius = DefaultCapsuleRadius;

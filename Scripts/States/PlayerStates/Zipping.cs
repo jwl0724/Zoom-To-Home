@@ -6,6 +6,7 @@ namespace ZoomToHome {
     public partial class Zipping : State {
         [Export] private Node3D linePoint;
         [Export] private LineRenderer renderer;
+        private AnimationPlayer linePointAnimator;
         private Vector3 grapplePoint;
         private Player player;
 
@@ -16,6 +17,7 @@ namespace ZoomToHome {
 
         public override void _Ready() {
             player = parentBody as Player;
+            linePointAnimator = linePoint.GetNode("Line Point Animation") as AnimationPlayer;
         }
 
         public override void _Process(double delta) {
@@ -32,7 +34,11 @@ namespace ZoomToHome {
             grapplePoint = player.GetRaycastImpactPoint();
             if (!grapplePoint.IsFinite() || onCooldown) 
                 manager.ChangeState(manager.PreviousState);
-            else onCooldown = true;
+            else {
+                onCooldown = true;
+                player.PlayAnimation("Zip");
+                linePointAnimator.Play("Zip", customSpeed: 2);
+            }
         }
 
         public override void ExitState() {
@@ -42,7 +48,7 @@ namespace ZoomToHome {
 
         public override void ProcessFrame(double delta) {
             if (grapplePoint.IsFinite())
-                renderer.RenderLine(linePoint.GlobalPosition, grapplePoint, 0.03f, 4);
+                renderer.RenderLine(linePoint.GlobalPosition, grapplePoint, 0.05f, 4);
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

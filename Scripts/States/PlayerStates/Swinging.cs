@@ -6,17 +6,22 @@ namespace ZoomToHome {
     public partial class Swinging : State {
         [Export] private Node3D linePoint;
         [Export] private LineRenderer renderer;
+        private AnimationPlayer linePointAnimator;
         private Vector3 grapplePoint;
         private Player player;
         public override void _Ready() {
             player = parentBody as Player;
+            linePointAnimator = linePoint.GetNode("Line Point Animation") as AnimationPlayer;
         }
 
         public override void EnterState() {
             grapplePoint = player.GetRaycastImpactPoint();
             if (!grapplePoint.IsFinite())
                 manager.ChangeState(manager.PreviousState);
-            player.PlayAnimation("Swing");
+            else {
+                player.PlayAnimation("Swing");
+                linePointAnimator.Play("Swing", customSpeed: 2);
+            }
         }
 
         public override void ExitState() {
@@ -26,7 +31,7 @@ namespace ZoomToHome {
 
         public override void ProcessFrame(double delta) {
             if (grapplePoint.IsFinite())
-                renderer.RenderLine(linePoint.GlobalPosition, grapplePoint, 0.05f, 20);
+                renderer.RenderLine(linePoint.GlobalPosition, grapplePoint, 0.08f, 20);
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

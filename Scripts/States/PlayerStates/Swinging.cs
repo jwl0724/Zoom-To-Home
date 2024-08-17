@@ -43,9 +43,15 @@ namespace ZoomToHome {
         }
 
         public override void ProcessPhysics(double delta) {
-            Vector3 swingForce = player.Position.DirectionTo(grapplePoint) * 
-                (player.Velocity.Length() + player.SwingRetractSpeed);
-            
+            // Vector3 swingForce = player.Position.DirectionTo(grapplePoint) * 
+                // (player.Velocity.Length() + player.SwingRetractSpeed);
+
+            Vector3 swingForce = player.Position.DirectionTo(grapplePoint);
+            float counterForceFactor = swingForce.Dot(player.Velocity.Normalized());
+            if (counterForceFactor < 0) {
+                swingForce *= (1 - counterForceFactor) * (player.Velocity.Length() * 2 + player.SwingRetractSpeed);
+            } else swingForce *= (1 - counterForceFactor) * (player.Velocity.Length() + player.SwingRetractSpeed);
+
             player.ApplyForce(swingForce, isOneShot: false);
             player.ApplyForce(Vector3.Down * player.Gravity / 2, isOneShot: false);
             player.SumForces();

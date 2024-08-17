@@ -22,18 +22,16 @@ namespace ZoomToHome {
 
             Vector3 rightVector = player.GetForwardVectorOnHorizontalPlane(Vector3.Right, 1);
             wallDot = rightVector.Dot(wallNormal);
-            // CHANGE LATER, SEE IF I WANT TO ADD IT LATER
+
             if (wallDot < 0) {
                 // wall to the right
                 camera.TiltCamera(tiltAngle, tiltSpeed);
-                // if (manager.PreviousState is Jumping) player.PlayAnimation("JumpToWallRunRight");
-                // else player.PlayAnimation("FallToWallRunRight");
+                player.PlayWallRun(false);
                 
             } else {
                 // wall to the left
                 camera.TiltCamera(-tiltAngle, tiltSpeed);
-                // if (manager.PreviousState is Jumping) player.PlayAnimation("JumpToWallRunLeft");
-                // else player.PlayAnimation("FallToWallRunLeft");
+                player.PlayWallRun(true);
             }
 
             player.ToggleCrouch(true, 1.3f);
@@ -51,8 +49,7 @@ namespace ZoomToHome {
         }
 
         public override void ProcessFrame(double delta) {
-            // if (wallDot < 0) player.PlayAnimation("WallRunRight", playOver: false);
-            // else player.PlayAnimation("WallRunLeft", playOver: false);
+
         }
 
         public override void ProcessInput(InputEvent inputEvent) {

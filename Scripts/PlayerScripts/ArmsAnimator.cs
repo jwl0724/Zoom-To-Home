@@ -7,7 +7,7 @@ namespace ZoomToHome {
     public partial class ArmsAnimator : Node3D {
         private HandAnimator leftHand;
         private HandAnimator rightHand;
-        private string[] allowedAnimations = {"Sprint", "WallRun", "Reset", "Zip", "Swing", "Vault"};
+        private string[] allowedAnimations = {"Sprint", "Reset", "Zip", "Swing", "Vault"};
 
         // animation arm positions
         private static Vector3 defaultHandRotation = new(0, -Mathf.DegToRad(180), 0);
@@ -33,9 +33,6 @@ namespace ZoomToHome {
                 case "Sprint":
                     PlaySprint();
                     break;
-                case "WallRun":
-                    PlayWallRun();
-                    break;
                 case "Reset":
                     PlayReset();
                     break;
@@ -54,6 +51,20 @@ namespace ZoomToHome {
             }
         }
 
+        public void PlayWallRun(bool isLeft) {
+            ResetOrientation();
+            if (isLeft) {
+                leftHand.Play("WallRun");
+                rightHand.Rotation = rightHandSprintRotation;
+                rightHand.Play("Sprint", 2);
+
+            } else {
+                rightHand.Play("WallRun");
+                leftHand.Rotation = leftHandSprintRotation;
+                leftHand.Play("Sprint", 2);
+            }
+        }
+
         private void PlaySprint() {
             ResetOrientation();
             leftHand.Rotation = leftHandSprintRotation;
@@ -62,10 +73,6 @@ namespace ZoomToHome {
             rightHand.Play("Sprint", 2, fromEnd: true);
         }
 
-        private void PlayWallRun() {
-            GD.Print("Need to figure out if I still want this lel");
-        }
-        
         private void PlayReset() {
             ResetOrientation();
             leftHand.Play("Reset");
@@ -74,13 +81,15 @@ namespace ZoomToHome {
 
         private void PlayZip() {
             ResetOrientation();
-            leftHand.Position = leftHandPullPosition;        
+            leftHand.Position = leftHandPullPosition;
+            rightHand.Play("Reset");
             leftHand.Play("Pull", 2);
         }
 
         private void PlaySwing() {
             ResetOrientation();
             rightHand.Position = rightHandPullPosition;
+            leftHand.Play("Reset");
             rightHand.Play("Pull", 2);
         }
 

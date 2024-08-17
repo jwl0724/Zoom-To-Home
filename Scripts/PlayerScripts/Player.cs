@@ -26,6 +26,10 @@ namespace ZoomToHome {
             armsAnimator.Play(animationName);
         }
 
+        public void PlayWallRun(bool isLeft) {
+            armsAnimator.PlayWallRun(isLeft);
+        }
+
         public void SumForces() {
             foreach (Vector3 force in forceList) {
                 Velocity += force;

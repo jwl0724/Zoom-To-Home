@@ -46,10 +46,15 @@ namespace ZoomToHome {
                 return;
             }
             if (player.Velocity.Length() > player.MoveSpeed * player.SprintMultiplier) return;
+
             if (!Input.GetVector("left", "right", "forward", "backward").IsZeroApprox()) {
                 if (Input.IsActionPressed("sprint")) manager.ChangeState(manager.AllStates["Sprinting"]);
-                else if (player.Velocity.Length() < player.MoveSpeed) manager.ChangeState(manager.AllStates["Running"]);
+                else if (player.Velocity.Length() < player.MoveSpeed) {
+                    manager.ChangeState(manager.AllStates["Running"]);
+                    return;
+                } 
             }
+            
             if (player.Velocity.Length() < player.MoveSpeed) manager.ChangeState(manager.AllStates["Idle"]);
         }
     }

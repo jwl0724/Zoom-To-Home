@@ -39,7 +39,7 @@ namespace ZoomToHome {
                 player.PlayAnimation("Zip");
                 linePointAnimator.Play("Zip", customSpeed: 2);
 
-                player.EnforceRotation(true, grapplePoint, 2);
+                player.EnforceRotation(true, grapplePoint, 0.05f);
             }
         }
 

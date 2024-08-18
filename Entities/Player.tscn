@@ -37,8 +37,8 @@ alpha_antialiasing_mode = 0
 shading_mode = 0
 albedo_color = Color(0.833689, 0.876281, 0.910222, 1)
 
-[sub_resource type="Animation" id="Animation_3wdp6"]
-resource_name = "Zip"
+[sub_resource type="Animation" id="Animation_7ewf4"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,10 +46,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.677525, -1.15542, 0.23031), Vector3(-0.677525, -0.935867, -0.323721), Vector3(-0.677525, -0.196082, -0.707656), Vector3(-0.677525, -0.258824, -0.707657), Vector3(-0.677525, -1.15542, 0.23031)]
+"values": [Vector3(-0.677525, -1.15542, 0.23031)]
 }
 
 [sub_resource type="Animation" id="Animation_i5kvd"]
@@ -67,8 +67,8 @@ tracks/0/keys = {
 "values": [Vector3(0.678, -1.155, 0.23), Vector3(0.678, -0.936, -0.324), Vector3(0.678, -0.196, -0.708), Vector3(0.678, -0.259, -0.708), Vector3(0.678, -1.155, 0.23)]
 }
 
-[sub_resource type="Animation" id="Animation_7ewf4"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_3wdp6"]
+resource_name = "Zip"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -76,10 +76,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.677525, -1.15542, 0.23031)]
+"values": [Vector3(-0.677525, -1.15542, 0.23031), Vector3(-0.677525, -0.935867, -0.323721), Vector3(-0.677525, -0.196082, -0.707656), Vector3(-0.677525, -0.258824, -0.707657), Vector3(-0.677525, -1.15542, 0.23031)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_085vu"]

@@ -31,7 +31,6 @@ namespace ZoomToHome {
                 boostDisabled = true;
             }
 
-            player.ToggleCrouch(true, player.CrouchHeight);
             player.FloorStopOnSlope = false;
             player.FloorSnapLength = player.GetForwardVelocityHorizontalMagnitude() *
                 Mathf.Tan(player.FloorMaxAngle) * (float) GetPhysicsProcessDeltaTime() * 2;
@@ -39,7 +38,6 @@ namespace ZoomToHome {
 
         public override void ExitState() {
             player.FloorSnapLength = 0.1f;
-            player.ToggleCrouch(false, player.CrouchHeight);
             player.FloorStopOnSlope = true;
         }
 

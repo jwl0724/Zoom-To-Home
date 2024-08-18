@@ -34,18 +34,19 @@ namespace ZoomToHome {
                 player.PlayWallRun(true);
             }
 
-            player.ToggleCrouch(true, 1.3f);
+            player.EnforceRotation(true, player.GetForwardVectorOnHorizontalPlane(Vector3.Forward, 1), 0.5f, false);
         }
 
         public override void ExitState() {
+            player.EnforceRotation(false);
+
             if (player.IsOnWallOnly()) {
                 float launchMagnitude = Mathf.Max(player.GetForwardVelocityHorizontalMagnitude(), player.JumpSpeed);
                 player.ApplyForce(player.GetWallNormal() * launchMagnitude, isOneShot: true);
              
             } else player.Velocity = new Vector3(player.Velocity.X, 0, player.Velocity.Z);
-            camera.TiltCamera(0, tiltSpeed);
 
-            player.ToggleCrouch(false, 1.3f);
+            camera.TiltCamera(0, tiltSpeed);
         }
 
         public override void ProcessFrame(double delta) {

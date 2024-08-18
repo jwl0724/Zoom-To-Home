@@ -38,12 +38,15 @@ namespace ZoomToHome {
                 onCooldown = true;
                 player.PlayAnimation("Zip");
                 linePointAnimator.Play("Zip", customSpeed: 2);
+
+                player.EnforceRotation(true, grapplePoint, 2);
             }
         }
 
         public override void ExitState() {
             renderer.ClearLine();
             grapplePoint = Vector3.Inf; // set point to something invalid
+            player.EnforceRotation(false);
         }
 
         public override void ProcessFrame(double delta) {

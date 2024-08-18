@@ -21,12 +21,15 @@ namespace ZoomToHome {
             else {
                 player.PlayAnimation("Swing");
                 linePointAnimator.Play("Swing", customSpeed: 2);
+                
+                player.EnforceRotation(true, grapplePoint, 2);
             }
         }
 
         public override void ExitState() {
             renderer.ClearLine();
             grapplePoint = Vector3.Inf;
+            player.EnforceRotation(false);
         }
 
         public override void ProcessFrame(double delta) {

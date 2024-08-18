@@ -5,7 +5,7 @@ namespace ZoomToHome {
     public partial class Player : Entity {
         [Export] private ArmsAnimator armsAnimator;
         public StateManager StateManager;
-        public PlayerRotationManager RotationHelper;
+        private PlayerRotationManager RotationHelper;
         private RayCast3D standChecker;
         private CapsuleShape3D capsuleShape;
         private VaultHelper vaultHelper;
@@ -20,6 +20,24 @@ namespace ZoomToHome {
             capsuleShape = GetNode<CollisionShape3D>("Collision Box").Shape as CapsuleShape3D;
             standChecker = GetNode<RayCast3D>("Helper Objects/Stand Check");
             vaultHelper = GetNode<VaultHelper>("Helper Objects/Vault Helper");
+        }
+
+        public void EnforceRotation(bool enforce, Vector3 lookPoint = new(), float enforceWeight = -1, bool globalLookPoint = true) {
+            if (enforce) {
+                if (lookPoint.IsZeroApprox() || enforceWeight < 0) {
+                    GD.PushError("Incorrect usage of EnforceRotation(), please set valid values in parameters");
+                    return;
+                }
+                RotationHelper.EnableRotationEnforcement = true;
+                RotationHelper.LookPoint = lookPoint;
+                RotationHelper.IsGlobalPoint = globalLookPoint;
+                RotationHelper.EnforceWeight = enforceWeight;
+
+            } else RotationHelper.EnableRotationEnforcement = false;
+        }
+
+        public void EnableInputRotation(bool enable) {
+            RotationHelper.EnableInput = enable;
         }
 
         public void PlayAnimation(string animationName) {
@@ -81,9 +99,8 @@ namespace ZoomToHome {
             else return true;
         }
 
-        public void ToggleCrouch(bool crouch, float crouchHeight) {
+        public void ToggleCrouch(bool crouch) {
             if (crouch) {
-                capsuleShape.Height = crouchHeight;
                 GetNode<CollisionShape3D>("Collision Box").Position = Vector3.Down * (Height / 2 - CrouchHeight / 2);
                 Tween crouchTween = CreateTween();
                 crouchTween.TweenProperty(RotationHelper, "position", Vector3.Down * 0.875f, 0.1f);

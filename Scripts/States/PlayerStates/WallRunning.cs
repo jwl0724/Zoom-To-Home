@@ -33,8 +33,8 @@ namespace ZoomToHome {
                 camera.TiltCamera(-tiltAngle, tiltSpeed);
                 player.PlayWallRun(true);
             }
-
-            player.EnforceRotation(true, player.GetForwardVectorOnHorizontalPlane(Vector3.Forward, 1), 0.01f, false);
+            
+            player.EnforceRotation(true, player.Velocity.Normalized(), 0.01f, false);
         }
 
         public override void ExitState() {

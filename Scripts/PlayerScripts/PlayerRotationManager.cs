@@ -21,32 +21,15 @@ namespace ZoomToHome {
         }
 
         public override void _PhysicsProcess(double delta) {
-            // TODO: FIX THIS GARBAGE
+            // TODO: FIX VAULTING NOT POSITIONING CAMERA PROPERLY
             if (EnableRotationEnforcement) {
-                if (IsGlobalPoint) {
-                    
-                    Vector3 oldRotation = Rotation;
-                    if (oldRotation.Y < 0) oldRotation += Vector3.Up * 2 * Mathf.Pi;
-                    
-                    LookAt(LookPoint);
-                    
-                    Vector3 newRotation = new(Rotation.X, Rotation.Y, 0);
-                    if (newRotation.Y < 0) {
-                        newRotation += Vector3.Up * 2 * Mathf.Pi;
-                    }
-                    Rotation = oldRotation.Lerp(newRotation, EnforceWeight);
-                    GD.Print($"old rot = {oldRotation.Y}, new rot = {newRotation.Y}, lerp rot = {Rotation.Y}");
+                Vector3 oldRotation = Rotation;
 
-                } else {
-                    Vector3 oldRotation = Rotation;
-                    if (oldRotation.Y < 0) oldRotation += Vector3.Up * 2 * Mathf.Pi;
+                if (IsGlobalPoint) LookAt(LookPoint);
+                else LookAt(LookPoint + GlobalPosition);
 
-                    LookAt(LookPoint + GlobalPosition);
-
-                    Vector3 newRotation = new(Rotation.X, Rotation.Y, 0);
-                    if (newRotation.Y < 0) newRotation += Vector3.Up * 2 * Mathf.Pi;
-                    Rotation = oldRotation.Lerp(newRotation, EnforceWeight);
-                }
+                Vector3 interpolatedRotation = oldRotation.Lerp(Rotation, EnforceWeight);
+                Rotation = new Vector3(interpolatedRotation.X, Mathf.LerpAngle(oldRotation.Y, Rotation.Y, EnforceWeight), 0);
             }
         }
 

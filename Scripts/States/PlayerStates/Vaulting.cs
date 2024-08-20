@@ -16,7 +16,7 @@ namespace ZoomToHome {
             vaultDestination = player.GetVaultDestination();
             cameraEffects.TiltCamera(0.1f, 0.1f);
             player.PlayAnimation("Vault");
-            player.EnforceRotation(true, player.GetForwardVectorOnHorizontalPlane(Vector3.Forward, 1), 4, false);
+            player.EnforceRotation(true, player.GetForwardVectorOnHorizontalPlane(Vector3.Forward, 1), 1, false);
         }
 
         public override void ExitState() {

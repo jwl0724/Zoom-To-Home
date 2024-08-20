@@ -21,7 +21,6 @@ namespace ZoomToHome {
         }
 
         public override void _PhysicsProcess(double delta) {
-            // TODO: FIX VAULTING NOT POSITIONING CAMERA PROPERLY
             if (EnableRotationEnforcement) {
                 Vector3 oldRotation = Rotation;
 

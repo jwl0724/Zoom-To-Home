@@ -101,6 +101,7 @@ namespace ZoomToHome {
 
         public void ToggleCrouch(bool crouch) {
             if (crouch) {
+                capsuleShape.Height = CrouchHeight;
                 GetNode<CollisionShape3D>("Collision Box").Position = Vector3.Down * (Height / 2 - CrouchHeight / 2);
                 Tween crouchTween = CreateTween();
                 crouchTween.TweenProperty(RotationHelper, "position", Vector3.Down * 0.875f, 0.1f);

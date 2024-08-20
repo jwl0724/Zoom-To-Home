@@ -25,6 +25,7 @@ namespace ZoomToHome {
 
         public override void EnterState() {
             player.PlayAnimation("Reset");
+            player.ToggleCrouch(true);
             float velocityMagnitude = player.Velocity.Length();
             if (velocityMagnitude > player.MoveSpeed && !boostDisabled) {
                 player.Velocity *= 1.3f;
@@ -37,6 +38,7 @@ namespace ZoomToHome {
         }
 
         public override void ExitState() {
+            player.ToggleCrouch(false);
             player.FloorSnapLength = 0.1f;
             player.FloorStopOnSlope = true;
         }

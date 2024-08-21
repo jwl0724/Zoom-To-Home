@@ -8,9 +8,5 @@ namespace ZoomToHome {
         public float Gravity { get; set; }
         public float SprintMultiplier { get; set; }
         public float SFXVolumeMultiplier { get; set; }
-
-        public void HitEntity() {
-            EmitSignal(SignalName.Damaged);
-        }
     }
 }

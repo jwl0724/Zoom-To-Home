@@ -2,13 +2,6 @@ using Godot;
 
 namespace ZoomToHome {
     public partial class InputManager : Node {
-        // SIGNALS
-        [Signal] public delegate void MoveEventHandler();
-        [Signal] public delegate void JumpEventHandler();
-        [Signal] public delegate void CrouchEventHandler();
-        [Signal] public delegate void SwingEventHandler();
-        [Signal] public delegate void ZipEventHandler();
-
         private Player player;
 
         public override void _Ready() {

@@ -221,7 +221,6 @@ libraries = {
 
 [node name="Camera" type="Camera3D" parent="Rotational Helper"]
 cull_mask = 1048573
-v_offset = 0.2
 script = ExtResource("11_erckf")
 
 [node name="Raycast" type="RayCast3D" parent="Rotational Helper"]

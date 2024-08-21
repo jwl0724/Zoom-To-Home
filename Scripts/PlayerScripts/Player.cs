@@ -34,6 +34,10 @@ namespace ZoomToHome {
             Position = startPoint;
         }
 
+        public void AddCameraRotation(Vector3 rotation) {
+            RotationHelper.Rotation += rotation;
+        }
+
         public void EnforceRotation(bool enforce, Vector3 lookPoint = new(), float enforceWeight = -1, bool globalLookPoint = true) {
             if (enforce) {
                 if (lookPoint.IsZeroApprox() || enforceWeight < 0) {

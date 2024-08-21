@@ -41,7 +41,7 @@ namespace ZoomToHome {
         }
 
         public void PlayAnimation(string animationName) {
-            armsAnimator.Play(animationName);
+            if (armsAnimator.IsNodeReady()) armsAnimator.Play(animationName);
         }
 
         public void PlayWallRun(bool isLeft) {

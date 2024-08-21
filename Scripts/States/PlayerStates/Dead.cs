@@ -10,7 +10,7 @@ namespace ZoomToHome {
         }
 
         public override void EnterState() {
-            // ADD STUFF WHEN VISUALS ARE IMPLEMENTED
+            player.PlayAnimation("Reset");
         }
 
         public override void ExitState() {

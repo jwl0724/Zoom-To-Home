@@ -9,6 +9,7 @@ namespace ZoomToHome {
 
         public override void EnterState() {
             player.Velocity = new Vector3(0, player.Velocity.Y, 0);
+            player.PlayAnimation("Reset");
         }
 
         public override void ExitState() {

@@ -10,11 +10,15 @@ namespace ZoomToHome {
         }
 
         public override void EnterState() {
-            player.PlayAnimation("Reset");
+            player.PlayAnimation("Hide");
+            Input.MouseMode = Input.MouseModeEnum.Visible;
+            player.ToggleCrouch(true);
+            player.FloorSnapLength = 0.4f;
         }
 
         public override void ExitState() {
-            // ADD STUFF WHEN VISUALS ARE IMPLEMENTED
+            player.FloorSnapLength = 0.1f;
+            player.ToggleCrouch(false);
         }
 
         public override void ProcessInput(InputEvent inputEvent) {
@@ -29,6 +33,8 @@ namespace ZoomToHome {
             player.ApplyForce(Vector3.Down * player.Gravity, isOneShot: false);
             player.SumForces();
             player.MoveAndSlide();
+            player.Velocity *= 0.85f;
+            player.AddCameraRotation(player.Velocity / 10);
         }
 
         private void OnDamage() {

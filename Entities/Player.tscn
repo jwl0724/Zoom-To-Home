@@ -208,7 +208,7 @@ script = ExtResource("15_fmltg")
 lineMaterial = SubResource("StandardMaterial3D_yfov4")
 
 [node name="Rotational Helper" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.704, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 script = ExtResource("5_527ph")
 
 [node name="Line Point" type="Node3D" parent="Rotational Helper"]

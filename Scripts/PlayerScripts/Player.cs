@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Godot;
-// FIX BUG WHERE PLAYER DOESNT MOVE FORWARD AFTER NON-SPRINT JUMP AND LAND EVEN THO KEY IS PRESSED
+
 namespace ZoomToHome {
     public partial class Player : Entity {
         [Export] private ArmsAnimator armsAnimator;
@@ -20,6 +20,18 @@ namespace ZoomToHome {
             capsuleShape = GetNode<CollisionShape3D>("Collision Box").Shape as CapsuleShape3D;
             standChecker = GetNode<RayCast3D>("Helper Objects/Stand Check");
             vaultHelper = GetNode<VaultHelper>("Helper Objects/Vault Helper");
+        }
+
+        public override void _PhysicsProcess(double delta) {
+            for (int i = 0; i < GetSlideCollisionCount(); i++) {
+                var collider = GetSlideCollision(i).GetCollider() as PhysicsBody3D;
+                if (collider.GetCollisionLayerValue(3)) EmitSignal(SignalName.Damaged);
+            }
+        }
+
+        public void ResetPlayer(Vector3 startPoint) {
+            StateManager.ChangeState(StateManager.AllStates["Idle"]);
+            Position = startPoint;
         }
 
         public void EnforceRotation(bool enforce, Vector3 lookPoint = new(), float enforceWeight = -1, bool globalLookPoint = true) {

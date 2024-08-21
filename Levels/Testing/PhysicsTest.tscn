@@ -104,6 +104,8 @@ mesh = SubResource("BoxMesh_0x27y")
 
 [node name="Lava" type="StaticBody3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -166.272, -0.304947, 38.9341)
+collision_layer = 5
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="Collision" type="CollisionShape3D" parent="Lava"]
@@ -194,6 +196,8 @@ mesh = SubResource("BoxMesh_0x27y")
 
 [node name="Lava2" type="StaticBody3D" parent="."]
 transform = Transform3D(4.28264, 0, -2.5805, 0, 5, 0, 2.5805, 0, 4.28264, 283.506, -0.304947, -328.665)
+collision_layer = 5
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="Collision" type="CollisionShape3D" parent="Lava2"]
@@ -224,6 +228,8 @@ mesh = SubResource("BoxMesh_0x27y")
 
 [node name="Lava3" type="StaticBody3D" parent="."]
 transform = Transform3D(-0.0528824, 0, 4.99972, 0, 5, 0, -4.99972, 0, -0.0528824, -166.662, -0.304947, -354.318)
+collision_layer = 5
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="Collision" type="CollisionShape3D" parent="Lava3"]

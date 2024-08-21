@@ -33,8 +33,8 @@ namespace ZoomToHome {
             player.ApplyForce(Vector3.Down * player.Gravity, isOneShot: false);
             player.SumForces();
             player.MoveAndSlide();
-            player.Velocity *= 0.85f;
-            player.AddCameraRotation(player.Velocity / 10);
+            player.Velocity *= 0.9f;
+            player.AddCameraRotation(player.Velocity / 10 + Vector3.Up * player.Velocity.Length() / 10);
         }
 
         private void OnDamage() {

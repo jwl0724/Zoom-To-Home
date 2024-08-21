@@ -7,7 +7,7 @@ namespace ZoomToHome {
     public partial class ArmsAnimator : Node3D {
         private HandAnimator leftHand;
         private HandAnimator rightHand;
-        private string[] allowedAnimations = {"Sprint", "Reset", "Zip", "Swing", "Vault"};
+        private string[] allowedAnimations = {"Sprint", "Reset", "Zip", "Swing", "Vault", "Hide"};
 
         // animation arm positions
         private static Vector3 defaultHandRotation = new(0, -Mathf.DegToRad(180), 0);
@@ -45,6 +45,9 @@ namespace ZoomToHome {
                 case "Vault":
                     PlayVault();
                     break;
+                case "Hide":
+                    PlayHide();
+                    break;
                 default:
                     GD.PushError($"You forgot to add a switch case for {animationName} stupid");
                     break; 
@@ -63,6 +66,11 @@ namespace ZoomToHome {
                 leftHand.Rotation = leftHandSprintRotation;
                 leftHand.Play("Sprint", 2);
             }
+        }
+
+        private void PlayHide() {
+            leftHand.Visible = false;
+            rightHand.Visible = false;
         }
 
         private void PlaySprint() {
@@ -102,6 +110,8 @@ namespace ZoomToHome {
         }
 
         private void ResetOrientation() {
+            leftHand.Visible = true;
+            rightHand.Visible = true;
             Rotation = Vector3.Zero;
             Position = Vector3.Zero;
             leftHand.Position = leftHandDefaultPosition;

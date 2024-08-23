@@ -67,6 +67,7 @@ namespace ZoomToHome {
 
             if (player.IsOnFloor()) manager.ChangeState(manager.AllStates["Recovering"]);
             else if (!player.IsOnWall()) manager.ChangeState(manager.AllStates["Falling"]);
+            else if (player.GetForwardVelocityHorizontalMagnitude() < 5) manager.ChangeState(manager.AllStates["Falling"]);
         }
     }
 

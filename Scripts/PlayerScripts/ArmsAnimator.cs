@@ -105,8 +105,8 @@ namespace ZoomToHome {
             ResetOrientation();
             rightHand.Position = rightHandPullPosition;
             leftHand.Position = leftHandPullPosition;
-            rightHand.Play("Pull", -3, fromEnd: true);
-            leftHand.Play("Pull", -3, fromEnd: true);
+            rightHand.Play("Pull", -2f, fromEnd: true);
+            leftHand.Play("Pull", -2f, fromEnd: true);
         }
 
         private void ResetOrientation() {

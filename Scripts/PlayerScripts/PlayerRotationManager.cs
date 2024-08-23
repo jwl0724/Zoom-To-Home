@@ -34,7 +34,8 @@ namespace ZoomToHome {
 
         public Vector3 GetRaycastImpactPoint() {
             var collidingBody = raycast.GetCollider();
-            if (collidingBody is not StaticBody3D) return Vector3.Inf;
+            if (collidingBody is not StaticBody3D surface) return Vector3.Inf;
+            if (surface.GetCollisionLayerValue(4)) return Vector3.Inf;
             return raycast.GetCollisionPoint();
         }
 

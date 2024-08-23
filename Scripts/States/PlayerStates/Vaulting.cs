@@ -16,14 +16,13 @@ namespace ZoomToHome {
             vaultDestination = player.GetVaultDestination();
             cameraEffects.TiltCamera(0.1f, 0.1f);
             player.PlayAnimation("Vault");
-            player.EnforceRotation(true, player.GetForwardVectorOnHorizontalPlane(Vector3.Forward, 1), 1, false);
+            if (vaultDestination.IsFinite()) PlayVaultTween();
         }
 
         public override void ExitState() {
             vaultDestination = Vector3.Inf;
             cameraEffects.TiltCamera(0, 0.1f);
             player.Velocity = new Vector3(player.Velocity.X, 0, player.Velocity.Z);
-            player.EnforceRotation(false);
         }
 
         public override void ProcessFrame(double delta) {
@@ -39,10 +38,20 @@ namespace ZoomToHome {
                 GD.PushError("Vaulting Destination is Infinite");
                 return;
             }
-            
-            player.Position = player.Position.Lerp(vaultDestination, 0.9f);
-            if (!player.Position.IsEqualApprox(vaultDestination)) return;
-            manager.ChangeState(manager.AllStates["Idle"]);
+        }
+
+        private void PlayVaultTween() {
+            Tween vaultTween = CreateTween();
+            float vaultDifference = vaultDestination.Y - player.Position.Y;
+            Vector3 vaultHorizontalDestination = new(
+                vaultDestination.X + player.Velocity.X * (float) GetProcessDeltaTime(),
+                player.Position.Y + vaultDifference,
+                vaultDestination.Z + player.Velocity.Z * (float) GetProcessDeltaTime()
+            );
+            vaultTween.TweenProperty(player, "position", player.Position + Vector3.Up * vaultDifference, 0.1f);
+            vaultTween.TweenProperty(player, "position", vaultHorizontalDestination, 0.1f);
+            vaultTween.TweenCallback(Callable.From(() => manager.ChangeState(manager.AllStates["Recovering"])));
+            vaultTween.Play();
         }
     }
 }

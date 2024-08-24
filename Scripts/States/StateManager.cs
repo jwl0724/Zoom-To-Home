@@ -35,7 +35,6 @@ namespace ZoomToHome {
 
         public override void _Process(double delta) {
             CurrentState.ProcessFrame(delta);
-            GD.Print(CurrentState.GetType().Name);
         }
     }
 }

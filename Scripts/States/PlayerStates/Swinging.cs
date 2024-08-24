@@ -22,7 +22,7 @@ namespace ZoomToHome {
                 player.PlayAnimation("Swing");
                 linePointAnimator.Play("Swing", customSpeed: 2);
                 
-                player.EnforceRotation(true, grapplePoint, 0.05f);
+                player.EnforceRotation(true, grapplePoint, 0.01f);
             }
         }
 

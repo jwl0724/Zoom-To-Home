@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://yaehi1khyvew"]
+[gd_scene load_steps=84 format=3 uid="uid://yaehi1khyvew"]
 
 [ext_resource type="PackedScene" uid="uid://1wgfw2uv0c65" path="res://Entities/Player.tscn" id="1_5kadl"]
 
@@ -140,24 +140,120 @@ size = Vector3(1, 30, 75)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ctsei"]
 size = Vector3(50, 1, 318)
 
-[sub_resource type="BoxMesh" id="BoxMesh_p4tui"]
-size = Vector3(1, 80, 250)
+[sub_resource type="BoxMesh" id="BoxMesh_ndffr"]
+size = Vector3(50, 40, 5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lyiep"]
-size = Vector3(1, 80, 250)
+[sub_resource type="BoxShape3D" id="BoxShape3D_4fr7j"]
+size = Vector3(50, 40, 5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_atxfa"]
-size = Vector3(1, 80, 125)
+[sub_resource type="BoxMesh" id="BoxMesh_gxe11"]
+size = Vector3(51, 52, 5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qodbv"]
-size = Vector3(1, 80, 125)
+[sub_resource type="BoxShape3D" id="BoxShape3D_jn76d"]
+size = Vector3(51, 52, 5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i3b43"]
-size = Vector3(250, 1, 250)
+[sub_resource type="BoxMesh" id="BoxMesh_ud2dx"]
+size = Vector3(5, 125, 200)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_mxyql"]
-size = Vector2(250, 250)
-center_offset = Vector3(0, 0.5, 0)
+[sub_resource type="BoxShape3D" id="BoxShape3D_6gru3"]
+size = Vector3(5, 125, 200)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yx7wv"]
+size = Vector3(5, 125, 150)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1hma"]
+size = Vector3(5, 125, 150)
+
+[sub_resource type="BoxMesh" id="BoxMesh_88o4c"]
+size = Vector3(5, 125, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4p52k"]
+size = Vector3(5, 125, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o8ppp"]
+size = Vector3(5, 80, 110)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evqnv"]
+size = Vector3(5, 80, 110)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ew3ie"]
+size = Vector3(150, 40, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxbi5"]
+size = Vector3(150, 40, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n1u6r"]
+size = Vector3(5, 300, 150)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xgosv"]
+size = Vector3(5, 300, 150)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1xalg"]
+size = Vector3(5, 300, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0fnc5"]
+size = Vector3(50, 1, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_04m2f"]
+size = Vector3(50, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e302t"]
+size = Vector3(100, 1, 200)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vg80a"]
+size = Vector3(100, 1, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bypte"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d3hrf"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mqfv2"]
+points = PackedVector3Array(-26, -25, -50, 26, -25, -50, 26, 25, 50, -26, 25, 50, 26, -25, 50, -26, -25, 50)
+
+[sub_resource type="PrismMesh" id="PrismMesh_nhkc3"]
+left_to_right = 1.0
+size = Vector3(100, 50, 52)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mo74m"]
+size = Vector3(700, 1, 700)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vg65u"]
+size = Vector3(700, 1, 700)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b72mo"]
+size = Vector3(150, 300, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jjvet"]
+size = Vector3(150, 300, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sb6vq"]
+size = Vector3(150, 100, 450)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0jsqu"]
+size = Vector3(150, 100, 450)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2fbne"]
+size = Vector3(200, 1, 250)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ikgj0"]
+size = Vector3(200, 1, 250)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t74y4"]
+size = Vector3(500, 1, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gk1w2"]
+size = Vector3(200, 1, 400)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fkfiy"]
+size = Vector3(150, 3, 275)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_muams"]
+size = Vector3(150, 5, 150)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wbcqf"]
+size = Vector3(150, 5, 150)
 
 [node name="Tutorial" type="Node3D"]
 
@@ -456,7 +552,7 @@ mesh = SubResource("BoxMesh_g7at6")
 shape = SubResource("BoxShape3D_00psh")
 
 [node name="Edge" type="StaticBody3D" parent="GrappleWallrun Section/Walls"]
-transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -16.5, -10, -513.8)
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -16.5, -10, -514)
 collision_layer = 9
 metadata/_edit_group_ = true
 
@@ -468,7 +564,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 mesh = SubResource("PrismMesh_v8181")
 
 [node name="Edge2" type="StaticBody3D" parent="GrappleWallrun Section/Walls"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 16.5, -10, -513.8)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 16.5, -10, -514)
 collision_layer = 9
 metadata/_edit_group_ = true
 
@@ -657,79 +753,494 @@ shape = SubResource("BoxShape3D_ctsei")
 [node name="Final Test Section" type="Node3D" parent="."]
 
 [node name="Walls" type="Node3D" parent="Final Test Section"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -318.273)
+
+[node name="Wall" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34, -617.4)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall"]
+mesh = SubResource("BoxMesh_ndffr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall"]
+shape = SubResource("BoxShape3D_4fr7j")
+
+[node name="Wall2" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -34, -617.5)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall2"]
+mesh = SubResource("BoxMesh_ndffr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall2"]
+shape = SubResource("BoxShape3D_4fr7j")
+
+[node name="Wall3" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.263, 14, -532.74)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall3"]
+mesh = SubResource("BoxMesh_gxe11")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall3"]
+shape = SubResource("BoxShape3D_jn76d")
 
 [node name="Wall4" type="StaticBody3D" parent="Final Test Section/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 0, -324)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -130, -22.5, -310)
 collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall4"]
-mesh = SubResource("BoxMesh_p4tui")
+mesh = SubResource("BoxMesh_ud2dx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall4"]
-shape = SubResource("BoxShape3D_lyiep")
+shape = SubResource("BoxShape3D_6gru3")
 
 [node name="Wall5" type="StaticBody3D" parent="Final Test Section/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 0, -324)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -154.797, -22.5, -342.673)
 collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall5"]
-mesh = SubResource("BoxMesh_p4tui")
+mesh = SubResource("BoxMesh_yx7wv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall5"]
-shape = SubResource("BoxShape3D_lyiep")
+shape = SubResource("BoxShape3D_w1hma")
 
 [node name="Wall6" type="StaticBody3D" parent="Final Test Section/Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -449)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.3, -22.5, -469.853)
 collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall6"]
-mesh = SubResource("BoxMesh_p4tui")
+mesh = SubResource("BoxMesh_88o4c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall6"]
-shape = SubResource("BoxShape3D_lyiep")
+shape = SubResource("BoxShape3D_4p52k")
 
 [node name="Wall7" type="StaticBody3D" parent="Final Test Section/Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 75, 0, -200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 0, -565.76)
 collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall7"]
-mesh = SubResource("BoxMesh_atxfa")
+mesh = SubResource("BoxMesh_o8ppp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall7"]
-shape = SubResource("BoxShape3D_qodbv")
+shape = SubResource("BoxShape3D_evqnv")
 
 [node name="Wall8" type="StaticBody3D" parent="Final Test Section/Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -75, 0, -200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 0, -565.76)
 collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall8"]
-mesh = SubResource("BoxMesh_atxfa")
+mesh = SubResource("BoxMesh_o8ppp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall8"]
-shape = SubResource("BoxShape3D_qodbv")
+shape = SubResource("BoxShape3D_evqnv")
+
+[node name="Wall9" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 0, -675.7)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall9"]
+mesh = SubResource("BoxMesh_o8ppp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall9"]
+shape = SubResource("BoxShape3D_evqnv")
+
+[node name="Wall10" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30, 0, -728)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall10"]
+mesh = SubResource("BoxMesh_o8ppp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall10"]
+shape = SubResource("BoxShape3D_evqnv")
+
+[node name="Wall11" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.3, 0, -675.7)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall11"]
+mesh = SubResource("BoxMesh_o8ppp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall11"]
+shape = SubResource("BoxShape3D_evqnv")
+
+[node name="Wall12" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.3, 0, -565.76)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall12"]
+mesh = SubResource("BoxMesh_o8ppp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall12"]
+shape = SubResource("BoxShape3D_evqnv")
+
+[node name="Wall13" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, -22.5, -411)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall13"]
+mesh = SubResource("BoxMesh_ud2dx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall13"]
+shape = SubResource("BoxShape3D_6gru3")
+
+[node name="Wall14" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -304.5, -22.5, -342.674)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall14"]
+mesh = SubResource("BoxMesh_yx7wv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall14"]
+shape = SubResource("BoxShape3D_w1hma")
+
+[node name="Wall15" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -454.502, -22.5, -342.673)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall15"]
+mesh = SubResource("BoxMesh_yx7wv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall15"]
+shape = SubResource("BoxShape3D_w1hma")
+
+[node name="Wall16" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -304.5, -22.5, -310)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall16"]
+mesh = SubResource("BoxMesh_yx7wv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall16"]
+shape = SubResource("BoxShape3D_w1hma")
+
+[node name="Wall17" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -454.4, -22.5, -310)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall17"]
+mesh = SubResource("BoxMesh_yx7wv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall17"]
+shape = SubResource("BoxShape3D_w1hma")
+
+[node name="Wall18" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -604.501, -22.5, -342.673)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall18"]
+mesh = SubResource("BoxMesh_yx7wv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall18"]
+shape = SubResource("BoxShape3D_w1hma")
+
+[node name="Wall19" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -681.768, -22.5, -349.476)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall19"]
+mesh = SubResource("BoxMesh_yx7wv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall19"]
+shape = SubResource("BoxShape3D_w1hma")
+
+[node name="Wall20" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -681.768, -22.5, -199.676)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall20"]
+mesh = SubResource("BoxMesh_yx7wv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall20"]
+shape = SubResource("BoxShape3D_w1hma")
+
+[node name="Wall21" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -531.8, -22.5, -237.5)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall21"]
+mesh = SubResource("BoxMesh_yx7wv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall21"]
+shape = SubResource("BoxShape3D_w1hma")
+
+[node name="Wall22" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -531.8, -22.5, -87.9033)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall22"]
+mesh = SubResource("BoxMesh_yx7wv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall22"]
+shape = SubResource("BoxShape3D_w1hma")
+
+[node name="Wall23" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -681.76, -22.5, -87.903)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall23"]
+mesh = SubResource("BoxMesh_yx7wv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall23"]
+shape = SubResource("BoxShape3D_w1hma")
+
+[node name="Wall24" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -127.18, -83.3, -358.592)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall24"]
+mesh = SubResource("BoxMesh_ew3ie")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall24"]
+shape = SubResource("BoxShape3D_gxbi5")
+
+[node name="Wall25" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -681.7, 56.6129, 60.3639)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall25"]
+mesh = SubResource("BoxMesh_n1u6r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall25"]
+shape = SubResource("BoxShape3D_xgosv")
+
+[node name="Wall26" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -531.8, 56.613, 60.364)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall26"]
+mesh = SubResource("BoxMesh_n1u6r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall26"]
+shape = SubResource("BoxShape3D_xgosv")
+
+[node name="Wall27" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 0.601815, -0.798636, 0, 0.798636, 0.601815, -531.8, 56.45, -89.3)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall27"]
+mesh = SubResource("BoxMesh_n1u6r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall27"]
+shape = SubResource("BoxShape3D_xgosv")
+
+[node name="Wall28" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 0.601815, -0.798636, 0, 0.798636, 0.601815, -681.77, 56.45, -89.3)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall28"]
+mesh = SubResource("BoxMesh_n1u6r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall28"]
+shape = SubResource("BoxShape3D_xgosv")
+
+[node name="Wall29" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -599.405, 56.613, 133.605)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall29"]
+shape = SubResource("BoxShape3D_1xalg")
+
+[node name="Wall30" type="StaticBody3D" parent="Final Test Section/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.3, -22.5, -391.844)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Walls/Wall30"]
+mesh = SubResource("BoxMesh_88o4c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Walls/Wall30"]
+shape = SubResource("BoxShape3D_4p52k")
 
 [node name="Floors" type="Node3D" parent="Final Test Section"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -318.273)
 
 [node name="Floor" type="StaticBody3D" parent="Final Test Section/Floors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.3, -324)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.3, -569.9)
 collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Floors/Floor"]
-shape = SubResource("BoxShape3D_i3b43")
+shape = SubResource("BoxShape3D_0fnc5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Floors/Floor"]
-mesh = SubResource("PlaneMesh_mxyql")
+mesh = SubResource("BoxMesh_04m2f")
+
+[node name="Floor2" type="StaticBody3D" parent="Final Test Section/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -14.3, -570)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Floors/Floor2"]
+shape = SubResource("BoxShape3D_0fnc5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Floors/Floor2"]
+mesh = SubResource("BoxMesh_04m2f")
+
+[node name="Floor3" type="StaticBody3D" parent="Final Test Section/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.6867, -63.1952, -410.706)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Floors/Floor3"]
+shape = SubResource("BoxShape3D_e302t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Floors/Floor3"]
+mesh = SubResource("BoxMesh_vg80a")
+
+[node name="Floor4" type="StaticBody3D" parent="Final Test Section/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.6762, -40.2548, -637.643)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Floors/Floor4"]
+shape = SubResource("BoxShape3D_bypte")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Floors/Floor4"]
+mesh = SubResource("BoxMesh_d3hrf")
+
+[node name="Slope" type="StaticBody3D" parent="Final Test Section/Floors"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -55, -38.8, -470)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Floors/Slope"]
+shape = SubResource("ConvexPolygonShape3D_mqfv2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Floors/Slope"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_nhkc3")
+
+[node name="Floor5" type="StaticBody3D" parent="Final Test Section/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -459.834, -83.7985, -119.967)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Floors/Floor5"]
+shape = SubResource("BoxShape3D_mo74m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Floors/Floor5"]
+mesh = SubResource("BoxMesh_vg65u")
+
+[node name="Floor6" type="StaticBody3D" parent="Final Test Section/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -606.7, -11.697, 85.35)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Floors/Floor6"]
+shape = SubResource("BoxShape3D_b72mo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Floors/Floor6"]
+mesh = SubResource("BoxMesh_jjvet")
+
+[node name="Floor7" type="StaticBody3D" parent="Final Test Section/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -606.7, -76.2091, -196.706)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Floors/Floor7"]
+shape = SubResource("BoxShape3D_sb6vq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Floors/Floor7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26.9833)
+mesh = SubResource("BoxMesh_0jsqu")
 
 [node name="Decors" type="Node3D" parent="Final Test Section"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -318.273)
+
+[node name="HookPoint" type="StaticBody3D" parent="Final Test Section/Decors"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -24.8761, 1.20318, -614.414)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Decors/HookPoint"]
+mesh = SubResource("CylinderMesh_hc5lj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Decors/HookPoint"]
+shape = SubResource("CylinderShape3D_k2lo3")
+
+[node name="HookPoint2" type="StaticBody3D" parent="Final Test Section/Decors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.856, -6.21665, -326.175)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Decors/HookPoint2"]
+mesh = SubResource("CylinderMesh_hc5lj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Decors/HookPoint2"]
+shape = SubResource("CylinderShape3D_k2lo3")
 
 [node name="Ceilings" type="Node3D" parent="Final Test Section"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -318.273)
+
+[node name="Ceiling" type="StaticBody3D" parent="Final Test Section/Ceilings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, -676.438)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Ceilings/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2123, 0, 33.5311)
+shape = SubResource("BoxShape3D_2fbne")
+
+[node name="Ceiling2" type="StaticBody3D" parent="Final Test Section/Ceilings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300.774, 40, -416.615)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Ceilings/Ceiling2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.172, 0, 23.8918)
+shape = SubResource("BoxShape3D_ikgj0")
+
+[node name="Ceiling3" type="StaticBody3D" parent="Final Test Section/Ceilings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -582.86, 40, -397.508)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Ceilings/Ceiling3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.802, 0, 80.3892)
+shape = SubResource("BoxShape3D_t74y4")
+
+[node name="Ceiling4" type="StaticBody3D" parent="Final Test Section/Ceilings"]
+transform = Transform3D(1, 0, 0, 0, 0.795103, 0.606474, 0, -0.606474, 0.795103, -596.93, 161.622, -76.2816)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Ceilings/Ceiling4"]
+shape = SubResource("BoxShape3D_gk1w2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Ceilings/Ceiling4"]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0.00101233, 0, -0.00101233, 0.999999, -10.3632, -3.12767, -61.272)
+mesh = SubResource("BoxMesh_fkfiy")
+
+[node name="Ceiling5" type="StaticBody3D" parent="Final Test Section/Ceilings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -607.5, 204.12, 60.4)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Ceilings/Ceiling5"]
+shape = SubResource("BoxShape3D_muams")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Ceilings/Ceiling5"]
+mesh = SubResource("BoxMesh_wbcqf")

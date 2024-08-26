@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://badb4uq2bs3ri"]
+
+[ext_resource type="Script" path="res://Scripts/ObjectScripts/GoalRing.cs" id="1_b67jk"]
+[ext_resource type="Shader" path="res://Assets/Shaders/Rainbow.gdshader" id="3_kb5b2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ais2h"]
+size = Vector3(5, 40, 40)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dyj8g"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_526o7"]
+in_3d_space = true
+seamless = true
+noise = SubResource("FastNoiseLite_dyj8g")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ha0l4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6ei4a"]
+noise = SubResource("FastNoiseLite_ha0l4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0owp"]
+disable_ambient_light = true
+albedo_color = Color(1, 0.835294, 0, 1)
+metallic = 1.0
+metallic_specular = 0.2
+metallic_texture = SubResource("NoiseTexture2D_526o7")
+roughness = 0.15
+roughness_texture = SubResource("NoiseTexture2D_6ei4a")
+emission_enabled = true
+emission = Color(0.503196, 0.374901, 0.00625344, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_y4m5p"]
+lightmap_size_hint = Vector2i(630, 80)
+material = SubResource("StandardMaterial3D_y0owp")
+inner_radius = 15.0
+outer_radius = 20.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_px6or"]
+render_priority = 0
+shader = ExtResource("3_kb5b2")
+shader_parameter/density = 0.03
+shader_parameter/speed = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bxcym"]
+lightmap_size_hint = Vector2i(473, 154)
+material = SubResource("ShaderMaterial_px6or")
+top_radius = 15.0
+bottom_radius = 15.0
+height = 0.1
+
+[node name="Goal Ring" type="Node3D"]
+script = ExtResource("1_b67jk")
+
+[node name="Win Area" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Win Area"]
+shape = SubResource("BoxShape3D_ais2h")
+
+[node name="Ring" type="Node3D" parent="."]
+
+[node name="Goal Ring" type="MeshInstance3D" parent="Ring"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+layers = 4
+mesh = SubResource("TorusMesh_y4m5p")
+skeleton = NodePath("../..")
+
+[node name="Goal Rainbow" type="MeshInstance3D" parent="Ring"]
+transform = Transform3D(1.91069e-15, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_bxcym")
+skeleton = NodePath("../Goal Ring")

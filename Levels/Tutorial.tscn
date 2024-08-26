@@ -1,10 +1,10 @@
-[gd_scene load_steps=103 format=3 uid="uid://yaehi1khyvew"]
+[gd_scene load_steps=101 format=3 uid="uid://yaehi1khyvew"]
 
 [ext_resource type="PackedScene" uid="uid://1wgfw2uv0c65" path="res://Entities/Player.tscn" id="1_5kadl"]
 [ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/VHSFilter.gdshader" id="2_14ekm"]
 [ext_resource type="PackedScene" uid="uid://badb4uq2bs3ri" path="res://Entities/GoalRing.tscn" id="2_jo5cx"]
-[ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/Test.gdshader" id="3_xewss"]
 [ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/Sky.gdshader" id="4_urkrt"]
+[ext_resource type="PackedScene" uid="uid://cy31ppp2wr0tu" path="res://Entities/HintBox.tscn" id="5_70nwn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3j6p"]
 size = Vector3(1, 10, 10)
@@ -62,27 +62,6 @@ size = Vector3(7, 1, 10)
 size = Vector3(7, 1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_attd7"]
-size = Vector3(50, 1, 100)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwf81"]
-render_priority = 0
-shader = ExtResource("3_xewss")
-shader_parameter/scale = 15.0
-shader_parameter/line_speed = 0.5
-shader_parameter/ripple_speed = 1.564
-shader_parameter/line_color = Color(0.2, 1, 1, 1)
-shader_parameter/ripple_color = Color(0.6, 0.7, 1, 0.7)
-shader_parameter/surface_color = Color(0.01, 0.18, 0.7, 0.4)
-shader_parameter/sphere_size = 2.0
-shader_parameter/pos1 = Vector3(0, 0, 0)
-shader_parameter/pos2 = Vector3(10000, 10000, 10000)
-shader_parameter/pos3 = Vector3(10000, 10000, 10000)
-shader_parameter/pos4 = Vector3(10000, 10000, 10000)
-shader_parameter/pos5 = Vector3(10000, 10000, 10000)
-shader_parameter/pos6 = Vector3(10000, 10000, 10000)
-
-[sub_resource type="BoxMesh" id="BoxMesh_el817"]
-material = SubResource("ShaderMaterial_fwf81")
 size = Vector3(50, 1, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3eqb1"]
@@ -576,6 +555,10 @@ mesh = SubResource("BoxMesh_tjk2y")
 
 [node name="Decors" type="Node3D" parent="Basic Movement Section"]
 
+[node name="HintBox" parent="Basic Movement Section/Decors" instance=ExtResource("5_70nwn")]
+transform = Transform3D(0.0662217, 0, -0.997805, 0, 1, 0, 0.997805, 0, 0.0662217, -6.2483, 1.29314, -18.4957)
+hintText = "Press space to jump, hold space while looking at a ledge to vault!"
+
 [node name="Ceilings" type="Node3D" parent="Basic Movement Section"]
 
 [node name="Ceiling" type="StaticBody3D" parent="Basic Movement Section/Ceilings"]
@@ -596,9 +579,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Basic Movement Section/Ceilings/Ceiling2"]
 shape = SubResource("BoxShape3D_attd7")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Basic Movement Section/Ceilings/Ceiling2"]
-mesh = SubResource("BoxMesh_el817")
 
 [node name="GrappleWallrun Section" type="Node3D" parent="."]
 

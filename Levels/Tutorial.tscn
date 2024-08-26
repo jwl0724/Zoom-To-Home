@@ -1,6 +1,10 @@
-[gd_scene load_steps=84 format=3 uid="uid://yaehi1khyvew"]
+[gd_scene load_steps=103 format=3 uid="uid://yaehi1khyvew"]
 
 [ext_resource type="PackedScene" uid="uid://1wgfw2uv0c65" path="res://Entities/Player.tscn" id="1_5kadl"]
+[ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/VHSFilter.gdshader" id="2_14ekm"]
+[ext_resource type="PackedScene" uid="uid://badb4uq2bs3ri" path="res://Entities/GoalRing.tscn" id="2_jo5cx"]
+[ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/Test.gdshader" id="3_xewss"]
+[ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/Sky.gdshader" id="4_urkrt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3j6p"]
 size = Vector3(1, 10, 10)
@@ -58,6 +62,27 @@ size = Vector3(7, 1, 10)
 size = Vector3(7, 1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_attd7"]
+size = Vector3(50, 1, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwf81"]
+render_priority = 0
+shader = ExtResource("3_xewss")
+shader_parameter/scale = 15.0
+shader_parameter/line_speed = 0.5
+shader_parameter/ripple_speed = 1.564
+shader_parameter/line_color = Color(0.2, 1, 1, 1)
+shader_parameter/ripple_color = Color(0.6, 0.7, 1, 0.7)
+shader_parameter/surface_color = Color(0.01, 0.18, 0.7, 0.4)
+shader_parameter/sphere_size = 2.0
+shader_parameter/pos1 = Vector3(0, 0, 0)
+shader_parameter/pos2 = Vector3(10000, 10000, 10000)
+shader_parameter/pos3 = Vector3(10000, 10000, 10000)
+shader_parameter/pos4 = Vector3(10000, 10000, 10000)
+shader_parameter/pos5 = Vector3(10000, 10000, 10000)
+shader_parameter/pos6 = Vector3(10000, 10000, 10000)
+
+[sub_resource type="BoxMesh" id="BoxMesh_el817"]
+material = SubResource("ShaderMaterial_fwf81")
 size = Vector3(50, 1, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3eqb1"]
@@ -122,7 +147,14 @@ size = Vector3(50, 1, 500)
 [sub_resource type="PlaneMesh" id="PlaneMesh_hcmhw"]
 size = Vector2(50, 500)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxjtv"]
+disable_ambient_light = true
+emission_enabled = true
+emission = Color(0.909804, 0.87451, 0.00392157, 1)
+emission_energy_multiplier = 2.5
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_hc5lj"]
+material = SubResource("StandardMaterial3D_hxjtv")
 top_radius = 4.0
 bottom_radius = 4.0
 height = 1.0
@@ -234,6 +266,22 @@ size = Vector3(150, 100, 450)
 [sub_resource type="BoxMesh" id="BoxMesh_0jsqu"]
 size = Vector3(150, 100, 450)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_llkwj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gd3nm"]
+noise = SubResource("FastNoiseLite_llkwj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11dpk"]
+disable_ambient_light = true
+emission_enabled = true
+emission = Color(0.786499, 0.856248, 0.643121, 1)
+emission_energy_multiplier = 12.6
+emission_texture = SubResource("NoiseTexture2D_gd3nm")
+
+[sub_resource type="BoxMesh" id="BoxMesh_mmilk"]
+material = SubResource("StandardMaterial3D_11dpk")
+size = Vector3(160, 100, 4)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2fbne"]
 size = Vector3(200, 1, 250)
 
@@ -253,18 +301,98 @@ size = Vector3(150, 3, 275)
 size = Vector3(150, 5, 150)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wbcqf"]
+material = SubResource("StandardMaterial3D_hxjtv")
 size = Vector3(150, 5, 150)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mh11r"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7rmnu"]
+noise = SubResource("FastNoiseLite_mh11r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkklc"]
+shader = ExtResource("2_14ekm")
+shader_parameter/vhs_resolution = Vector2(400, 711)
+shader_parameter/samples = 2
+shader_parameter/crease_noise = 1.6
+shader_parameter/crease_opacity = 0.9
+shader_parameter/filter_intensity = 0.2
+shader_parameter/tape_crease_smear = 0.5
+shader_parameter/tape_crease_intensity = 0.5
+shader_parameter/tape_crease_jitter = 0.38
+shader_parameter/tape_crease_speed = 1.5
+shader_parameter/tape_crease_discoloration = 0.8
+shader_parameter/bottom_border_thickness = 6.0
+shader_parameter/bottom_border_jitter = 6.0
+shader_parameter/noise_intensity = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_7rmnu")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qcy5y"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4btqq"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_qcy5y")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yhtp6"]
+shader = ExtResource("4_urkrt")
+shader_parameter/sky_color = Color(0.0382525, 0.279309, 0.00396763, 1)
+shader_parameter/star_base_color = Color(0.149861, 0.342775, 0, 1)
+shader_parameter/star_hue_offset = 0.0
+shader_parameter/star_intensity = 0.2
+shader_parameter/star_twinkle_speed = 0.5
+shader_parameter/star_twinkle_intensity = 1.0
+shader_parameter/layer_scale = 26.667
+shader_parameter/layer_scale_step = 10.0
+shader_parameter/layers_count = 5
+
+[sub_resource type="Sky" id="Sky_7xyp6"]
+sky_material = SubResource("ShaderMaterial_yhtp6")
+process_mode = 2
+
+[sub_resource type="Environment" id="Environment_1h2bd"]
+background_mode = 2
+sky = SubResource("Sky_7xyp6")
+ambient_light_source = 2
+ambient_light_color = Color(0.278639, 0.391551, 0.17965, 1)
+ambient_light_energy = 1.48
+tonemap_mode = 3
+tonemap_exposure = 1.32
+ssr_fade_in = 0.369344
+ssr_fade_out = 3.86374
+ssao_enabled = true
+ssao_radius = 2.51
+ssao_intensity = 2.67
+ssao_power = 1.30583
+ssil_enabled = true
+ssil_radius = 6.58
+ssil_intensity = 1.32
+sdfgi_read_sky_light = false
+sdfgi_bounce_feedback = 0.0
+sdfgi_cascades = 3
+sdfgi_min_cell_size = 0.4
+sdfgi_cascade0_distance = 25.6
+glow_enabled = true
+glow_strength = 0.81
+glow_blend_mode = 4
+glow_map = SubResource("NoiseTexture2D_4btqq")
+volumetric_fog_density = 0.0
+adjustment_enabled = true
+adjustment_brightness = 0.84
+adjustment_contrast = 1.47
+adjustment_saturation = 1.4
 
 [node name="Tutorial" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_5kadl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.979867, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Lighting" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0787549, 0.996894, 0, -0.996894, 0.0787549, 0, 24.2834, -32.0509)
+light_color = Color(0.776178, 0.858731, 0.286279, 1)
+light_energy = 2.0
+directional_shadow_mode = 0
 
 [node name="Basic Movement Section" type="Node3D" parent="."]
-metadata/_edit_lock_ = true
 
 [node name="Walls" type="Node3D" parent="Basic Movement Section"]
 
@@ -462,15 +590,17 @@ shape = SubResource("BoxShape3D_pt8m6")
 mesh = SubResource("BoxMesh_74hap")
 
 [node name="Ceiling2" type="StaticBody3D" parent="Basic Movement Section/Ceilings"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, -45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 34.0576, -45)
 collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Basic Movement Section/Ceilings/Ceiling2"]
 shape = SubResource("BoxShape3D_attd7")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Basic Movement Section/Ceilings/Ceiling2"]
+mesh = SubResource("BoxMesh_el817")
+
 [node name="GrappleWallrun Section" type="Node3D" parent="."]
-metadata/_edit_lock_ = true
 
 [node name="Walls" type="Node3D" parent="GrappleWallrun Section"]
 
@@ -1096,6 +1226,7 @@ mesh = SubResource("BoxMesh_04m2f")
 
 [node name="Floor2" type="StaticBody3D" parent="Final Test Section/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -14.3, -570)
+collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Floors/Floor2"]
@@ -1194,6 +1325,14 @@ mesh = SubResource("CylinderMesh_hc5lj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Decors/HookPoint2"]
 shape = SubResource("CylinderShape3D_k2lo3")
 
+[node name="EndLight" type="MeshInstance3D" parent="Final Test Section/Decors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -609.052, 156.908, 134.925)
+mesh = SubResource("BoxMesh_mmilk")
+
+[node name="GoalRing" parent="Final Test Section/Decors" instance=ExtResource("2_jo5cx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -610.987, 160.558, 93.3065)
+winAreaSize = Vector3(10, 100, 170)
+
 [node name="Ceilings" type="Node3D" parent="Final Test Section"]
 
 [node name="Ceiling" type="StaticBody3D" parent="Final Test Section/Ceilings"]
@@ -1244,3 +1383,24 @@ shape = SubResource("BoxShape3D_muams")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Ceilings/Ceiling5"]
 mesh = SubResource("BoxMesh_wbcqf")
+
+[node name="Level Filters" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VHSFilter" type="ColorRect" parent="Level Filters"]
+z_index = -1
+material = SubResource("ShaderMaterial_kkklc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1h2bd")

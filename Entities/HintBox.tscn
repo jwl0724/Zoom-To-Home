@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy31ppp2wr0tu"]
+
+[ext_resource type="Script" path="res://Scripts/ObjectScripts/HintBox.cs" id="1_jnxna"]
+[ext_resource type="ArrayMesh" uid="uid://0jc3ve2omoed" path="res://Assets/Models/GameObjects/QuestionMark.obj" id="2_4yug8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eri3h"]
+emission_enabled = true
+emission = Color(1.92523e-06, 0.816099, 0.169608, 1)
+emission_energy_multiplier = 7.11
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pcp12"]
+size = Vector3(1, 2, 1.2)
+
+[node name="HintBox" type="Node3D"]
+script = ExtResource("1_jnxna")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0, -0.274495, -0.0996268)
+mesh = ExtResource("2_4yug8")
+surface_material_override/0 = SubResource("StandardMaterial3D_eri3h")
+
+[node name="Hint Area" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hint Area"]
+shape = SubResource("BoxShape3D_pcp12")
+
+[node name="Hint Dialogue" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

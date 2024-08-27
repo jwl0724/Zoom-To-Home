@@ -9,23 +9,23 @@ namespace ZoomToHome {
 
         public override void _Ready() {
             label = GetNode("Dialog Box/Text") as Label;
+            label.VisibleRatio = 0;
             Modulate = new Color(1, 1, 1, 0);
         }
 
         public void ShowDialog() {
-            if (textTween == null || textTween.IsRunning()) return;
+            if (textTween != null && textTween.IsRunning()) return;
             textTween = CreateTween();
-            textTween.TweenProperty(this, "modulate", shownColor, 0.2f);
-            textTween.TweenProperty(label, "visible_ratio", 1, 0.5f);
+            textTween.TweenProperty(this, "modulate", shownColor, 0.1f);
+            textTween.TweenProperty(label, "visible_ratio", 1, 0.4f);
             textTween.Play();
-            GD.Print(label.Text);
         }
 
         public void CloseDialog() {
             textTween?.Kill();
             textTween = CreateTween();
-            textTween.TweenProperty(this, "modulate", hiddenColor, 0.2f);
-            textTween.TweenProperty(label, "visible_ratio", 0, 0.3f);
+            textTween.TweenProperty(this, "modulate", hiddenColor, 0.1f);
+            textTween.TweenProperty(label, "visible_ratio", 0, 0.2f);
             textTween.Play();
         }
 

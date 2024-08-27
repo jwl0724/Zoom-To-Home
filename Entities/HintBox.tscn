@@ -6,9 +6,10 @@
 [ext_resource type="FontFile" uid="uid://tii0pkaahsea" path="res://Assets/Fonts/upheavtt.ttf" id="4_riu2d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eri3h"]
+albedo_color = Color(0.33124, 0.511317, 1, 1)
 emission_enabled = true
-emission = Color(1.92523e-06, 0.816099, 0.169608, 1)
-emission_energy_multiplier = 7.11
+emission = Color(0, 0, 0.72549, 1)
+emission_energy_multiplier = 8.55
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pcp12"]
 size = Vector3(8, 8, 8)

@@ -23,6 +23,7 @@ namespace ZoomToHome {
 
         public override void _PhysicsProcess(double delta) {
             ringVisuals.Rotation += Vector3.Up * (float) delta;
+            ringVisuals.Position += Vector3.Up * 0.05f * Mathf.Cos(ringVisuals.Rotation.Y * 1.5f);
         }
 
         private void EndLevel() {

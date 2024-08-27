@@ -22,7 +22,8 @@ namespace ZoomToHome {
         }
 
         public override void _PhysicsProcess(double delta) {
-            model.Rotation += Vector3.Up * (float) delta;
+            model.Rotation += Vector3.Up * (float) delta * 2;
+            model.Position += Vector3.Up * 0.01f * Mathf.Cos(model.Rotation.Y * 2);
         }
 
         private void DisplayHint() {

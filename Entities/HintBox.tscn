@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy31ppp2wr0tu"]
+[gd_scene load_steps=8 format=3 uid="uid://cy31ppp2wr0tu"]
 
 [ext_resource type="Script" path="res://Scripts/ObjectScripts/HintBox.cs" id="1_jnxna"]
 [ext_resource type="ArrayMesh" uid="uid://0jc3ve2omoed" path="res://Assets/Models/GameObjects/QuestionMark.obj" id="2_4yug8"]
+[ext_resource type="Script" path="res://Scripts/ObjectScripts/DialogBox.cs" id="3_eiggl"]
+[ext_resource type="FontFile" uid="uid://tii0pkaahsea" path="res://Assets/Fonts/upheavtt.ttf" id="4_riu2d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eri3h"]
 emission_enabled = true
@@ -9,7 +11,12 @@ emission = Color(1.92523e-06, 0.816099, 0.169608, 1)
 emission_energy_multiplier = 7.11
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pcp12"]
-size = Vector3(1, 2, 1.2)
+size = Vector3(8, 8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5h240"]
+font = ExtResource("4_riu2d")
+font_size = 40
+font_color = Color(0.925353, 0.925353, 0.925353, 1)
 
 [node name="HintBox" type="Node3D"]
 script = ExtResource("1_jnxna")
@@ -25,10 +32,74 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hint Area"]
 shape = SubResource("BoxShape3D_pcp12")
 
-[node name="Hint Dialogue" type="Control" parent="."]
+[node name="Hint Dialog" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_eiggl")
+
+[node name="Dialog Box" type="Control" parent="Hint Dialog"]
+custom_minimum_size = Vector2(900, 150)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -450.0
+offset_top = -175.0
+offset_right = 450.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Border" type="ColorRect" parent="Hint Dialog/Dialog Box"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.806487, 0.781497, 0.779394, 1)
+
+[node name="Background" type="ColorRect" parent="Hint Dialog/Dialog Box"]
+custom_minimum_size = Vector2(880, 130)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -65.0
+offset_right = 440.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[node name="Text" type="Label" parent="Hint Dialog/Dialog Box"]
+custom_minimum_size = Vector2(880, 130)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -18.0
+offset_right = 92.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TEST TEXT HERE"
+label_settings = SubResource("LabelSettings_5h240")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0

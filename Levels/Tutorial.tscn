@@ -557,7 +557,7 @@ mesh = SubResource("BoxMesh_tjk2y")
 
 [node name="HintBox" parent="Basic Movement Section/Decors" instance=ExtResource("5_70nwn")]
 transform = Transform3D(0.0662217, 0, -0.997805, 0, 1, 0, 0.997805, 0, 0.0662217, -6.2483, 1.29314, -18.4957)
-hintText = "Press space to jump, hold space while looking at a ledge to vault!"
+hintText = "press [jump] to jump, hold while looking torwards a ledge to vault."
 
 [node name="Ceilings" type="Node3D" parent="Basic Movement Section"]
 

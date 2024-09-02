@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://1wgfw2uv0c65"]
+[gd_scene load_steps=45 format=3 uid="uid://1wgfw2uv0c65"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_6ell8"]
 [ext_resource type="Script" path="res://Scripts/States/StateManager.cs" id="3_5833u"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://581ep40ot73s" path="res://Assets/Models/Player/LeftHand.glb" id="21_trpxa"]
 [ext_resource type="PackedScene" uid="uid://0468hagaphpi" path="res://Assets/Models/Player/RightHand.glb" id="22_csom0"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/HandAnimator.cs" id="22_r8ji2"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/ZipCooldownBar.cs" id="29_ypdkf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
 
@@ -117,6 +118,22 @@ shader_parameter/mask_size = 0.1
 shader_parameter/mask_edge = 0.5
 shader_parameter/animation_speed = 13.0
 shader_parameter/noise = SubResource("NoiseTexture2D_pe7w6")
+
+[sub_resource type="Gradient" id="Gradient_ynhg2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.125911, 0.125911, 0.125911, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0k4cv"]
+gradient = SubResource("Gradient_ynhg2")
+width = 1
+
+[sub_resource type="Gradient" id="Gradient_jhqxu"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fi4rr"]
+gradient = SubResource("Gradient_jhqxu")
+width = 1
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("armsAnimator")]
 collision_layer = 2
@@ -365,8 +382,9 @@ grow_vertical = 2
 texture = ExtResource("16_5h5j8")
 expand_mode = 2
 script = ExtResource("17_a3ros")
+metadata/_edit_lock_ = true
 
-[node name="SpeedLines" type="ColorRect" parent="HUD"]
+[node name="Speed Lines" type="ColorRect" parent="HUD"]
 material = SubResource("ShaderMaterial_6u0c8")
 layout_mode = 1
 anchors_preset = 15
@@ -375,6 +393,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("19_u5p30")
+metadata/_edit_lock_ = true
+
+[node name="Cooldown Bar" type="TextureProgressBar" parent="HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = 16.0
+offset_right = 12.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture1D_0k4cv")
+texture_progress = SubResource("GradientTexture1D_fi4rr")
+script = ExtResource("29_ypdkf")
+metadata/_edit_lock_ = true
 
 [node name="Positional Sound Effects" type="Node3D" parent="."]
 

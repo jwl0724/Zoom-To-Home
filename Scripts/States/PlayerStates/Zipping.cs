@@ -9,9 +9,6 @@ namespace ZoomToHome {
         private AnimationPlayer linePointAnimator;
         private Vector3 grapplePoint;
         private Player player;
-
-        // ZIP COOLDOWN TIMER
-        private readonly float zipCooldown = 1f; // in seconds
         private float zipTimer = 0f;
         private bool onCooldown = false;
 
@@ -23,7 +20,7 @@ namespace ZoomToHome {
         public override void _Process(double delta) {
             if (!onCooldown || manager.CurrentState is Zipping) return;
 
-            if (zipTimer >= zipCooldown) {
+            if (zipTimer >= player.ZipCooldown) {
                 zipTimer = 0;
                 onCooldown = false;
 

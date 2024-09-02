@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace ZoomToHome {
     public partial class Cleared : State {

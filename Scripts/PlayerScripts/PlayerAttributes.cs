@@ -7,7 +7,7 @@ namespace ZoomToHome {
         public float Height { get; set; } = 2f;
         public float CrouchHeight { get; set; } = 0.25f;
         public float DefaultCapsuleRadius { get; set; } = 0.5f;
-        public float ZipCooldown { get; set; } = 1f; // in seconds
+        
 
         // PHYSICS VARIABLES
         public float JumpSpeed { get; set; } = 18f;
@@ -22,7 +22,8 @@ namespace ZoomToHome {
         public float MusicVolumeMultiplier { get; set; } = 1f;
 
         // TIMER VARIABLES
-
+        public float ZipCooldown { get; set; } = 1f; // in seconds
+        public float ZipTimer { get; set; } = 0f;
 
         // HELPER METHODS RELATED TO ATTRIBUTES
         private void OverrideParentVariables() {

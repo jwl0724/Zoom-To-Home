@@ -29,7 +29,7 @@ namespace ZoomToHome {
             running = true;
         }
 
-        private static string ConvertFormat(float time) {
+        public static string ConvertFormat(float time) {
             TimeSpan timeSpan = TimeSpan.FromSeconds(time);
             return string.Format(@"{0:mm\:ss\.ff}", timeSpan);
         }

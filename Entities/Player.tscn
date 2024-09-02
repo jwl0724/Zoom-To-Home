@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://1wgfw2uv0c65"]
+[gd_scene load_steps=49 format=3 uid="uid://1wgfw2uv0c65"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_6ell8"]
 [ext_resource type="Script" path="res://Scripts/States/StateManager.cs" id="3_5833u"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scripts/States/PlayerStates/Vaulting.cs" id="14_04u4l"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/LineRenderer.cs" id="15_fmltg"]
 [ext_resource type="Texture2D" uid="uid://2yil3f8mlkjk" path="res://Assets/Images/UI/Reticle.png" id="16_5h5j8"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/Cleared.cs" id="16_reats"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/Reticle.cs" id="17_a3ros"]
 [ext_resource type="Shader" path="res://Assets/Shaders/SpeedLines.gdshader" id="18_0ecnq"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/VaultHelper.cs" id="19_g7jg4"]
@@ -29,6 +30,8 @@
 [ext_resource type="PackedScene" uid="uid://0468hagaphpi" path="res://Assets/Models/Player/RightHand.glb" id="22_csom0"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/HandAnimator.cs" id="22_r8ji2"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/ZipCooldownBar.cs" id="29_ypdkf"]
+[ext_resource type="FontFile" uid="uid://tii0pkaahsea" path="res://Assets/Fonts/upheavtt.ttf" id="30_w32lf"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/StopWatch.cs" id="31_drgml"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utod5"]
 
@@ -135,6 +138,13 @@ colors = PackedColorArray(1, 1, 1, 1)
 gradient = SubResource("Gradient_jhqxu")
 width = 1
 
+[sub_resource type="LabelSettings" id="LabelSettings_0qpcp"]
+font = ExtResource("30_w32lf")
+font_size = 72
+font_color = Color(0.93845, 0.93845, 0.93845, 1)
+shadow_size = 4
+shadow_color = Color(0.314316, 0.314316, 0.314316, 0.670588)
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("armsAnimator")]
 collision_layer = 2
 script = ExtResource("1_6ell8")
@@ -226,6 +236,9 @@ script = ExtResource("14_04u4l")
 cameraEffects = NodePath("../../Rotational Helper/Camera")
 parentBody = NodePath("../..")
 manager = NodePath("..")
+
+[node name="Cleared" type="Node" parent="State Manager"]
+script = ExtResource("16_reats")
 
 [node name="Script Helpers" type="Node" parent="."]
 
@@ -413,6 +426,20 @@ nine_patch_stretch = true
 texture_under = SubResource("GradientTexture1D_0k4cv")
 texture_progress = SubResource("GradientTexture1D_fi4rr")
 script = ExtResource("29_ypdkf")
+metadata/_edit_lock_ = true
+
+[node name="Stop Watch" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -143.0
+offset_right = 143.0
+offset_bottom = 65.0
+grow_horizontal = 2
+text = "00:00.00"
+label_settings = SubResource("LabelSettings_0qpcp")
+script = ExtResource("31_drgml")
 metadata/_edit_lock_ = true
 
 [node name="Positional Sound Effects" type="Node3D" parent="."]

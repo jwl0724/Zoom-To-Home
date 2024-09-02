@@ -5,6 +5,7 @@ namespace ZoomToHome {
     public partial class Player : Entity {
         [Export] private ArmsAnimator armsAnimator;
         public StateManager StateManager;
+        private StopWatch playerTimer;
         private PlayerRotationManager RotationHelper;
         private RayCast3D standChecker;
         private CapsuleShape3D capsuleShape;
@@ -20,6 +21,7 @@ namespace ZoomToHome {
             capsuleShape = GetNode<CollisionShape3D>("Collision Box").Shape as CapsuleShape3D;
             standChecker = GetNode<RayCast3D>("Helper Objects/Stand Check");
             vaultHelper = GetNode<VaultHelper>("Helper Objects/Vault Helper");
+            playerTimer = GetNode<StopWatch>("HUD/Stop Watch");
         }
 
         public override void _PhysicsProcess(double delta) {
@@ -27,6 +29,11 @@ namespace ZoomToHome {
                 var collider = GetSlideCollision(i).GetCollider() as PhysicsBody3D;
                 if (collider.GetCollisionLayerValue(3)) EmitSignal(SignalName.Damaged);
             }
+        }
+
+        public void FinishLevel() {
+            float timeElapsed = playerTimer.Stop();
+            StateManager.ChangeState(StateManager.AllStates["Cleared"]);
         }
 
         public void ResetPlayer(Vector3 startPoint) {

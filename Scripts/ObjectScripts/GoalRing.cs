@@ -18,7 +18,7 @@ namespace ZoomToHome {
             CollisionShape3D areaShape = winArea.GetNode("CollisionShape3D") as CollisionShape3D;
             areaShape.Shape = collisionBox;
 
-            winArea.Connect(Area3D.SignalName.BodyEntered, Callable.From((Node3D body) => EndLevel()));
+            winArea.Connect(Area3D.SignalName.BodyEntered, Callable.From((Node3D body) => EndLevel(body)));
         }
 
         public override void _PhysicsProcess(double delta) {
@@ -26,8 +26,9 @@ namespace ZoomToHome {
             ringVisuals.Position += Vector3.Up * 0.05f * Mathf.Cos(ringVisuals.Rotation.Y * 1.5f);
         }
 
-        private void EndLevel() {
-            GD.Print("You Did it");
+        private static void EndLevel(Node3D body) {
+            if (body is not Player player) return;
+            player.FinishLevel();
         }
     }
 }

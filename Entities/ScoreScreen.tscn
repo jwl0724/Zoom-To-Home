@@ -114,11 +114,14 @@ color = Color(0.0184176, 0.0706294, 0.0782816, 1)
 
 [node name="Swirl" type="TextureRect" parent="Background"]
 material = SubResource("ShaderMaterial_0wgdn")
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 651.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_jmga2")
-stretch_mode = 3
+stretch_mode = 5
 
 [node name="Results" type="Control" parent="."]
 layout_mode = 1

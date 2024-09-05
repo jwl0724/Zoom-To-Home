@@ -12,8 +12,8 @@ namespace ZoomToHome {
 
         public override void _Process(double delta) {
             if (running == false) return;
-            Text = ConvertFormat(timeElapsed);
             timeElapsed += (float) delta;
+            Text = ConvertFormat(timeElapsed);
         }
 
         public void ResetWatch() {

@@ -1,9 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnj3ygo35ij1s"]
+[gd_scene load_steps=15 format=3 uid="uid://cnj3ygo35ij1s"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/ScoreScreen.cs" id="1_sgf60"]
 [ext_resource type="Shader" path="res://Assets/Shaders/UIShaders/ScoreScreenBackground.gdshader" id="2_e10uf"]
 [ext_resource type="Texture2D" uid="uid://b08qoxtq7n7ba" path="res://Assets/Images/UI/Swirl.png" id="3_jmga2"]
 [ext_resource type="FontFile" uid="uid://tii0pkaahsea" path="res://Assets/Fonts/upheavtt.ttf" id="4_ug08u"]
+[ext_resource type="Shader" path="res://Assets/Shaders/UIShaders/RainbowLetterGrade.gdshader" id="5_vr56g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1543c"]
+font = ExtResource("4_ug08u")
+font_size = 120
+font_color = Color(0.146431, 0.11298, 0.112329, 1)
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0.408329, 0.408329, 0.408329, 1)
+shadow_offset = Vector2(8, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s80id"]
+shader = ExtResource("5_vr56g")
+shader_parameter/strength = 0.5
+shader_parameter/speed = 0.5
+shader_parameter/angle = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wgdn"]
 shader = ExtResource("2_e10uf")
@@ -26,16 +43,6 @@ outline_size = 10
 outline_color = Color(0.0313726, 0.0627451, 0.227451, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wf87"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_1543c"]
-font = ExtResource("4_ug08u")
-font_size = 120
-font_color = Color(0.146431, 0.11298, 0.112329, 1)
-outline_size = 20
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 10
-shadow_color = Color(0.408329, 0.408329, 0.408329, 1)
-shadow_offset = Vector2(8, 8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bt4qv"]
 bg_color = Color(0.647059, 0.647059, 0.647059, 0)
@@ -69,6 +76,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sgf60")
+letterGradeSettings = SubResource("LabelSettings_1543c")
+SRankShader = SubResource("ShaderMaterial_s80id")
 
 [node name="Fade" type="Control" parent="."]
 layout_mode = 1

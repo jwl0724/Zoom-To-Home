@@ -20,7 +20,7 @@ namespace ZoomToHome {
         
         // letter grade colors
         private static Color SRankColor = new(1, 1, 1, 1); // white
-        private static Color ARankColor = new("e90e25"); // gold
+        private static Color ARankColor = new("e8cd27"); // gold
         private static Color BRankColor = new("c4d0e0"); // silver
         private static Color CRankColor = new("bb4500"); // bronze
         private static Color FRankColor = new("251d1d"); // dark gray
@@ -95,6 +95,9 @@ namespace ZoomToHome {
             buttonsTween.TweenProperty(leftButton, "position", originalLeftPosition, 0.3f);
             buttonsTween.TweenProperty(rightButton, "position", originalRightPosition, 0.3f);
             buttonsTween.Play();
+
+            leftButton.Disabled = false;
+            rightButton.Disabled = false;
             buttons.Modulate = visibleColor;
         }
 

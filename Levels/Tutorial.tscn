@@ -415,6 +415,11 @@ glow_enabled = true
 glow_strength = 0.81
 glow_blend_mode = 4
 glow_map = SubResource("NoiseTexture2D_4btqq")
+fog_enabled = true
+fog_light_color = Color(5.10186e-06, 0.803162, 0.641286, 1)
+fog_light_energy = 1.5
+fog_density = 0.0003
+fog_sky_affect = 0.0
 volumetric_fog_density = 0.0
 adjustment_enabled = true
 adjustment_brightness = 0.84
@@ -649,6 +654,13 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Basic Movement Section/Ceilings/Ceiling2"]
 shape = SubResource("BoxShape3D_attd7")
+
+[node name="Lighting" type="DirectionalLight3D" parent="Basic Movement Section"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 24.2834, -39.9348)
+light_color = Color(0.776178, 0.858731, 0.286279, 1)
+shadow_enabled = true
+shadow_opacity = 0.4
+directional_shadow_mode = 0
 
 [node name="GrappleWallrun Section" type="Node3D" parent="."]
 

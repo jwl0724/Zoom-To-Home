@@ -1,0 +1,308 @@
+[gd_scene load_steps=13 format=3 uid="uid://cnj3ygo35ij1s"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/UI/ScoreScreen.cs" id="1_sgf60"]
+[ext_resource type="Shader" path="res://Assets/Shaders/UIShaders/ScoreScreenBackground.gdshader" id="2_e10uf"]
+[ext_resource type="Texture2D" uid="uid://b08qoxtq7n7ba" path="res://Assets/Images/UI/Swirl.png" id="3_jmga2"]
+[ext_resource type="FontFile" uid="uid://tii0pkaahsea" path="res://Assets/Fonts/upheavtt.ttf" id="4_ug08u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wgdn"]
+shader = ExtResource("2_e10uf")
+shader_parameter/rotation_speed = 14.0
+shader_parameter/time_multiplier = 2.0
+shader_parameter/resize_speed = 4.0
+shader_parameter/min_scale = 0.8
+shader_parameter/max_scale = 1.1
+
+[sub_resource type="LabelSettings" id="LabelSettings_armwo"]
+font = ExtResource("4_ug08u")
+font_size = 72
+outline_size = 10
+outline_color = Color(0.030467, 0.061824, 0.226254, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tro0f"]
+font = ExtResource("4_ug08u")
+font_size = 64
+outline_size = 10
+outline_color = Color(0.0313726, 0.0627451, 0.227451, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wf87"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1543c"]
+font = ExtResource("4_ug08u")
+font_size = 120
+font_color = Color(0.146431, 0.11298, 0.112329, 1)
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0.408329, 0.408329, 0.408329, 1)
+shadow_offset = Vector2(8, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bt4qv"]
+bg_color = Color(0.647059, 0.647059, 0.647059, 0)
+draw_center = false
+
+[sub_resource type="Theme" id="Theme_2gjnr"]
+default_font = ExtResource("4_ug08u")
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 1)
+Button/colors/font_hover_color = Color(0.637842, 0.637843, 0.637844, 1)
+Button/colors/font_pressed_color = Color(0.470076, 0.470076, 0.470076, 1)
+Button/font_sizes/font_size = 54
+Button/fonts/font = ExtResource("4_ug08u")
+Button/styles/pressed = SubResource("StyleBoxFlat_bt4qv")
+
+[sub_resource type="Theme" id="Theme_7knla"]
+default_font = ExtResource("4_ug08u")
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 1)
+Button/colors/font_hover_color = Color(0.637842, 0.637843, 0.637844, 1)
+Button/colors/font_pressed_color = Color(0.470076, 0.470076, 0.470076, 1)
+Button/font_sizes/font_size = 54
+Button/fonts/font = ExtResource("4_ug08u")
+Button/styles/pressed = SubResource("StyleBoxFlat_bt4qv")
+
+[node name="Score Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sgf60")
+
+[node name="Fade" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Fade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0184176, 0.0706294, 0.0782816, 1)
+
+[node name="Swirl" type="TextureRect" parent="Background"]
+material = SubResource("ShaderMaterial_0wgdn")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 651.0
+texture = ExtResource("3_jmga2")
+stretch_mode = 3
+
+[node name="Results" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Clear" type="Label" parent="Results"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -330.5
+offset_top = 10.0
+offset_right = 330.5
+offset_bottom = 75.0
+grow_horizontal = 2
+text = "TUTORIAL CLEARED"
+label_settings = SubResource("LabelSettings_armwo")
+
+[node name="Time" type="Label" parent="Results"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -327.5
+offset_top = 90.0
+offset_right = 327.5
+offset_bottom = 148.0
+grow_horizontal = 2
+text = "TIME TAKEN: 00:00.00"
+label_settings = SubResource("LabelSettings_tro0f")
+
+[node name="Rankings" type="Control" parent="Results"]
+custom_minimum_size = Vector2(700, 325)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -159.0
+offset_right = 350.0
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="S Rank" type="Label" parent="Results/Rankings"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -163.5
+offset_right = 163.5
+offset_bottom = 58.0
+grow_horizontal = 2
+text = "S - 00:00:00"
+label_settings = SubResource("LabelSettings_tro0f")
+
+[node name="A Rank" type="Label" parent="Results/Rankings"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -163.5
+offset_top = 70.0
+offset_right = 163.5
+offset_bottom = 128.0
+grow_horizontal = 2
+text = "A - 00:00:00"
+label_settings = SubResource("LabelSettings_tro0f")
+
+[node name="B Rank" type="Label" parent="Results/Rankings"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -163.5
+offset_top = 140.0
+offset_right = 163.5
+offset_bottom = 198.0
+grow_horizontal = 2
+text = "B - 00:00:00"
+label_settings = SubResource("LabelSettings_tro0f")
+
+[node name="C Rank" type="Label" parent="Results/Rankings"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -163.5
+offset_top = 210.0
+offset_right = 163.5
+offset_bottom = 268.0
+grow_horizontal = 2
+text = "C - 00:00:00"
+label_settings = SubResource("LabelSettings_tro0f")
+
+[node name="Rank" type="Control" parent="Results"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 126.0
+offset_right = 50.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Border" type="ColorRect" parent="Results/Rank"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.687214, 0.687215, 0.687215, 1)
+
+[node name="Background" type="ColorRect" parent="Results/Rank"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0768359, 0.0768358, 0.0768358, 1)
+
+[node name="Grade" type="Label" parent="Results/Rank"]
+material = SubResource("ShaderMaterial_0wf87")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -14.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 54)
+text = "F"
+label_settings = SubResource("LabelSettings_1543c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="Control" parent="."]
+custom_minimum_size = Vector2(700, 100)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -100.0
+offset_right = 350.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Redo" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_right = 88.0
+offset_bottom = 15.5
+grow_vertical = 2
+theme = SubResource("Theme_2gjnr")
+text = "Play Again"
+flat = true
+
+[node name="Next" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_7knla")
+text = "Next Level"
+flat = true

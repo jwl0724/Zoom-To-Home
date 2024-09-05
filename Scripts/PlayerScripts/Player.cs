@@ -4,6 +4,7 @@ using Godot;
 namespace ZoomToHome {
     public partial class Player : Entity {
         [Export] private ArmsAnimator armsAnimator;
+        [Export] private ScoreScreen scoreScreen;
         public StateManager StateManager;
         private StopWatch playerTimer;
         private PlayerRotationManager RotationHelper;
@@ -34,6 +35,7 @@ namespace ZoomToHome {
         public void FinishLevel() {
             float timeElapsed = playerTimer.Stop();
             StateManager.ChangeState(StateManager.AllStates["Cleared"]);
+            scoreScreen.PlayScoreScreen(timeElapsed);
         }
 
         public void ResetPlayer(Vector3 startPoint) {

@@ -1,8 +1,9 @@
-[gd_scene load_steps=102 format=3 uid="uid://yaehi1khyvew"]
+[gd_scene load_steps=103 format=3 uid="uid://yaehi1khyvew"]
 
 [ext_resource type="PackedScene" uid="uid://1wgfw2uv0c65" path="res://Entities/Player.tscn" id="1_5kadl"]
 [ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/VHSFilter.gdshader" id="2_14ekm"]
 [ext_resource type="PackedScene" uid="uid://badb4uq2bs3ri" path="res://Entities/GoalRing.tscn" id="2_jo5cx"]
+[ext_resource type="PackedScene" uid="uid://cnj3ygo35ij1s" path="res://Entities/ScoreScreen.tscn" id="4_4a6ks"]
 [ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/Sky.gdshader" id="4_urkrt"]
 [ext_resource type="PackedScene" uid="uid://cy31ppp2wr0tu" path="res://Entities/HintBox.tscn" id="5_70nwn"]
 
@@ -428,8 +429,9 @@ adjustment_saturation = 1.4
 
 [node name="Tutorial" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_5kadl")]
+[node name="Player" parent="." node_paths=PackedStringArray("scoreScreen") instance=ExtResource("1_5kadl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.979867, 0)
+scoreScreen = NodePath("../Level Filters/Score Screen")
 
 [node name="Lighting" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 24.2834, -32.0509)
@@ -1465,6 +1467,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Score Screen" parent="Level Filters" instance=ExtResource("4_4a6ks")]
+layout_mode = 1
+levelName = "Tutorial"
+SRankThreshold = 30.0
+ARankThreshold = 40.0
+BRankThreshold = 50.0
+CRankThreshold = 60.0
 
 [node name="VHSFilter" type="ColorRect" parent="Level Filters"]
 z_index = -1

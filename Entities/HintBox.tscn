@@ -12,7 +12,7 @@ emission = Color(0, 0, 0.72549, 1)
 emission_energy_multiplier = 8.55
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pcp12"]
-size = Vector3(8, 8, 8)
+size = Vector3(4, 4, 4)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5h240"]
 font = ExtResource("4_riu2d")

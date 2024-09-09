@@ -15,7 +15,8 @@ namespace ZoomToHome {
         }
 
         public override void _Input(InputEvent mouseMovement) {
-            if (mouseMovement is not InputEventMouseMotion movement || Input.MouseMode != Input.MouseModeEnum.Captured) 
+            if (mouseMovement is not InputEventMouseMotion movement || Input.MouseMode != Input.MouseModeEnum.Captured 
+            || player.StateManager.CurrentState is Cleared) 
                 return;
             else ProcessMouseMovement(movement);
         }

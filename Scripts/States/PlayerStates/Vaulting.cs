@@ -17,6 +17,7 @@ namespace ZoomToHome {
             cameraEffects.TiltCamera(0.1f, 0.1f);
             player.PlayAnimation("Vault");
             if (vaultDestination.IsFinite()) PlayVaultTween();
+            else GD.PushError("Vaulting Destination is Infinite");
         }
 
         public override void ExitState() {
@@ -34,10 +35,7 @@ namespace ZoomToHome {
         }
 
         public override void ProcessPhysics(double delta) {
-            if (!vaultDestination.IsFinite()) {
-                GD.PushError("Vaulting Destination is Infinite");
-                return;
-            }
+            
         }
 
         private void PlayVaultTween() {

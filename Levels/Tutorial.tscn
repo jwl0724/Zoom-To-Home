@@ -928,7 +928,7 @@ shape = SubResource("BoxShape3D_y3uln")
 
 [node name="HintBox" parent="GrappleWallrun Section/Decors" instance=ExtResource("5_70nwn")]
 transform = Transform3D(0.0662217, 0, -0.997805, 0, 1, 0, 0.997805, 0, 0.0662217, -13.9639, -12.0498, -215.511)
-hintText = "hold right click to attach a string to launch towards the glowing disc."
+hintText = "hold right click to launch towards the glowing disc."
 
 [node name="HintBox2" parent="GrappleWallrun Section/Decors" instance=ExtResource("5_70nwn")]
 transform = Transform3D(0.0662217, 0, -0.997805, 0, 1, 0, 0.997805, 0, 0.0662217, -14.6903, -12.0498, -303.407)

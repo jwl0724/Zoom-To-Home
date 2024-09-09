@@ -27,7 +27,7 @@ namespace ZoomToHome {
         private static Color ARankColor = new("e8cd27"); // gold
         private static Color BRankColor = new("c4d0e0"); // silver
         private static Color CRankColor = new("bb4500"); // bronze
-        private static Color FRankColor = new("251d1d"); // dark gray
+        private static Color FRankColor = new("50743c"); // dirty green
 
         public override void _Ready() {
             Modulate = transparent;

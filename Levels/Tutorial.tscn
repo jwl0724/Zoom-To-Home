@@ -1,11 +1,14 @@
-[gd_scene load_steps=103 format=3 uid="uid://yaehi1khyvew"]
+[gd_scene load_steps=107 format=3 uid="uid://yaehi1khyvew"]
 
 [ext_resource type="PackedScene" uid="uid://1wgfw2uv0c65" path="res://Entities/Player.tscn" id="1_5kadl"]
 [ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/VHSFilter.gdshader" id="2_14ekm"]
 [ext_resource type="PackedScene" uid="uid://badb4uq2bs3ri" path="res://Entities/GoalRing.tscn" id="2_jo5cx"]
+[ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/FlickerLights.gdshader" id="3_gea8t"]
+[ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/MovingArrow.gdshader" id="4_1woqn"]
 [ext_resource type="PackedScene" uid="uid://cnj3ygo35ij1s" path="res://Entities/ScoreScreen.tscn" id="4_4a6ks"]
 [ext_resource type="Shader" path="res://Assets/Shaders/TutorialShaders/Sky.gdshader" id="4_urkrt"]
 [ext_resource type="PackedScene" uid="uid://cy31ppp2wr0tu" path="res://Entities/HintBox.tscn" id="5_70nwn"]
+[ext_resource type="Texture2D" uid="uid://dti85e88kee7p" path="res://Assets/Images/Arrows.png" id="5_dhp0l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3j6p"]
 size = Vector3(1, 10, 10)
@@ -127,55 +130,9 @@ size = Vector3(50, 1, 500)
 [sub_resource type="PlaneMesh" id="PlaneMesh_hcmhw"]
 size = Vector2(50, 500)
 
-[sub_resource type="Shader" id="Shader_a5gv0"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.2.2.stable.mono's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,ambient_light_disabled;
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
-uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
-uniform float specular;
-uniform float metallic;
-uniform sampler2D texture_emission : source_color, hint_default_black,filter_linear_mipmap,repeat_enable;
-uniform vec4 emission : source_color;
-uniform float emission_energy;
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-uniform float emission_energy_variance: hint_range(0., 16) = 0.5;
-uniform float fluctuating_speed: hint_range(1., 30.) = 1;
-
-void vertex() {
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-}
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-	
-	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
-	float current_energy = emission_energy + emission_energy_variance * sin(fluctuating_speed * TIME);
-	EMISSION = (emission.rgb+emission_tex)*current_energy;
-}
-"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oejt4"]
 render_priority = 0
-shader = SubResource("Shader_a5gv0")
+shader = ExtResource("3_gea8t")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
@@ -206,7 +163,7 @@ material = SubResource("ShaderMaterial_oejt4")
 size = Vector3(1, 30, 75)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y3uln"]
-size = Vector3(1, 30, 75)
+size = Vector3(1, 30, 125)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ctsei"]
 size = Vector3(50, 1, 318)
@@ -320,6 +277,22 @@ emission_texture = SubResource("NoiseTexture2D_gd3nm")
 [sub_resource type="BoxMesh" id="BoxMesh_mmilk"]
 material = SubResource("StandardMaterial3D_11dpk")
 size = Vector3(160, 100, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m486g"]
+render_priority = 0
+shader = ExtResource("4_1woqn")
+shader_parameter/speed = -0.75
+shader_parameter/tex_scale = Vector2(3, 3)
+shader_parameter/tex_offset = Vector2(0, 0)
+shader_parameter/emission = Color(0.754314, 0.580535, 0.159408, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/emission_energy_variance = 0.5
+shader_parameter/fluctuating_speed = 5.0
+shader_parameter/TEXTURE = ExtResource("5_dhp0l")
+
+[sub_resource type="BoxMesh" id="BoxMesh_h7b20"]
+material = SubResource("ShaderMaterial_m486g")
+size = Vector3(1, 125, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2fbne"]
 size = Vector3(200, 1, 250)
@@ -635,6 +608,10 @@ hintText = "press [crouch] to crouch, hold [crouch] while sprinting to slide."
 [node name="HintBox3" parent="Basic Movement Section/Decors" instance=ExtResource("5_70nwn")]
 transform = Transform3D(0.0662217, 0, -0.997805, 0, 1, 0, 0.997805, 0, 0.0662217, 6.248, 1.293, -18.496)
 hintText = "hold [sprint] to sprint."
+
+[node name="HintBox4" parent="Basic Movement Section/Decors" instance=ExtResource("5_70nwn")]
+transform = Transform3D(0.0662217, 0, -0.997805, 0, 1, 0, 0.997805, 0, 0.0662217, -0.353724, 1.46124, 1.79528)
+hintText = "press [forward][left][backward][right] to move."
 
 [node name="Ceilings" type="Node3D" parent="Basic Movement Section"]
 
@@ -1408,6 +1385,26 @@ mesh = SubResource("BoxMesh_mmilk")
 [node name="GoalRing" parent="Final Test Section/Decors" instance=ExtResource("2_jo5cx")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -610.987, 160.558, 93.3065)
 winAreaSize = Vector3(10, 100, 170)
+
+[node name="HintBox" parent="Final Test Section/Decors" instance=ExtResource("5_70nwn")]
+transform = Transform3D(0.0662217, 0, -0.997805, 0, 1, 0, 0.997805, 0, 0.0662217, 15.2983, -11.4928, -580.544)
+hintText = "hold left click while away from the glowing disc to swing around the wall."
+
+[node name="Arrows" type="StaticBody3D" parent="Final Test Section/Decors"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, -0.697742, -725.856)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Final Test Section/Decors/Arrows"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_h7b20")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final Test Section/Decors/Arrows"]
+shape = SubResource("BoxShape3D_y3uln")
+
+[node name="HintBox2" parent="Final Test Section/Decors" instance=ExtResource("5_70nwn")]
+transform = Transform3D(0.0662217, 0, -0.997805, 0, 1, 0, 0.997805, 0, 0.0662217, -2.88591, -38.2945, -628.547)
+hintText = "hold right click while looking at the glowing disc to climb back up."
 
 [node name="Ceilings" type="Node3D" parent="Final Test Section"]
 

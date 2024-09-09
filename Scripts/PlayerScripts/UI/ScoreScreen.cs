@@ -3,6 +3,10 @@ using Godot;
 
 namespace ZoomToHome {
     public partial class ScoreScreen : Control {
+        // signals
+        [Signal] public delegate void ResetLevelEventHandler();
+        [Signal] public delegate void NextLevelEventHandler();
+
         // exports for scene
         [Export] private LabelSettings letterGradeSettings;
         [Export] private ShaderMaterial SRankShader;
@@ -29,6 +33,14 @@ namespace ZoomToHome {
             Modulate = transparent;
             Label letterGrade = GetNode("Results/Rank/Grade") as Label;
             letterGrade.Material = null;
+
+            // connect score screen buttons
+            Button redoButton = GetNode("Buttons/Redo") as Button;
+            Button nextButton = GetNode("Buttons/Next") as Button;
+            redoButton.Disabled = true;
+            nextButton.Disabled = true;
+            redoButton.Connect(Button.SignalName.Pressed, Callable.From(() => EmitSignal(SignalName.ResetLevel)));
+            nextButton.Connect(Button.SignalName.Pressed, Callable.From(() => EmitSignal(SignalName.NextLevel)));
             
             // set rank threshold text
             (GetNode("Results/Rankings/S Rank") as Label).Text = $"S - {StopWatch.ConvertFormat(SRankThreshold)}";
@@ -55,6 +67,12 @@ namespace ZoomToHome {
                 ShowResults(timeElapsed);
             }));
             scoreScreenTween.Play();
+        }
+
+        public void ResetScoreScreen() {
+            foreach(Control child in GetChildren().Cast<Control>()) child.Modulate = transparent;
+            (GetNode("Buttons/Redo") as Button).Disabled = true;
+            (GetNode("Buttons/Next") as Button).Disabled = true;
         }
 
         private void ShowResults(float timeElapsed) {
@@ -87,18 +105,22 @@ namespace ZoomToHome {
             Button leftButton = buttons.GetChild(0) as Button;
             Button rightButton = buttons.GetChild(1) as Button;
             
+            leftButton.ReleaseFocus();
+            rightButton.ReleaseFocus();
+            
             Vector2 originalLeftPosition = leftButton.Position;
             leftButton.Position = new Vector2(originalLeftPosition.X - 3000, originalLeftPosition.Y);
             Vector2 originalRightPosition = rightButton.Position;
             rightButton.Position = new Vector2(originalRightPosition.X + 3000, originalRightPosition.Y);
+            buttons.Modulate = visibleColor;
 
             buttonsTween.TweenProperty(leftButton, "position", originalLeftPosition, 0.3f);
             buttonsTween.TweenProperty(rightButton, "position", originalRightPosition, 0.3f);
+            buttonsTween.TweenCallback(Callable.From(() => {
+                leftButton.Disabled = false;
+                rightButton.Disabled = false;
+            }));
             buttonsTween.Play();
-
-            leftButton.Disabled = false;
-            rightButton.Disabled = false;
-            buttons.Modulate = visibleColor;
         }
 
         private void PlayGradeAnimation() {

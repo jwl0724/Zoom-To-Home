@@ -44,9 +44,14 @@ outline_color = Color(0.0313726, 0.0627451, 0.227451, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wf87"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqmjj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bt4qv"]
 bg_color = Color(0.647059, 0.647059, 0.647059, 0)
 draw_center = false
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="Theme" id="Theme_2gjnr"]
 default_font = ExtResource("4_ug08u")
@@ -56,16 +61,7 @@ Button/colors/font_hover_color = Color(0.637842, 0.637843, 0.637844, 1)
 Button/colors/font_pressed_color = Color(0.470076, 0.470076, 0.470076, 1)
 Button/font_sizes/font_size = 54
 Button/fonts/font = ExtResource("4_ug08u")
-Button/styles/pressed = SubResource("StyleBoxFlat_bt4qv")
-
-[sub_resource type="Theme" id="Theme_7knla"]
-default_font = ExtResource("4_ug08u")
-Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
-Button/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 1)
-Button/colors/font_hover_color = Color(0.637842, 0.637843, 0.637844, 1)
-Button/colors/font_pressed_color = Color(0.470076, 0.470076, 0.470076, 1)
-Button/font_sizes/font_size = 54
-Button/fonts/font = ExtResource("4_ug08u")
+Button/styles/focus = SubResource("StyleBoxFlat_gqmjj")
 Button/styles/pressed = SubResource("StyleBoxFlat_bt4qv")
 
 [node name="Score Screen" type="Control"]
@@ -315,6 +311,6 @@ offset_top = -15.5
 offset_bottom = 15.5
 grow_horizontal = 0
 grow_vertical = 2
-theme = SubResource("Theme_7knla")
+theme = SubResource("Theme_2gjnr")
 text = "Next Level"
 flat = true

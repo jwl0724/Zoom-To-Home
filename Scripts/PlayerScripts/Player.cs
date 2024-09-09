@@ -23,6 +23,11 @@ namespace ZoomToHome {
             standChecker = GetNode<RayCast3D>("Helper Objects/Stand Check");
             vaultHelper = GetNode<VaultHelper>("Helper Objects/Vault Helper");
             playerTimer = GetNode<StopWatch>("HUD/Stop Watch");
+            
+            // connect signals
+            scoreScreen.Connect(ScoreScreen.SignalName.ResetLevel, Callable.From(() => ResetPlayer(Vector3.Zero)));
+            scoreScreen.Connect(ScoreScreen.SignalName.NextLevel, Callable.From(() => ExitLevel()));
+            GetViewport().Connect(Viewport.SignalName.Ready, Callable.From(() => StateManager.ChangeState(StateManager.AllStates["Idle"])));
         }
 
         public override void _PhysicsProcess(double delta) {
@@ -36,11 +41,6 @@ namespace ZoomToHome {
             float timeElapsed = playerTimer.Stop();
             StateManager.ChangeState(StateManager.AllStates["Cleared"]);
             scoreScreen.PlayScoreScreen(timeElapsed);
-        }
-
-        public void ResetPlayer(Vector3 startPoint) {
-            StateManager.ChangeState(StateManager.AllStates["Idle"]);
-            Position = startPoint;
         }
 
         public void AddCameraRotation(Vector3 rotation) {
@@ -145,6 +145,24 @@ namespace ZoomToHome {
 
         public Vector3 GetVaultDestination() {
             return vaultHelper.CalculateVaultLocation();
+        }
+
+        private void ResetPlayer(Vector3 startPoint) {
+            armsAnimator.Play("Reset");
+            playerTimer.ResetWatch();
+            scoreScreen.ResetScoreScreen();
+
+            Velocity = Vector3.Zero;
+            RotationHelper.Rotation = Vector3.Zero;
+            forceList.Clear();
+            Position = startPoint;
+            StateManager.ChangeState(StateManager.AllStates["Idle"]);
+            playerTimer.Resume();
+        }
+
+        private void ExitLevel() {
+            // implement later when there are multiple levels and an actual menu
+            GetTree().Quit(); // temp solution right now, change later
         }
     }
 }

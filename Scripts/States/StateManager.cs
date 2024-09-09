@@ -12,8 +12,8 @@ namespace ZoomToHome {
             foreach(Node child in GetChildren()) {
                 AllStates.Add(child.GetType().Name, child as State);
             }
-            PreviousState = AllStates["Idle"];
-            ChangeState(AllStates["Idle"]);
+            PreviousState = AllStates["Cleared"];
+            ChangeState(AllStates["Cleared"]);
         }
 
         public void ChangeState(State state) {
